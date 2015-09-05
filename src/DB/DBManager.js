@@ -353,7 +353,7 @@ define(function(require)
 
 
 	/**
-	 * @return {string} Path to eapon sound
+	 * @return {string} Path to weapon sound
 	 * @param {number} weapon id
 	 */
 	DB.getWeaponSound = function getWeaponSound( id )

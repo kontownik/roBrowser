@@ -137,13 +137,20 @@ define(function( require )
 		}],
 
 
-		11: [{
+		//11: [{
 			//type: 'FUNC',
 			//file: 'effect/endure',
-			wav:  'effect/ef_endure',
+		//	wav:  'effect/ef_endure',
+		//	attachedEntity: true
+		//}],
+
+        11: [{
+			type: 'SPR',
+			file: 'sm_endure',
+            wav:  'effect/ef_endure',
+			head: true,
 			attachedEntity: true
 		}],
-
 
 		12: [{
 			//type: 'FUNC',
@@ -684,8 +691,11 @@ define(function( require )
 
 
 		93: [{
-			//type: 'FUNC',
+			type: 'STR',
+            //file: 'ufidel',
+            //file: 'thunder_ball000%d',
 			wav:  'effect/hunter_shockwavetrap',
+            //rand: [1, 6],
 			attachedEntity: true
 		}],
 

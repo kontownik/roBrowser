@@ -39,6 +39,7 @@ define(function( require )
 	var StatusIcons   = require('UI/Components/StatusIcons/StatusIcons');
 	var BasicInfo     = require('UI/Components/BasicInfo/BasicInfo');
 	var Escape        = require('UI/Components/Escape/Escape');
+    var DB            = require('DB/DBManager'); //+
 
 
 	/**
@@ -261,6 +262,14 @@ define(function( require )
 								next:   false
 							}
 						});
+                        //autoattack weapon hit [TODO: synchronize with attack delay (attackMT)]
+                        if (srcEntity.objecttype === Entity.TYPE_PC && pkt.damage > 0) { // player is an attacker
+                            var weapon_id = parseInt(srcEntity.weapon, 16);
+                            var weapon_sound = DB.getWeaponSound(weapon_id.toString(16));
+                            var weapon_type = DB.getWeaponViewID(weapon_id.toString(16));
+                            console.error( '[debug]Item: "%s"  // type: "%s" // sound: "%s".', weapon_id.toString(16), weapon_type.toString(16),  weapon_sound.toString(16));
+                            Sound.play(weapon_sound);
+                        }
 					}
 
 					target = pkt.damage ? dstEntity : srcEntity;
