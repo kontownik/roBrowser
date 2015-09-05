@@ -372,7 +372,8 @@ define(function( require )
 			type: 'SPR',
 			file: 'Ãàº¹',
 			wav: 'effect/ef_blessing',
-			attachedEntity: true
+			attachedEntity: false,
+			head: true
 		}],
 
 
