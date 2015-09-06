@@ -96,6 +96,7 @@ define(function(require)
 	  */
 	var _zoomFactor = [1, 10, 6, 3, 2];
 
+	var lastMap = null;
 
 	/**
 	 * Initialize minimap
@@ -143,6 +144,13 @@ define(function(require)
 	 */
 	MiniMap.setMap = function setMap( mapname )
 	{
+		if (lastMap !== mapname){
+			_party.length   = 0;
+			_guild.length   = 0;
+			_markers.length = 0;
+		}
+		lastMap = mapname;
+
 		_map.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
 
 		var path = DB.INTERFACE_PATH.replace('data/texture/', '') + 'map/' + mapname.replace(/\..*/,'.bmp');
@@ -179,10 +187,6 @@ define(function(require)
 	 */
 	MiniMap.onRemove = function onRemove()
 	{
-		// Clean up memory
-		_party.length   = 0;
-		_guild.length   = 0;
-		_markers.length = 0;
 	};
 
 
