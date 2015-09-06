@@ -290,6 +290,7 @@ define(function( require )
 		switch (pkt.result) {
 			case 0: // leave
 			case 1: // expel
+			MiniMap.removePartyMemberMark(pkt.AID);
 				break;
 
 			case 2:
@@ -305,6 +306,7 @@ define(function( require )
 
 		if (Session.AID === pkt.AID) {
 			Session.hasParty = false;
+			MiniMap.clearPartyMemberMarks();
 		}
 
 		PartyUI.removePartyMember(pkt.AID, pkt.characterName);
