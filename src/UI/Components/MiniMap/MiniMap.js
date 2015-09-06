@@ -145,9 +145,9 @@ define(function(require)
 	MiniMap.setMap = function setMap( mapname )
 	{
 		if (lastMap !== mapname){
-			_party.length   = 0;
-			_guild.length   = 0;
-			_markers.length = 0;
+			this.clearPartyMemberMarks();
+			this.clearGuildMemberMarks();
+			this.clearNpcMarks();
 		}
 		lastMap = mapname;
 
@@ -236,6 +236,9 @@ define(function(require)
 		}
 	};
 
+	MiniMap.clearPartyMemberMarks = function clearPartyMemberMarks(){
+		_party.length = 0;
+	}
 
 	/**
 	 * Add a guild mark to minimap
@@ -281,6 +284,9 @@ define(function(require)
 		}
 	};
 
+	MiniMap.clearGuildMemberMarks = function clearGuildMemberMarks(){
+		_guild.length = 0;
+	}
 
 	/**
 	 * Add a npc mark to minimap
@@ -336,7 +342,9 @@ define(function(require)
 		}
 	};
 
-
+	MiniMap.clearNpcMarks = function clearNpcMarks(){
+		_markers.length = 0;
+	}
 	/**
 	 * Change zoom
 	 *
