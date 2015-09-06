@@ -24,6 +24,7 @@ define(function(require)
 	var KEYS               = require('Controls/KeyEventHandler');
 	var UIManager          = require('UI/UIManager');
 	var UIComponent        = require('UI/UIComponent');
+	var partyColors        = require('Utils/partyColors');
 	var htmlText           = require('text!./MiniMap.html');
 	var cssText            = require('text!./MiniMap.css');
 
@@ -214,7 +215,7 @@ define(function(require)
 			key: key,
 			x:   x,
 			y:   y,
-			color: 'rgb('+  [ r()*255 | 0, r()*255 | 0, r()*255 | 0] +')'
+			color: partyColors(key).style
 		});
 	};
 

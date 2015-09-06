@@ -17,6 +17,7 @@ define(function(require)
 	 */
 	var DB                   = require('DB/DBManager');
 	var jQuery               = require('Utils/jquery');
+	var partyColors          = require('Utils/partyColors');
 	var Preferences          = require('Core/Preferences');
 	var Client               = require('Core/Client');
 	var Renderer             = require('Renderer/Renderer');
@@ -418,8 +419,10 @@ define(function(require)
 			player = jQuery.extend({}, player);
 
 			_party.push(player);
+			var color = partyColors(player.AID).style;
+			var colorStyle = role === 0 ? '' : 'style="color: ' + color + '"';
 			this.ui.find('.content .party').append(
-				'<div class="node'+ (role === 0 ? ' leader' : '') + (player.state === 0 ? ' online' : '') + '">' +
+				'<div ' + colorStyle + ' class="node'+ (role === 0 ? ' leader' : '') + (player.state === 0 ? ' online' : '') + '">' +
 					'<span class="name">' + jQuery.escape(player.characterName) + '</span>' +
 					'<span class="map">(' + jQuery.escape(DB.getMapName(player.mapName)) + ')</span>' +
 					'<canvas class="life" width="60" height="5"></canvas> <span class="hp"></span>' +
