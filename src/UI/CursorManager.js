@@ -21,6 +21,7 @@ define(function( require )
 	var Sprite        = require('Loaders/Sprite');
 	var Action        = require('Loaders/Action');
 	var getModule     = require;
+    var Preferences = require('Preferences/Controls'); //+
 
 
 	/**
@@ -51,7 +52,7 @@ define(function( require )
 
 
 	/**
-	 * @var {boolean} magnetism while picking entites ?
+	 * @var {boolean} magnetism while picking entites ? [/snap]
 	 */
 	Cursor.magnetism = true;
 
@@ -360,13 +361,15 @@ define(function( require )
 			return;
 		}
 
-		// Cursor magnetism
+		// Cursor magnetism [snap]
 		if (Cursor.magnetism && !Cursor.blockMagnetism) {
 			var entity = EntityManager.getOverEntity();
 
-			if (entity &&
-			    (entity.objecttype === Entity.TYPE_MOB ||
-			     entity.objecttype === Entity.TYPE_ITEM)) {
+			if (entity && entity.objecttype === Entity.TYPE_MOB) && Preferences.snap === true) {
+				x += Math.floor( Mouse.screen.x - (entity.boundingRect.x1 + (entity.boundingRect.x2-entity.boundingRect.x1) / 2));
+				y += Math.floor( Mouse.screen.y - (entity.boundingRect.y1 + (entity.boundingRect.y2-entity.boundingRect.y1) / 2));
+			}
+			if (entity && entity.objecttype === Entity.TYPE_ITEM) && Preferences.itemsnap === true) {
 				x += Math.floor( Mouse.screen.x - (entity.boundingRect.x1 + (entity.boundingRect.x2-entity.boundingRect.x1) / 2));
 				y += Math.floor( Mouse.screen.y - (entity.boundingRect.y1 + (entity.boundingRect.y2-entity.boundingRect.y1) / 2));
 			}
