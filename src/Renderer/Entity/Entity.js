@@ -358,7 +358,6 @@ define( function( require )
 		// Todo:update head direction
 	};
 
-
 	/**
 	 * Export
 	 */

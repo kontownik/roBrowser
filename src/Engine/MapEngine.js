@@ -271,12 +271,21 @@ define(function( require )
 				}
 			});
 
-			Session.Entity.set({
-				PosDir: [ pkt.xPos, pkt.yPos, 0 ],
-				GID: Session.Character.GID
-			});
-			EntityManager.add( Session.Entity );
 
+            if(pkt.mapName == _mapName && pkt.xPos == Session.Entity.position[0] && pkt.yPos == Session.Entity.position[1]) //check if it's refresh command or not
+            {
+                //fix head direction will go there in future??
+            } 
+            else
+            {
+                Session.Entity.set({
+                PosDir: [ pkt.xPos, pkt.yPos, 0 ], // it's always north on map change
+                GID: Session.Character.GID
+                });
+            }
+
+			EntityManager.add( Session.Entity );
+            
 			// Initialize camera
 			Camera.setTarget( Session.Entity );
 			Camera.init();
