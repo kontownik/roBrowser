@@ -237,12 +237,19 @@ define(function( require )
 
 		switch (pkt.action) {
 
-			// Damage
-			case 0:  // regular
-			case 4:  // absorbed
-			case 8:  // double attack
-			case 9:  // endure
-			case 10: // critital
+			// Damage [rathena/clif.h]
+			case 0:  // regular [DMG_NORMAL]
+            //case 1: // [DMG_PICKUP_ITEM]
+            //case 2: // [DMG_SIT_DOWN]
+            //case 3: // [DMG_STAND_UP]
+			case 4:  // absorbed [DMG_ENDURE]
+            //case 5: [DMG_SPLASH]
+            //case 5: [DMG_SKILL]
+            //case 7: [DMG_REPEAT]
+            //case 11: [DMG_TOUCH] probably something new.
+			case 8:  // double attack [DMG_MULTI_HIT]
+			case 9:  // endure [DMG_MULTI_HIT_ENDURE]
+			case 10: // critital [DMG_CRITICAL]
 				if (dstEntity) {
 					// only if damage and do not have endure
 					// and damage isn't absorbed (healing)
@@ -267,8 +274,10 @@ define(function( require )
                             var weapon_id = parseInt(srcEntity.weapon, 16);
                             var weapon_sound = DB.getWeaponSound(weapon_id.toString(16));
                             var weapon_type = DB.getWeaponViewID(weapon_id.toString(16));
-                            console.error( '[debug]Item: "%s"  // type: "%s" // sound: "%s".', weapon_id.toString(16), weapon_type.toString(16),  weapon_sound.toString(16));
-                            Sound.play(weapon_sound);
+                            //console.error( '[debug]Item: "%s"  // type: "%s" // sound: "%s".', weapon_id.toString(16), weapon_type.toString(16),  weapon_sound.toString(16));
+                            if(pkt.action !== 10){ //critical get his own sound regardless of weapon equipped
+                                Sound.play(weapon_sound);
+                            }
                         }
 					}
 
@@ -295,12 +304,12 @@ define(function( require )
 								Damage.add( pkt.damage / 2, target, Renderer.tick + pkt.attackMT * 2 );
 								break;
 
-							// TODO: critical damage
+							// TODO: critical damage (yellow font + star background + shine effect)
 							case 10:
-								Damage.add( pkt.damage, target, Renderer.tick + pkt.attackMT );
+								Damage.add( pkt.damage, target, Renderer.tick + pkt.attackMT);
 								break;
 
-							// TODO: lucky miss
+							// TODO: lucky miss [DMG_LUCY_DODGE]
 							case 11:
 								Damage.add( 0, target, Renderer.tick + pkt.attackMT );
 								break;
