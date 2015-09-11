@@ -43,7 +43,6 @@ define(function( require ) {
     /**
      * @var {string} Vertex Shader
      */
-    var z = Math.random() * 0.01;
     var _vertexShader   = [
         'attribute vec2 aPosition;',
         'attribute vec2 aTextureCoord;',
@@ -62,7 +61,7 @@ define(function( require ) {
             'position      += vec4(aPosition.x * uSize, 0.0, aPosition.y * uSize, 0.0) * uRotationMat;',
 
             'gl_Position    = uProjectionMat * uModelViewMat * position;',
-            'gl_Position.z -= ' + z + ';',
+            'gl_Position.z -= 0.01;',
 
             'vTextureCoord  = aTextureCoord;',
         '}'
