@@ -118,9 +118,9 @@ define(function( require ) {
         time /= 50;
         time  = Math.max(time, 1);
         time  = Math.min(time, 5);
-
+        var x = Math.sin(tick / 180*Math.PI);
         // gl.uniform1f(  _program.uniform.uSize, 1);
-        gl.uniform1f(  _program.uniform.uSize, 1.4);
+        gl.uniform1f(  _program.uniform.uSize, 1.4 + 0.5 * x);
 
         gl.drawArrays( gl.TRIANGLES, 0, 6 );
 
