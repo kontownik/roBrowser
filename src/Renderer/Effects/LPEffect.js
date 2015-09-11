@@ -51,17 +51,16 @@ define(function( require ) {
 
         'uniform mat4 uModelViewMat;',
         'uniform mat4 uProjectionMat;',
-        'uniform mat4 uRotationMat;',
 
         'uniform vec3 uPosition;',
         'uniform float uSize;',
 
         'void main(void) {',
             'vec4 position  = vec4(uPosition.x + 0.5, -uPosition.z, uPosition.y + 0.5, 1.0);',
-            'position      += vec4(aPosition.x * uSize, 0.0, aPosition.y * uSize, 0.0) * uRotationMat;',
+            'position      += vec4(aPosition.x * uSize, 0.0, aPosition.y * uSize, 0.0);',
 
             'gl_Position    = uProjectionMat * uModelViewMat * position;',
-            'gl_Position.z -= 0.01;',
+            'gl_Position.z -= 0.011;',
 
             'vTextureCoord  = aTextureCoord;',
         '}'
@@ -84,7 +83,7 @@ define(function( require ) {
             '   discard;',
             '}',
             'texture.a = 0.7;',
-            'gl_FragColor     = texture;',
+            'gl_FragColor = texture;',
 
         '}'
     ].join('\n');
@@ -94,7 +93,6 @@ define(function( require ) {
     function LPEffect(pos, startLifeTime)
     {
         this.position = pos;
-        this.startLifeTime = startLifeTime;
     }
 
 
@@ -112,17 +110,13 @@ define(function( require ) {
     LPEffect.prototype.render = function render( gl, tick )
     {
         gl.uniform3fv( _program.uniform.uPosition,  this.position);
-
-        var time = tick - this.startLifeTime;
-
-        var sizeMult = Math.sin(tick / (540*Math.PI));
-        gl.uniform1f(  _program.uniform.uSize, 1.4 + 0.1 * sizeMult);
+        gl.uniform1f(  _program.uniform.uSize, 0.6);
 
         gl.bindBuffer( gl.ARRAY_BUFFER, _buffer );
         gl.drawArrays( gl.TRIANGLES, 0, 6 );
 
     };
-    var Altitude = require('Renderer/Map/Altitude');
+
     LPEffect.init = function init(gl)
     {
         _program = WebGL.createShaderProgram( gl, _vertexShader, _fragmentShader );
@@ -130,12 +124,12 @@ define(function( require ) {
 
         gl.bindBuffer( gl.ARRAY_BUFFER, _buffer );
         gl.bufferData( gl.ARRAY_BUFFER, new Float32Array([
-            -0.5, -0.5, 0.0, 0.0,
-            +0.5, -0.5, 1.0, 0.0,
-            +0.5, +0.5, 1.0, 1.0,
-            +0.5, +0.5, 1.0, 1.0,
-            -0.5, +0.5, 0.0, 1.0,
-            -0.5, -0.5, 0.0, 0.0
+            -1.0, -1.0, 0.0, 0.0,
+            +1.0, -1.0, 1.0, 0.0,
+            +1.0, +1.0, 1.0, 1.0,
+            +1.0, +1.0, 1.0, 1.0,
+            -1.0, +1.0, 0.0, 1.0,
+            -1.0, -1.0, 0.0, 0.0
         ]), gl.STATIC_DRAW );
 
         Client.loadFile('data/texture/effect/aaa copy.bmp', function(buffer) {
@@ -200,20 +194,12 @@ define(function( require ) {
         var attribute = _program.attribute;
 
         mat4.identity(_matrix);
-        // mat4.rotateY( _matrix, _matrix, (tick/4) / 180 * Math.PI);
 
         gl.useProgram( _program );
 
         // Bind matrix
         gl.uniformMatrix4fv( uniform.uModelViewMat,  false, modelView );
         gl.uniformMatrix4fv( uniform.uProjectionMat, false, projection );
-        gl.uniformMatrix4fv( uniform.uRotationMat,   false, _matrix);
-
-        // Fog settings
-        gl.uniform1i(  uniform.uFogUse,   fog.use && fog.exist );
-        gl.uniform1f(  uniform.uFogNear,  fog.near );
-        gl.uniform1f(  uniform.uFogFar,   fog.far  );
-        gl.uniform3fv( uniform.uFogColor, fog.color );
 
         // Texture
         gl.activeTexture( gl.TEXTURE0 );
