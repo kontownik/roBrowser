@@ -43,6 +43,7 @@ define(function( require ) {
     /**
      * @var {string} Vertex Shader
      */
+    var z = Math.random() * 0.01;
     var _vertexShader   = [
         'attribute vec2 aPosition;',
         'attribute vec2 aTextureCoord;',
@@ -61,7 +62,7 @@ define(function( require ) {
             'position      += vec4(aPosition.x * uSize, 0.0, aPosition.y * uSize, 0.0) * uRotationMat;',
 
             'gl_Position    = uProjectionMat * uModelViewMat * position;',
-            'gl_Position.z -= 0.01;',
+            'gl_Position.z -= ' + z + ';',
 
             'vTextureCoord  = aTextureCoord;',
         '}'
@@ -114,18 +115,15 @@ define(function( require ) {
         gl.uniform3fv( _program.uniform.uPosition,  this.position);
 
         var time = tick - this.startLifeTime;
-        // Animation
-        time /= 50;
-        time  = Math.max(time, 1);
-        time  = Math.min(time, 5);
-        var x = Math.sin(tick / 180*Math.PI);
-        // gl.uniform1f(  _program.uniform.uSize, 1);
-        gl.uniform1f(  _program.uniform.uSize, 1.4 + 0.5 * x);
 
+        var sizeMult = Math.sin(tick / (540*Math.PI));
+        gl.uniform1f(  _program.uniform.uSize, 1.4 + 0.1 * sizeMult);
+
+        gl.bindBuffer( gl.ARRAY_BUFFER, _buffer );
         gl.drawArrays( gl.TRIANGLES, 0, 6 );
 
     };
-
+    var Altitude = require('Renderer/Map/Altitude');
     LPEffect.init = function init(gl)
     {
         _program = WebGL.createShaderProgram( gl, _vertexShader, _fragmentShader );
