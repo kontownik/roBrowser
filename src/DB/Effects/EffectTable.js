@@ -229,9 +229,9 @@ define(function( require )
 
 		22: [{
 			// Sight effect, circling the entity 3.75 times
-			//type: 'FUNC',
-			//file: 'sprite/ÀÌÆÑÆ®/sight',
-			attachedEntity: true
+			type: 'SPR',
+			file: 'sight'
+			// attachedEntity: true
 		}],
 
 
@@ -1289,6 +1289,22 @@ define(function( require )
 			attachedEntity: true
 		}],
 
+		242: [{
+			type: 'FUNC',
+			attachedEntity: false,
+			func: function(pos, tick){
+				console.log('asd', arguments)
+
+				var LPEffect = require('Renderer/Effects/LPEffect');
+
+				this.add(new LPEffect(
+					{position: pos},
+					tick,
+					tick + 10000
+				));
+			}
+
+		}],
 
 		244: [{
 			type: 'STR',

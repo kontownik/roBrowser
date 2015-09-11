@@ -273,6 +273,9 @@ define(['./SkillConst'], function( SK )
 		effectId: 392
 	};
 
+	SkillEffect[SK.SA_LANDPROTECTOR] = {
+		groundEffectId: 242
+	};
 
 	/**
 	 * Exports
