@@ -310,7 +310,7 @@ define(function( require )
 		// Play sound
 		if (effect.wav) {
 			filename = effect.wav;
-		
+
 			if (effect.rand) {
 				filename = filename.replace('%d', Math.round(effect.rand[0] + (effect.rand[1]-effect.rand[0]) * Math.random()));
 			}

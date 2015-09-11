@@ -83,7 +83,7 @@ define(function( require ) {
             'if (texture.r < 0.3 || texture.g < 0.3 || texture.b < 0.3) {',
             '   discard;',
             '}',
-
+            'texture.a = 0.7;',
             'gl_FragColor     = texture;',
 
         '}'
@@ -91,30 +91,18 @@ define(function( require ) {
 
 
 
-    function LPEffect( target, startLifeTime, endLifeTime )
+    function LPEffect(pos, startLifeTime)
     {
-        this.target        = target;
+        this.position = pos;
         this.startLifeTime = startLifeTime;
-        this.endLifeTime   = endLifeTime;
     }
 
 
-    /**
-     * Preparing for render
-     *
-     * @param {object} webgl context
-     */
     LPEffect.prototype.init = function init( gl )
     {
         this.ready  = true;
     };
 
-
-    /**
-     * Destroying data
-     *
-     * @param {object} webgl context
-     */
     LPEffect.prototype.free = function free( gl )
     {
         this.ready = false;
@@ -123,7 +111,7 @@ define(function( require ) {
 
     LPEffect.prototype.render = function render( gl, tick )
     {
-        gl.uniform3fv( _program.uniform.uPosition,  this.target.position);
+        gl.uniform3fv( _program.uniform.uPosition,  this.position);
 
         var time = tick - this.startLifeTime;
         // Animation
@@ -132,11 +120,10 @@ define(function( require ) {
         time  = Math.min(time, 5);
 
         // gl.uniform1f(  _program.uniform.uSize, 1);
-        gl.uniform1f(  _program.uniform.uSize, 2);
+        gl.uniform1f(  _program.uniform.uSize, 1.5);
 
         gl.drawArrays( gl.TRIANGLES, 0, 6 );
 
-        // this.needCleanUp = this.endLifeTime < tick;
     };
 
     LPEffect.init = function init(gl)
@@ -159,7 +146,7 @@ define(function( require ) {
                 var ctx = this.getContext('2d');
                 ctx.save();
                 ctx.translate(  this.width/2,  this.height/2 );
-                ctx.rotate( 45 / 180 * Math.PI);
+                // ctx.rotate( 45 / 180 * Math.PI);
                 ctx.translate( -this.width/2, -this.height/2 );
                 ctx.drawImage( this, 0, 0);
                 ctx.restore();

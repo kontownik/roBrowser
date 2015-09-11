@@ -1,7 +1,7 @@
 /**
  * Engine/MapEngine/Entity.js
  *
- * Manage Entity based on received packets from server 
+ * Manage Entity based on received packets from server
  *
  * This file is part of ROBrowser, Ragnarok Online in the Web Browser (http://www.robrowser.com/).
  *
@@ -391,7 +391,7 @@ define(function( require )
 
 		// Remove "pseudo : |00Dialogue
 		pkt.msg = pkt.msg.replace(/\: \|\d{2}/, ': ');
-		
+
 		if (ChatRoom.isOpen) {
 			ChatRoom.message(pkt.msg);
 			return;
@@ -682,7 +682,7 @@ define(function( require )
 							Damage.add(
 								pkt.damage / pkt.count * (i+1),
 								target,
-								Renderer.tick, 
+								Renderer.tick,
 								Damage.TYPE.COMBO | ( (i+1) === pkt.count ? Damage.TYPE.COMBO_FINAL : 0 )
 							);
 						}
@@ -929,7 +929,7 @@ define(function( require )
 						title = pkt.title; // no user limit
 						break;
 				}
-					
+
 				entity.room.title = pkt.title;
 				entity.room.limit = pkt.maxcount;
 				entity.room.count = pkt.curcount;

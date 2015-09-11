@@ -1292,18 +1292,10 @@ define(function( require )
 		242: [{
 			type: 'FUNC',
 			attachedEntity: false,
-			func: function(pos, tick){
-				console.log('asd', arguments)
-
+			func: function(pos, tick, AID){
 				var LPEffect = require('Renderer/Effects/LPEffect');
-
-				this.add(new LPEffect(
-					{position: pos},
-					tick,
-					tick + 10000
-				));
+				this.add(new LPEffect(pos, tick), AID);
 			}
-
 		}],
 
 		244: [{
