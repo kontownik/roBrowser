@@ -61,7 +61,7 @@ define(function( require ) {
             'position      += vec4(aPosition.x * uSize, 0.0, aPosition.y * uSize, 0.0) * uRotationMat;',
 
             'gl_Position    = uProjectionMat * uModelViewMat * position;',
-            'gl_Position.z -= 0.02;',
+            'gl_Position.z -= 0.01;',
 
             'vTextureCoord  = aTextureCoord;',
         '}'
@@ -120,7 +120,7 @@ define(function( require ) {
         time  = Math.min(time, 5);
 
         // gl.uniform1f(  _program.uniform.uSize, 1);
-        gl.uniform1f(  _program.uniform.uSize, 1.5);
+        gl.uniform1f(  _program.uniform.uSize, 1.4);
 
         gl.drawArrays( gl.TRIANGLES, 0, 6 );
 
