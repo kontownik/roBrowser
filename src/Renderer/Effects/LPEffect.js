@@ -60,7 +60,7 @@ define(function( require ) {
             'position      += vec4(aPosition.x * uSize, 0.0, aPosition.y * uSize, 0.0);',
 
             'gl_Position    = uProjectionMat * uModelViewMat * position;',
-            'gl_Position.z -= 0.011;',
+            'gl_Position.z -= 0.01;',
 
             'vTextureCoord  = aTextureCoord;',
         '}'
@@ -89,10 +89,12 @@ define(function( require ) {
     ].join('\n');
 
 
+    var _num = 0;
 
     function LPEffect(pos, startLifeTime)
     {
         this.position = pos;
+        this.ix = _num++;
     }
 
 
@@ -109,8 +111,12 @@ define(function( require ) {
 
     LPEffect.prototype.render = function render( gl, tick )
     {
+
+        var oddEven = (this.ix % 2 === 0) ? Math.PI : 0;
+        var sizeMult = Math.sin(oddEven + (tick / (540 * Math.PI)));
+
         gl.uniform3fv( _program.uniform.uPosition,  this.position);
-        gl.uniform1f(  _program.uniform.uSize, 0.6);
+        gl.uniform1f(  _program.uniform.uSize, 0.8 + 0.05 * sizeMult);
 
         gl.bindBuffer( gl.ARRAY_BUFFER, _buffer );
         gl.drawArrays( gl.TRIANGLES, 0, 6 );
@@ -214,6 +220,8 @@ define(function( require ) {
 
         gl.vertexAttribPointer( attribute.aPosition,     2, gl.FLOAT, false, 4*4,  0   );
         gl.vertexAttribPointer( attribute.aTextureCoord, 2, gl.FLOAT, false, 4*4,  2*4 );
+
+        gl.depthMask(false);
     };
 
 
@@ -224,6 +232,7 @@ define(function( require ) {
      */
     LPEffect.afterRender = function afterRender(gl)
     {
+        gl.depthMask(true);
         gl.disableVertexAttribArray( _program.attribute.aPosition );
         gl.disableVertexAttribArray( _program.attribute.aTextureCoord );
     };

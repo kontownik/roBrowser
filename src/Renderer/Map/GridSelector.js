@@ -111,7 +111,7 @@ function(              Altitude,        Client,         WebGL,         Texture )
 
 				canvas.width  = WebGL.toPowerOfTwo(this.width);
 				canvas.height = WebGL.toPowerOfTwo(this.height);
-				
+
 				ctx.globalAlpha = 0.6;
 				ctx.drawImage( this, 0, 0, canvas.width, canvas.height );
 				ctx.fillStyle = 'rgb( 50, 240, 160)';
@@ -154,6 +154,7 @@ function(              Altitude,        Client,         WebGL,         Texture )
 		var uniform   = _program.uniform;
 		var attribute = _program.attribute;
 		var z;
+		gl.depthMask(false);
 
 		gl.useProgram( _program );
 
@@ -203,6 +204,8 @@ function(              Altitude,        Client,         WebGL,         Texture )
 		// Is it needed ?
 		gl.disableVertexAttribArray( attribute.aPosition );
 		gl.disableVertexAttribArray( attribute.aTextCoord );
+
+		gl.depthMask(true);
 	}
 
 
