@@ -280,6 +280,14 @@ define(['./SkillConst'], function( SK )
 	SkillEffect[SK.BA_ASSASSINCROSS] = {
 		groundEffectId: 287
 	}
+
+	SkillEffect[SK.BA_POEMBRAGI] = {
+		groundEffectId: 288
+	}
+
+	SkillEffect[SK.BA_APPLEIDUN] = {
+		groundEffectId: 289
+	}
 	/**
 	 * Exports
 	 */

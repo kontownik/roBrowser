@@ -1418,8 +1418,29 @@ define(function( require )
 			type: 'FUNC',
 			attachedEntity: false,
 			func: function(pos, tick, AID){
-				var LPEffect = require('Renderer/Effects/LPEffect');
-				this.add(new LPEffect(pos, tick), AID);
+				var FlatColorTile = require('Renderer/Effects/FlatColorTile');
+				var PinkTile = FlatColorTile('pink', {r: 0xff/255, g: 0xc0/255, b: 0xcb/255, a: 0.6});
+				this.add(new PinkTile(pos, tick), AID);
+			}
+		}],
+
+		288: [{
+			type: 'FUNC',
+			attachedEntity: false,
+			func: function(pos, tick, AID){
+				var FlatColorTile = require('Renderer/Effects/FlatColorTile');
+				var BlueTile = FlatColorTile('blue', {r: 0, g: 0xbf/255, b: 0xff/255, a: 0.6});
+				this.add(new BlueTile(pos, tick), AID);
+			}
+		}],
+
+		289: [{
+			type: 'FUNC',
+			attachedEntity: false,
+			func: function(pos, tick, AID){
+				var FlatColorTile = require('Renderer/Effects/FlatColorTile');
+				var YellowTile = FlatColorTile('yellow', {r: 1.0, g: 1.0, b: 0, a: 0.6});
+				this.add(new YellowTile(pos, tick), AID);
 			}
 		}],
 
