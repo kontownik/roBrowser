@@ -1414,6 +1414,14 @@ define(function( require )
 			attachedEntity: true
 		}],
 
+		287: [{
+			type: 'FUNC',
+			attachedEntity: false,
+			func: function(pos, tick, AID){
+				var LPEffect = require('Renderer/Effects/LPEffect');
+				this.add(new LPEffect(pos, tick), AID);
+			}
+		}],
 
 		302: [{
 			type: 'SPR',

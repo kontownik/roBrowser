@@ -277,6 +277,9 @@ define(['./SkillConst'], function( SK )
 		groundEffectId: 242
 	};
 
+	SkillEffect[SK.BA_ASSASSINCROSS] = {
+		groundEffectId: 287
+	}
 	/**
 	 * Exports
 	 */
