@@ -3,7 +3,7 @@ define(function( require ) {
     'use strict';
 
     var WebGL    = require('Utils/WebGL');
-    var _program, _buffer;
+
 
      function _vertexShader() {
         return [
@@ -40,6 +40,7 @@ define(function( require ) {
     var _cache = {};
 
     return function(name, spec){
+        var _program, _buffer;
         if (_cache[name]){
             return _cache[name]
         }
