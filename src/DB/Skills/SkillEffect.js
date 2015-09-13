@@ -21,7 +21,8 @@ define(['./SkillConst'], function( SK )
 	};
 
 	SkillEffect[SK.MG_SAFETYWALL] = {
-		effectId: 315
+		effectId: 315,
+		groundEffectId: '315_ground'
 	};
 
 	SkillEffect[SK.MG_STONECURSE] = {
@@ -288,8 +289,10 @@ define(['./SkillConst'], function( SK )
 	SkillEffect[SK.BA_APPLEIDUN] = {
 		groundEffectId: 289
 	}
-	/**
-	 * Exports
-	 */
+
+
+	SkillEffect[SK.AL_WARP] = {
+		groundEffectId: '316_ground'
+	};
 	return SkillEffect;
 });

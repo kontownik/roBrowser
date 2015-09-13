@@ -1478,6 +1478,23 @@ define(function( require )
 			attachedEntity: false
 		}],
 
+		'315_ground': [{
+			type: 'FUNC',
+			attachedEntity: false,
+			func: function(pos, tick, AID){
+				var Cylinder = require('Renderer/Effects/Cylinder');
+				this.add(new Cylinder(pos, 0.7, 0.7, 20, 'magic_violet', tick), AID);
+			}
+		}],
+
+		'316_ground': [{
+			type: 'FUNC',
+			attachedEntity: false,
+			func: function(pos, tick, AID){
+				var Cylinder = require('Renderer/Effects/Cylinder');
+				this.add(new Cylinder(pos, 0.6, 0.6, 40, 'magic_blue', tick), AID);
+			}
+		}],
 
 		337: [{
 			type: 'STR',
