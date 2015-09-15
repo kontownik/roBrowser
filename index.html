@@ -5,6 +5,35 @@
             <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
             <script type="text/javascript" src="api.js"></script>
             <script type="text/javascript">
+
+                function parseQS(qs){
+                    qs = qs.replace(/^\?/, '');
+                    var parts = qs.split('&');
+                    var parsed = {};
+                    parts.forEach(function(part){
+                        var pair = part.split('=');
+                        var key = pair[0];
+                        var value = pair[1];
+                        if (!parsed[key]){
+                            parsed[key] = [];
+                        }
+                        parsed[key].push(value);
+                    });
+                    return parsed;
+                }
+
+                function getLoginPassword(){
+                    var qs = parseQS(window.location.search);
+                    if (!qs.login || qs.login.length === 0){
+                        return [];
+                    }
+                    var password;
+                    if (qs.password && qs.password.length > 0){
+                        password = qs.password[0];
+                    }
+                    return [qs.login, password || qs.login];
+                }
+
                 function initialize() {
                     var ROConfig = {
                         target:        document.getElementById("robrowser"),
@@ -14,6 +43,8 @@
                         width:         800,
                         height:        600,
                         development: true,
+                        autoLogin: getLoginPassword(),
+                        skipIntro: true,
                         servers: [
                             {
                                 display: 'kpsro',
