@@ -31,10 +31,14 @@ function(      WebGL,         Texture,          glMatrix,        Client) {
 	var mat4 = glMatrix.mat4;
 
 
-	/**
-	 * @var {mat4} rotation matrix
-	 */
-	var _matrix = mat4.create();
+	var _rotationMatrices = (function(){
+		var matrices = [];
+		for (var i = 0; i < 16; i++){
+			matrices.push(mat4.create());
+		}
+		return matrices;
+	}());
+
 
 
 	/**
@@ -162,6 +166,7 @@ function(      WebGL,         Texture,          glMatrix,        Client) {
 	 * @param {string} texture name
 	 * @param {number} game tick
 	 */
+	var _num = 0;
 	function PropertyGround( position, topSize, bottomSize, height, textureName, tick)
 	{
 		this.position    = position;
@@ -171,6 +176,7 @@ function(      WebGL,         Texture,          glMatrix,        Client) {
 		this.height      = height;
 		this.tick        = tick;
         this.sizeRandomize = 0 + Math.random() * 10;
+        this.ix = (_num++) % _rotationMatrices.length;
 	}
 
 
@@ -215,6 +221,8 @@ function(      WebGL,         Texture,          glMatrix,        Client) {
         var sizeMult = Math.sin(tick / (360 * Math.PI) + this.sizeRandomize);
         if(sizeMult < 0.5)
             sizeMult = 0.5;
+
+        gl.uniformMatrix4fv( uniform.uRotationMat,   false, _rotationMatrices[this.ix]);
 
 		gl.bindTexture( gl.TEXTURE_2D, this.texture );
 
@@ -285,15 +293,21 @@ function(      WebGL,         Texture,          glMatrix,        Client) {
 	{
 		var uniform   = _program.uniform;
 
-		mat4.identity(_matrix);
-		mat4.rotateY( _matrix, _matrix, (tick/8) / 180 * Math.PI);
+		var _matrix, offset;
+		for (var i = 0, _len = _rotationMatrices.length; i < _len; i++){
+			_matrix = _rotationMatrices[i];
+			mat4.identity(_matrix);
+			offset = (i * 2 * Math.PI / _rotationMatrices.length);
+			mat4.rotateY(_matrix, _matrix, offset + (tick/8) / 180 * Math.PI);
+		}
+
 
 		gl.useProgram( _program );
 
 		// Bind matrix
 		gl.uniformMatrix4fv( uniform.uModelViewMat,  false, modelView );
 		gl.uniformMatrix4fv( uniform.uProjectionMat, false, projection );
-		gl.uniformMatrix4fv( uniform.uRotationMat,   false, _matrix);
+
 
 		// Fog settings
 		gl.uniform1i(  uniform.uFogUse,   fog.use && fog.exist );
