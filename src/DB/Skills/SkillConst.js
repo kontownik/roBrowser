@@ -465,12 +465,12 @@ define(function()
 		NJ_TATAMIGAESHI: 527,
 		NJ_KASUMIKIRI: 528,
 		NJ_SHADOWJUMP: 529,
-		NJ_KIRIKAGE: 530,
-		NJ_UTSUSEMI: 531,
-		NJ_BUNSINJYUTSU: 532,
+		NJ_KIRIKAGE: 530, //shadow slash
+		NJ_UTSUSEMI: 531, //Cast-off_Ciceda_Shell
+		NJ_BUNSINJYUTSU: 532, //Illusionary_Shadow
 		NJ_NINPOU: 533,
-		NJ_KOUENKA: 534,
-		NJ_KAENSIN: 535,
+		NJ_KOUENKA: 534, //Crimson_Fire_Blossom
+		NJ_KAENSIN: 535, //Crimson_Fire_Formation
 		NJ_BAKUENRYU: 536,
 		NJ_HYOUSENSOU: 537,
 		NJ_SUITON: 538,
