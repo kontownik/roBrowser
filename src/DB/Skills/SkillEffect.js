@@ -24,7 +24,7 @@ define(['./SkillConst'], function( SK )
 		effectId: 315,
 		groundEffectId: '315_ground'
 	};
-    
+
     SkillEffect[SK.SA_DELUGE] = {
 		groundEffectId: 'deluge_ground'
 	};
@@ -121,7 +121,8 @@ define(['./SkillConst'], function( SK )
 	};
 
 	SkillEffect[SK.PR_SANCTUARY] = {
-		effectId: 83
+		effectId: 83,
+		groundEffectId: 319
 	};
 
 	SkillEffect[SK.PR_STRECOVERY] = {

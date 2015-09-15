@@ -1486,7 +1486,7 @@ define(function( require )
 				this.add(new Cylinder(pos, 0.7, 0.7, 20, 'magic_violet', tick), AID);
 			}
 		}],
-        
+
         'deluge_ground': [{
 			type: 'FUNC',
 			attachedEntity: false,
@@ -1502,6 +1502,16 @@ define(function( require )
 			func: function(pos, tick, AID){
 				var Cylinder = require('Renderer/Effects/Cylinder');
 				this.add(new Cylinder(pos, 0.6, 0.6, 40, 'magic_blue', tick), AID);
+			}
+		}],
+
+		319: [{
+			type: 'FUNC',
+			attachedEntity: false,
+			func: function(pos, tick, AID){
+				var FlatColorTile = require('Renderer/Effects/FlatColorTile');
+				var WhiteTile = FlatColorTile('white', {r: 1, g: 1, b: 1, a: 0.8});
+				this.add(new WhiteTile(pos, tick), AID);
 			}
 		}],
 
