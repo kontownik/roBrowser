@@ -1486,6 +1486,15 @@ define(function( require )
 				this.add(new Cylinder(pos, 0.7, 0.7, 20, 'magic_violet', tick), AID);
 			}
 		}],
+        
+        'deluge_ground': [{
+			type: 'FUNC',
+			attachedEntity: false,
+			func: function(pos, tick, AID){
+				var PropertyGround = require('Renderer/Effects/PropertyGround');
+				this.add(new PropertyGround(pos, 3.0, 1.0, 2, 'ring_blue', tick), AID);
+			}
+		}],
 
 		'316_ground': [{
 			type: 'FUNC',
