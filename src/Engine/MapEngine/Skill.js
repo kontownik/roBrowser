@@ -32,6 +32,7 @@ define(function( require )
 	var ItemSelection        = require('UI/Components/ItemSelection/ItemSelection');
 	var Inventory            = require('UI/Components/Inventory/Inventory');
 	var NpcMenu              = require('UI/Components/NpcMenu/NpcMenu');
+	var SpiritSphere 		 = require('Renderer/Effects/SpiritSphere');
 
 
 	/**
@@ -86,7 +87,7 @@ define(function( require )
 	/**
 	 * Display an effect to the scene
 	 *
-	 * @param {object} pkt - PACKET.ZC.NOTIFY_GROUNDSKILL  
+	 * @param {object} pkt - PACKET.ZC.NOTIFY_GROUNDSKILL
 	 */
 	function onSkillToGround( pkt )
 	{
@@ -529,6 +530,15 @@ define(function( require )
 		Network.sendPacket(pkt);
 	};
 
+	function onSpiritSphere(pkt){
+		if (pkt.num === 0){
+			EffectManager.remove(SpiritSphere, pkt.AID)
+		} else {
+			var entity = EntityManager.get(pkt.AID);
+			var spheres = new SpiritSphere(entity, pkt.num);
+			EffectManager.add(spheres, pkt.AID, false);
+		}
+	}
 
 	/**
 	 * Initialize
@@ -553,5 +563,6 @@ define(function( require )
 		Network.hookPacket( PACKET.ZC.WARPLIST,               onTeleportList );
 		Network.hookPacket( PACKET.ZC.NOTIFY_MAPINFO,         onTeleportResult );
 		Network.hookPacket( PACKET.ZC.ACK_REMEMBER_WARPPOINT, onMemoResult );
+		Network.hookPacket( PACKET.ZC.SPIRITS, onSpiritSphere );
 	};
 });
