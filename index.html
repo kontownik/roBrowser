@@ -45,6 +45,7 @@
                         development: true,
                         autoLogin: getLoginPassword(),
                         skipIntro: true,
+                        version: Math.random(),
                         servers: [
                             {
                                 display: 'kpsro',
@@ -59,6 +60,7 @@
                     var RO = new ROBrowser(ROConfig);
                     RO.start();
                 }
+
                 window.addEventListener("load", initialize, false);
             </script>
         </head>
