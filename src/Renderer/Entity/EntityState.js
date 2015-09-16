@@ -74,6 +74,7 @@ define(function( require )
 				break;
 
 			case StatusConst.BodyState.STONE:
+                Sound.play('_stone_explosion.wav');
 				this.animation.play = true;
 				break;
 
@@ -95,6 +96,7 @@ define(function( require )
 				this._bodyStateColor[0] = 0.3;
 				this._bodyStateColor[1] = 0.3;
 				this._bodyStateColor[2] = 0.3;
+                Sound.play('_stonecurse.wav');
 				break;
 
 			case StatusConst.BodyState.SLEEP:
@@ -148,7 +150,7 @@ define(function( require )
 	 *
 	 * @param {number} new value
 	 */
-	function updateHealthState( value )
+	function updateHealthState( value ) //check if its support situation when 2 status are on
 	{
 		if (value === this._healthState) {
 			return;
@@ -199,6 +201,14 @@ define(function( require )
 			}
 		}
 
+        // Silence
+		if (value & StatusConst.HealthState.SILENCE) {
+			if (!(this._healthState & StatusConst.HealthState.SILENCE)) {
+				Sound.play('_silence.wav');
+                //TODO: animation above head
+			}
+		}
+        
 		this._healthState = value;
 		recalculateBlendingColor.call(this);
 	}
