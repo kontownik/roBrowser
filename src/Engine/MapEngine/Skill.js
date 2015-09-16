@@ -532,7 +532,7 @@ define(function( require )
 
 	function onSpiritSphere(pkt){
 		if (pkt.num === 0){
-			EffectManager.remove(SpiritSphere, pkt.AID)
+			EffectManager.remove(spheres, pkt.AID)
 		} else {
 			var entity = EntityManager.get(pkt.AID);
 			var spheres = new SpiritSphere(entity, pkt.num);
