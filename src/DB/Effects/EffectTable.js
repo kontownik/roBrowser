@@ -1745,8 +1745,6 @@ define(function( require )
 		}],
 
         426: [{ //taekwon sprint collision effect
-			type: 'STR',
-			file: 'asum',
             wav:  'effect/şąČŁ°Ý',
 			attachedEntity: true
 		}],
