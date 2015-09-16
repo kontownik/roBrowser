@@ -99,10 +99,11 @@ define(function( require )
 		}],
 
 
-		6: [{
+		6: [{ //portal - entering the new map
 			//type: 'FUNC',
 			//file: 'effect/ring_blue',
-			attachedEntity: false
+            wav: 'ef_portal',
+			attachedEntity: true
 		}],
 
 
@@ -176,7 +177,7 @@ define(function( require )
 		}],
 
 
-		15: [{
+		15: [{ //soul strike caster
 			//type: 'FUNC',
 			//file: 'sprite/ÀÌÆÑÆ®/particle1',
 			wav: 'effect/ef_soulstrike',
@@ -184,7 +185,7 @@ define(function( require )
  		}],
 
 
-		16: [{
+		16: [{ //hide and monster body relocation sound
 			//type: 'FUNC',
 			//file: 'effect/alpha_center',
 			wav: 'effect/ef_bash',
@@ -230,7 +231,8 @@ define(function( require )
 		22: [{
 			// Sight effect, circling the entity 3.75 times
 			type: 'SPR',
-			file: 'sight'
+			file: 'sight',
+            wav: 'effect/ef_sight',
 			// attachedEntity: true
 		}],
 
@@ -242,7 +244,7 @@ define(function( require )
 		}],
 
 
-		24: [{
+		24: [{ //fireball caster effect (on target effect 49:)
 			type: 'FUNC',
 			wav: 'effect/ef_fireball',
 			attachedEntity: false
@@ -266,18 +268,19 @@ define(function( require )
 		}],
 
 
-		27: [{
+		27: [{ //Frost diver caster (ice traveling to target)
 			//type: 'FUNC',
 			file: 'effect/ice',
+            wav: 'effect/ef_frostdiver1',
 			attachedEntity: false
 		}],
 
 
-		28: [{
+		28: [{ //Frost Diver target hit
 			//type: 'FUNC',
 			file: 'effect/ice',
 			wav: 'effect/ef_frostdiver2',
-			attachedEntity: false
+			attachedEntity: true
 		}],
 
 
@@ -310,7 +313,7 @@ define(function( require )
 			attachedEntity: true
 		}],
 
-
+        //33: //ruwach
 		34: [{
 			//type: 'FUNC',
 			//file: 'effect/ring_blue',
@@ -319,14 +322,15 @@ define(function( require )
 		}],
 
 
-		35: [{
+		35: [{ //warp portal casting before unit appear
 			//type: 'FUNC',
 			//file: 'effect/ring_blue',
 			wav: 'effect/ef_readyportal',
 			attachedEntity: false
 		}],
 
-
+        //36: //warp portal unit
+        
 		37: [{
 			//type: 'FUNC',
 			//file: 'effect/ac_center2',
@@ -419,6 +423,7 @@ define(function( require )
 		53: [{
 			type: 'SPR',
 			file: 'poisonhit',
+            wav:  'effect/ef_poisonattack',
 			attachedEntity: false
 		}],
 
@@ -531,7 +536,7 @@ define(function( require )
 		69: [{
 			type: 'STR',
 			file: 'skidtrap',
-			wav:  'effect/hunter_skidtrap',
+			wav:  'effect/hunter_skidtrap', // or hallucinationwalk ?
 			attachedEntity: false
 		}],
 
@@ -592,20 +597,21 @@ define(function( require )
 			attachedEntity: false
 		}],
 
-
-		80: [{
+		80: [{ //spear boomerang hit on target
 			//type: 'FUNC',
-			wav:  'effect/ef_fireball',
-			attachedEntity: false
+			attachedEntity: true
 		}],
 
-
-		82: [{
-			//type: 'FUNC',
+        81: [{ // default skill sound?
 			wav:  'effect/ef_bash',
 			attachedEntity: true
 		}],
 
+		82: [{ //turn undead caster
+			//type: 'FUNC',
+			//wav:  'effect/ef_bash',
+			attachedEntity: true
+		}],
 
 		83: [{
 			type: 'STR',
@@ -711,11 +717,12 @@ define(function( require )
 		95: [{
 			type: 'STR',
 			file: 'quagmire',
+            wav:  'effect/wizard_quagmire',
 			attachedEntity: false
 		}],
 
 
-		96: [{
+		96: [{ //firepillar caster
 			type: 'STR',
 			file: 'firepillar',
 			wav:  'effect/wizard_fire_pillar_a',
@@ -723,7 +730,7 @@ define(function( require )
 		}],
 
 
-		97: [{
+		97: [{ //firepillar target hit
 			type: 'STR',
 			file: 'firepillarbomb',
 			wav:  'effect/wizard_fire_pillar_b',
@@ -735,6 +742,7 @@ define(function( require )
 			//type: 'FUNC',
 			// This one is pretty messy... it somehow consists of two sprites, one is attached to the Entity, one isnt. additionally it consists of two sounds
 			// For the sake of simplicity, I propose just using one sprite and one sound - the _a sound is just some "intro" while _b is a real effect
+            // black_adrenalinerush.wav what is this for?
 			wav:  'effect/black_adrenalinerush_b',	// The original client plays _a first and then continues with b
 			attachedEntity: true
 		}],
@@ -782,16 +790,17 @@ define(function( require )
 		104: [{
 			type: 'STR',
 			file: 'maximizepower',
-			wav:  'effect/black_maximize_power_sword',
+			wav:  'effect/black_maximize_power_sword', //effect/black_maximize_power_sword_bic
 			min:  'maximize_min',
 			attachedEntity: true
 		}],
 
+        //105: empty
 
 		106: [{
 			type: 'STR',
 			file: 'blastmine',
-			wav:  'effect/hunter_blastmine',
+			wav:  'effect/hunter_blastmine', //hun_blastmine
 			attachedEntity: false
 		}],
 
@@ -836,14 +845,15 @@ define(function( require )
 		}],
 
 
-		112: [{
+		112: [{ //kyrie caster
 			type: 'STR',
 			file: 'kyrie',
-			wav:  'effect/priest_kyrie_eleison_a',
+			wav:  'effect/priest_kyrie_eleison_a', //on target its priest_kyrie_eleison_b
 			min:  'kyrie_min',
 			attachedEntity: true
 		}],
 
+        
 
 		113: [{
 			type: 'STR',
@@ -852,7 +862,23 @@ define(function( require )
 			attachedEntity: false
 		}],
 
-
+        115: [{ //blitzbeat on target hit
+			wav:  'effect/hunter_blitzbeat',
+			attachedEntity: true
+		}],
+        //117: waterball  (caster or hit?)
+        119: [{
+			wav:  'effect/hunter_detecting',
+			attachedEntity: true
+		}],
+        
+        //121: // sonic blow caster
+        
+        123: [{ //grimtooth caster
+			wav:  'effect/ef_frostdiver',
+			attachedEntity: true
+		}],
+        
 		124: [{
 			type: 'STR',
 			file: 'venomdust',
@@ -876,6 +902,10 @@ define(function( require )
 			attachedEntity: true
 		}],
 
+        128: [{
+			wav:  'effect/black_overthrust',
+			attachedEntity: true
+		}],
 
 		129: [{
 			type: 'STR',
@@ -893,7 +923,7 @@ define(function( require )
 		}],
 
 
-		131: [{
+		131: [{ //autocounter activate hit
 			type: 'STR',
 			file: 'autocounter',
 			wav:  'effect/knight_autocounter',
@@ -925,6 +955,7 @@ define(function( require )
 		136: [{
 			type: 'STR',
 			file: 'slowp',
+            wav:  'effect/priest_slowpoison',
 			attachedEntity: false
 		}],
 
@@ -936,7 +967,11 @@ define(function( require )
 			attachedEntity: false
 		}],
 
-
+		140: [{
+			wav:  'effect/priest_resurrection',
+			attachedEntity: true
+		}],      
+        
 		141: [{
 			type: 'STR',
 			file: 'pneuma%d',
@@ -945,7 +980,7 @@ define(function( require )
 		}],
 
 
-		143: [{
+		143: [{ //sonicblow at target
 			type: 'STR',
 			file: 'sonicblow',
 			attachedEntity: true
@@ -1004,7 +1039,7 @@ define(function( require )
 		}],
 
 
-		151: [{
+		151: [{ //spear boomerang caster
 			type: 'STR',
 			file: 'spearboomerang',
 			wav:  'effect/knight_spear_boomerang',
@@ -1012,7 +1047,7 @@ define(function( require )
 		}],
 
 
-		152: [{
+		152: [{ //turn undead hit on targer
 			type: 'STR',
 			file: 'holyhit',
 			attachedEntity: true
@@ -1049,7 +1084,11 @@ define(function( require )
 			attachedEntity: true
 		}],
 
-
+		165: [{ //Comodo Fireworks Ball
+			wav:  'effect/ĆřÁ×',
+			attachedEntity: false
+		}],
+        
 		169: [{
 			type: 'STR',
 			file: 'energycoat',
@@ -1275,6 +1314,10 @@ define(function( require )
 			attachedEntity: true
 		}],
 
+        227: [{ //Intimidate / Snatch
+			wav:  'effect/rog_intimidate',
+			attachedEntity: true
+		}],
 
 		234: [{
 			type: 'STR',
@@ -1301,6 +1344,7 @@ define(function( require )
 		244: [{
 			type: 'STR',
 			file: '¸ÅÁ÷·Îµå',
+            wav:  'effect/sage_magic rod',
 			attachedEntity: true
 		}],
 
@@ -1355,9 +1399,10 @@ define(function( require )
 		}],
 
 
-		257: [{
+		257: [{ //endow wind on target
 			type: 'STR',
 			file: 'enc_wind',
+            wav:  'effect/_enemy_hit_wind1',
 			attachedEntity: true
 		}],
 
@@ -1368,10 +1413,15 @@ define(function( require )
 			attachedEntity: true
 		}],
 
-
+        261: [{ //fury / critical explosion TODO: combo sounds, super novice fury
+            wav:  'effect/mon_Ćř±â',
+			attachedEntity: true
+		}],
+        
 		268: [{
 			type: 'STR',
 			file: 'steal_coin',
+            wav:  'rog_steal coin',
 			attachedEntity: true
 		}],
 
@@ -1413,6 +1463,11 @@ define(function( require )
 			file: '¿¬È¯',
 			attachedEntity: true
 		}],
+        
+        275: [{ //backstab on target hit
+			wav:  'effect/rog_back stap',
+			attachedEntity: true
+		}],
 
 		287: [{
 			type: 'FUNC',
@@ -1450,24 +1505,31 @@ define(function( require )
 			attachedEntity: false
 		}],
 
-
-		305: [{
+		304: [{ //teleportation animation 
+            wav: 'ef_teleportation',
+			attachedEntity: true
+		}],
+        
+		305: [{ //potion success
 			type: 'STR',
 			file: 'p_success',
+            wav: 'effect/p_success',
 			attachedEntity: true
 		}],
 
 
-		306: [{
+		306: [{ //potion failed
 			type: 'STR',
 			file: 'p_failed',
+            wav: 'effect/p_failed',
 			attachedEntity: true
 		}],
 
 
-		311: [{
+		311: [{ //crazy uproar
 			type: 'STR',
 			file: 'loud',
+            wav: 'effect/°íĽşąć°ˇ',
 			attachedEntity: true
 		}],
 
@@ -1495,7 +1557,6 @@ define(function( require )
 				this.add(new PropertyGround(pos, 3.0, 1.0, 2, 'ring_blue', tick), AID);
 			}
 		}],
-
 		'316_ground': [{
 			type: 'FUNC',
 			attachedEntity: false,
@@ -1504,7 +1565,22 @@ define(function( require )
 				this.add(new Cylinder(pos, 0.6, 0.6, 40, 'magic_blue', tick), AID);
 			}
 		}],
-
+        
+        'soulink_caster_effect': [{ // todo
+            wav:  'effect/t_º®Æ¨±è',
+            attachedEntity: false
+		}],
+        
+        'soulink_target_effect': [{ // todo
+            wav:  'effect/t_żµČĄ',
+            attachedEntity: true
+		}],
+        
+        'gunslinger_coin': [{ // coin caster
+            wav:  'effect/ÇĂ¸ł',
+            attachedEntity: true
+		}],
+        
 		319: [{
 			type: 'FUNC',
 			attachedEntity: false,
@@ -1512,9 +1588,15 @@ define(function( require )
 				var FlatColorTile = require('Renderer/Effects/FlatColorTile');
 				var WhiteTile = FlatColorTile('white', {r: 1, g: 1, b: 1, a: 0.8});
 				this.add(new WhiteTile(pos, tick), AID);
+				//this.add(new SquareGround(pos, 1.0, 1.0, 3.0, 'magic_green', tick), AID);
 			}
 		}],
 
+        336: [{ //kyrie eleison / parrying    (when target blocked dmg)
+			wav:  'effect/kyrie_guard',
+			attachedEntity: true
+		}],
+        
 		337: [{
 			type: 'STR',
 			file: 'joblvup',
@@ -1528,7 +1610,11 @@ define(function( require )
 			attachedEntity: true
 		}],
 
-
+		368: [{
+			wav:  'ąöĽ­Ĺ©',  // knight berserk?
+			attachedEntity: true
+		}],
+        
 		369: [{
 			type: 'STR',
 			file: 'twohand',
@@ -1565,7 +1651,11 @@ define(function( require )
 			attachedEntity: true
 		}],
 
-
+		389: [{ //windwalk
+			wav:  'effect/Ŕ©µĺżöĹ©',
+			attachedEntity: true
+		}],
+        
 		390: [{
 			type: 'STR',
 			file: 'melt',
@@ -1654,14 +1744,30 @@ define(function( require )
 			}
 		}],
 
+        426: [{ //taekwon sprint collision effect
+			type: 'STR',
+			file: 'asum',
+            wav:  'effect/şąČŁ°Ý',
+			attachedEntity: true
+		}],
 
 		440: [{
 			type: 'STR',
 			file: 'asum',
+            wav:  'effect/ľĆĽűÇÁĆĽżŔ',
 			attachedEntity: true
 		}],
 
-
+        445: [{ //high jump caster
+            wav:  'effect/t_Č¸ÇÇ2',
+			attachedEntity: true
+		}],
+        
+        457: [{ //flying kick on target
+			wav:  'effect/t_łŻ¶óÂ÷±â',
+			attachedEntity: true
+		}],
+        
 		491: [{
 			type: 'STR',
 			file: 'Âý½Ò¶±',
@@ -1676,9 +1782,10 @@ define(function( require )
 		}],
 
 
-		507: [{
+		507: [{ //Authoritative Badge
 			type: 'STR',
 			file: 'mapae',
+            wav:  'effect/mapae',
 			attachedEntity: true
 		}],
 
@@ -1697,9 +1804,10 @@ define(function( require )
 		}],
 
 
-		519: [{
+		519: [{ //speed potion
 			type: 'SPR',
 			file: 'fast',
+            wav:  'effect/fast',
 			attachedEntity: true
 		}],
 
@@ -1928,9 +2036,10 @@ define(function( require )
 		}],
 
 
-		631: [{
+		631: [{ //reverse tatami map unit
 			type: 'SPR',
 			file: '´Ù´Ù¹Ì',
+            wav: '´Ů´ŮąĚµÚÁý±â',
 			attachedEntity: true
 		}],
 
@@ -2076,9 +2185,10 @@ define(function( require )
 		}],
 
 
-		669: [{
+		669: [{ //wide bleeding
 			type: 'STR',
 			file: 'wideb',
+            wav: 'wideb',
 			attachedEntity: true
 		}],
 
