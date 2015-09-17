@@ -310,11 +310,16 @@ define(function( require )
 		};
 
 		MapRenderer.setMap( pkt.mapName );
+		// XXX .setMap calls a clear on all Entities which causes Session.Entity.GID
+		// to be lost between here and the .set call in the callback
+		// re-set it immediately here, so things that look up Session.Entit by GID
+		// in the meantime, find it
+		// a better way would be to eg. never randomize the GID in entity.clean
+		// but this causes some breakage
+
         Session.Entity.set({
             GID: Session.Character.GID
         });
-
-
 	}
 
 
