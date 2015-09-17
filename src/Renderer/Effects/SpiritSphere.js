@@ -85,10 +85,10 @@ define(function( require ) {
         'void main(void) {',
             'vec4 texture = texture2D( uDiffuse,  vTextureCoord.st );',
 
-            'if (texture.r < 0.5 || texture.g < 0.5 || texture.b < 0.5) {',
+            'if (texture.r < 0.3 || texture.g < 0.3 || texture.b < 0.3) {',
             '   discard;',
             '}',
-            'texture.a = 0.9;',
+            'texture.a = 1.0;',
             'gl_FragColor = texture;',
 
         '}'
