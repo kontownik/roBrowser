@@ -283,13 +283,11 @@ define(function( require )
 	            PosDir: [ pkt.xPos, pkt.yPos, originalDirection ],
 	            GID: Session.Character.GID,
             }
-            // after refresh/mapchange, keep doing the action, unless it was walking
-            // (the action was walking before, if we eg. walked into a warp)
-            // if we kept the walking animation, it would be continued after the refresh
-            // and the position would be incorrect
-			if (originalAction !== Session.Entity.ACTION.WALK){
+            // only keep doing the action if it was a @refresh - otherwise, it's a map
+            // change, so revert to idle
+            if(pkt.mapName == _mapName && pkt.xPos == Session.Entity.position[0] && pkt.yPos == Session.Entity.position[1]){
 				newParams.action = originalAction
-			}
+            }
             Session.Entity.set(newParams);
 
 			EntityManager.add( Session.Entity );
