@@ -271,9 +271,14 @@ define(function( require )
 				}
 			});
 
+			// convert the already-converted Entity.direction back to the 'packet'
+			// value, which can be passed to Entity.set, so it'll be correctly
+			// transformed to the 'display' value again
+			// Entity.set(this_transform(direction)) === direction
+			var originalDirection = ([ 4, 3, 2, 1, 0, 7, 6, 5 ])[Session.Entity.direction];
 
             Session.Entity.set({
-	            PosDir: [ pkt.xPos, pkt.yPos, 0 ],
+	            PosDir: [ pkt.xPos, pkt.yPos, originalDirection ],
 	            GID: Session.Character.GID
             });
 
