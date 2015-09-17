@@ -276,7 +276,6 @@ define(function( require )
 			// transformed to the 'display' value again
 			// Entity.set(this_transform(direction)) === direction
 			var originalDirection = ([ 4, 3, 2, 1, 0, 7, 6, 5 ])[Session.Entity.direction];
-
             Session.Entity.set({
 	            PosDir: [ pkt.xPos, pkt.yPos, originalDirection ],
 	            GID: Session.Character.GID
@@ -311,6 +310,11 @@ define(function( require )
 		};
 
 		MapRenderer.setMap( pkt.mapName );
+        Session.Entity.set({
+            GID: Session.Character.GID
+        });
+
+
 	}
 
 
