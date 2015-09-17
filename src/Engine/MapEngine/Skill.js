@@ -535,8 +535,23 @@ define(function( require )
 			EffectManager.remove(spheres, pkt.AID)
 		} else {
 			var entity = EntityManager.get(pkt.AID);
-			var spheres = new SpiritSphere(entity, pkt.num);
-			EffectManager.add(spheres, pkt.AID, false);
+			if (entity === null){
+				// XXX on mapchange, the spirits packet comes before session.entity
+				// is set up (which happens in the onLoad callback in MapEngine.onMapChange)
+				// To actually fix this, i guess we should make sure the Session.Entity
+				// is never cleaned up? or is cleaned up better? or is respawned faster?
+				window.setTimeout(function(){
+					var entity = EntityManager.get(pkt.AID);
+					if (entity === null){
+						return;
+					}
+					var spheres = new SpiritSphere(entity, pkt.num);
+					EffectManager.add(spheres, pkt.AID, false);
+				}, 1000);
+			} else {
+				var spheres = new SpiritSphere(entity, pkt.num);
+				EffectManager.add(spheres, pkt.AID, false);
+			}
 		}
 	}
 
@@ -564,5 +579,6 @@ define(function( require )
 		Network.hookPacket( PACKET.ZC.NOTIFY_MAPINFO,         onTeleportResult );
 		Network.hookPacket( PACKET.ZC.ACK_REMEMBER_WARPPOINT, onMemoResult );
 		Network.hookPacket( PACKET.ZC.SPIRITS, onSpiritSphere );
+		Network.hookPacket( PACKET.ZC.SPIRITS2, onSpiritSphere );
 	};
 });
