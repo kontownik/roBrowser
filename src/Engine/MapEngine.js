@@ -258,6 +258,13 @@ define(function( require )
 	{
 		jQuery(window).off('keydown.map');
 
+		var originalAction = Session.Entity.action;
+		// convert the already-converted Entity.direction back to the 'packet'
+		// value, which can be passed to Entity.set, so it'll be correctly
+		// transformed to the 'display' value again
+		// Entity.set(this_transform(direction)) === direction
+		var originalDirection = ([ 4, 3, 2, 1, 0, 7, 6, 5 ])[Session.Entity.direction];
+
 		MapRenderer.onLoad = function(){
 
 			// TODO: find a better place to put it
@@ -271,15 +278,19 @@ define(function( require )
 				}
 			});
 
-			// convert the already-converted Entity.direction back to the 'packet'
-			// value, which can be passed to Entity.set, so it'll be correctly
-			// transformed to the 'display' value again
-			// Entity.set(this_transform(direction)) === direction
-			var originalDirection = ([ 4, 3, 2, 1, 0, 7, 6, 5 ])[Session.Entity.direction];
-            Session.Entity.set({
+
+			var newParams = {
 	            PosDir: [ pkt.xPos, pkt.yPos, originalDirection ],
-	            GID: Session.Character.GID
-            });
+	            GID: Session.Character.GID,
+            }
+            // after refresh/mapchange, keep doing the action, unless it was walking
+            // (the action was walking before, if we eg. walked into a warp)
+            // if we kept the walking animation, it would be continued after the refresh
+            // and the position would be incorrect
+			if (originalAction !== Session.Entity.ACTION.WALK){
+				newParams.action = originalAction
+			}
+            Session.Entity.set(newParams);
 
 			EntityManager.add( Session.Entity );
 
@@ -302,7 +313,6 @@ define(function( require )
 			SkillList.append();
 			PartyFriends.append();
 			Guild.append();
-
 			// Map loaded
 			Network.sendPacket(
 				new PACKET.CZ.NOTIFY_ACTORINIT()
