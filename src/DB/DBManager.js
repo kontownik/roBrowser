@@ -32,6 +32,7 @@ define(function(require)
 	var WeaponTable      = require('./Items/WeaponTable');
 	var WeaponType       = require('./Items/WeaponType');
 	var WeaponSoundTable = require('./Items/WeaponSoundTable');
+    var WeaponPrepareSoundTable = require('./Items/WeaponPrepareSoundTable'); //+
 
 
 	/**
@@ -353,7 +354,7 @@ define(function(require)
 
 
 	/**
-	 * @return {string} Path to weapon sound
+	 * @return {string} Path to weapon sound on hit
 	 * @param {number} weapon id
 	 */
 	DB.getWeaponSound = function getWeaponSound( id )
@@ -366,6 +367,16 @@ define(function(require)
 		}
 
 		return WeaponSoundTable[type];
+	};
+    
+    /**
+	 * @return {string} Path to weapon sound on attack
+	 * @param {number} weapon id
+	 */
+	DB.getWeaponPrepareSound = function getWeaponPrepareSound( id )
+	{
+		var type = DB.getWeaponViewID(id);
+		return WeaponPrepareSoundTable[type];
 	};
 
 

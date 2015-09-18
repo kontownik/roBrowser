@@ -278,9 +278,9 @@ define(function( require )
 				this.files[type].pal = null;
 
 				// Load weapon sound
-				if (type === 'weapon') {
-					this.sound.attackFile = DB.getWeaponSound( val );
-				}
+				//if (type === 'weapon') {
+				//	this.sound.attackFile = DB.getWeaponSound( val );
+				//}
 
 				return;
 			}
@@ -293,9 +293,9 @@ define(function( require )
 					_this.files[type].act = path + '.act';
 
 					// Load weapon sound
-					if (type === 'weapon') {
-						_this.attackFile = DB.getWeaponSound( _val );
-					}
+					//if (type === 'weapon') {
+					//	_this.attackFile = DB.getWeaponSound( _val );
+					//}
 				},
 
 				// if weapon isn't loaded, try to load the default sprite for the weapon type

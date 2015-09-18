@@ -269,14 +269,48 @@ define(function( require )
 								next:   false
 							}
 						});
+                            var weapon_id = parseInt(srcEntity.weapon, 16);
+                            var weapon_hit_sound = DB.getWeaponSound(weapon_id.toString(16));
+                            var weapon_prepare_sound = DB.getWeaponPrepareSound(weapon_id.toString(16));
+                            var weapon_type = DB.getWeaponViewID(weapon_id.toString(16));
+                            if(weapon_prepare_sound != 'NONE')
+                                Sound.play(weapon_prepare_sound);  //start to attack (without any delay)
                         //autoattack weapon hit [TODO: synchronize with attack delay (attackMT)]
                         if (srcEntity.objecttype === Entity.TYPE_PC && pkt.damage > 0) { // player is an attacker
-                            var weapon_id = parseInt(srcEntity.weapon, 16);
-                            var weapon_sound = DB.getWeaponSound(weapon_id.toString(16));
-                            var weapon_type = DB.getWeaponViewID(weapon_id.toString(16));
-                            //console.error( '[debug]Item: "%s"  // type: "%s" // sound: "%s".', weapon_id.toString(16), weapon_type.toString(16),  weapon_sound.toString(16));
-                            if(pkt.action !== 10){ //critical get his own sound regardless of weapon equipped
-                                Sound.play(weapon_sound);
+                            //console.error( '[debug]IRIGHT: "%s"  // type: "%s" // sound: "%s".', weapon_id.toString(16), weapon_type.toString(16),  weapon_hit_sound.toString(16));
+                            //critical get his own sound regardless of weapon equipped
+                            switch (pkt.action) {
+                                case 0:
+                                case 8:
+                                case 9:  //endure/steel body
+                                //case 10: // TODO: add critical sound
+                                    if(pkt.action == 9)
+                                        weapon_hit_sound = "player_metal.wav";
+                                    Events.setTimeout(function(){
+                                    Sound.play(weapon_hit_sound);
+                                    }, parseInt(pkt.attackMT/2, 16) );
+                                    if(pkt.count == 2) //second hit (double attack)
+                                    {
+                                        Events.setTimeout(function(){
+                                        Sound.play(weapon_hit_sound);
+                                        }, parseInt(pkt.attackMT * 3/4, 16) );
+                                    }
+                                    if(pkt.leftDamage > 0) //dual wielder
+                                    {
+                                        weapon_id = parseInt(srcEntity.shield, 16);
+                                        weapon_hit_sound = DB.getWeaponSound(weapon_id.toString(16));
+                                        weapon_prepare_sound = DB.getWeaponPrepareSound(weapon_id.toString(16));
+                                        weapon_type = DB.getWeaponViewID(weapon_id.toString(16));
+                                       // console.error( '[debug]LEFT: "%s"  // type: "%s" // sound: "%s".', weapon_id.toString(16), weapon_type.toString(16),  weapon_hit_sound.toString(16));
+                                        if(pkt.action == 9)
+                                            weapon_hit_sound = "player_metal.wav";
+                                        if(weapon_prepare_sound != 'NONE')
+                                            Sound.play(weapon_prepare_sound);
+                                        Events.setTimeout(function(){   //sound on left hand hit
+                                            Sound.play(weapon_hit_sound);
+                                            }, parseInt(pkt.attackMT * 3/4, 16) ); // 3/4
+                                    }
+                                    break;
                             }
                         }
 					}
@@ -290,9 +324,11 @@ define(function( require )
 							case 9:
 							case 0:
 								Damage.add( pkt.damage, target, Renderer.tick + pkt.attackMT );
+                                if(pkt.leftDamage > 0)
+                                  Damage.add( pkt.leftDamage, target, Renderer.tick + pkt.attackMT * 2 );
 								break;
 
-							// double attack
+							// double attack (probably dual-wield daggers double attacks are missing but who cares)
 							case 8:
 								// Display combo only if entity is mob and the attack don't miss
 								if (dstEntity.objecttype === Entity.TYPE_MOB && pkt.damage > 0) {
@@ -309,7 +345,7 @@ define(function( require )
 								Damage.add( pkt.damage, target, Renderer.tick + pkt.attackMT);
 								break;
 
-							// TODO: lucky miss [DMG_LUCY_DODGE]
+							// TODO: perfect dodge [DMG_LUCY_DODGE]
 							case 11:
 								Damage.add( 0, target, Renderer.tick + pkt.attackMT );
 								break;
