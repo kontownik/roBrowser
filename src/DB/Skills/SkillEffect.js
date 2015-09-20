@@ -7,7 +7,7 @@
  *
  * @author Vincent Thibault
  */
-
+//  effectId: hitEffectId: effectIdOnCaster:
 define(['./SkillConst'], function( SK )
 {
 	'use strict';

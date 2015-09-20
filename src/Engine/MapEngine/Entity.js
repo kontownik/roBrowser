@@ -634,7 +634,7 @@ define(function( require )
 				Damage.add( pkt.level, dstEntity, Renderer.tick, Damage.TYPE.HEAL );
 			}
 
-			EffectManager.spamSkill( pkt.SKID, pkt.targetAID );
+			EffectManager.spamSkill( pkt.SKID, pkt.targetAID, null, null, pkt.srcAID);
 		}
 	}
 
@@ -748,7 +748,7 @@ define(function( require )
 		}
 
 		if (srcEntity && dstEntity) {
-			EffectManager.spamSkill( pkt.SKID, dstEntity.GID, null, Renderer.tick + pkt.attackMT);
+			EffectManager.spamSkill( pkt.SKID, dstEntity.GID, null, Renderer.tick + pkt.attackMT, pkt.AID);
 		}
 	}
 
