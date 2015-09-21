@@ -19,6 +19,9 @@ define(['./SkillConst'], function( SK )
 	SkillEffect[SK.SM_PROVOKE] = {
 		effectId: 67
 	};
+	SkillEffect[SK.AL_TELEPORT] = {
+		effectId: 304
+	}; 
 
 	SkillEffect[SK.MG_SAFETYWALL] = {
 		effectId: 315,
@@ -158,7 +161,8 @@ define(['./SkillConst'], function( SK )
 
 	SkillEffect[SK.PR_MAGNUS] = {
 		effectId: 113,
-		hitEffectId: 152
+		hitEffectId: 152,
+		groundEffectId: 318
 	};
 
 	SkillEffect[SK.WZ_METEOR] = {
@@ -299,9 +303,32 @@ define(['./SkillConst'], function( SK )
 		groundEffectId: 289
 	}
 
-
 	SkillEffect[SK.AL_WARP] = {
-		groundEffectId: '316_ground'
+        effectId: 35,
+		groundEffectId: 317 //portal unit
 	};
+    
+    SkillEffect[SK.AL_INCAGI] = {
+        effectId: 37
+	};
+    
+    SkillEffect[SK.AL_DECAGI] = {
+        effectId: 38
+	};
+    
+    SkillEffect[SK.AL_HOLYWATER] = {
+        effectId: 39
+	};
+    
+    SkillEffect[SK.AL_BLESSING] = {
+        effectId: 42
+	};
+    
+    SkillEffect[SK.PR_BENEDICTIO] = {
+        effectId: 91
+	};
+    
+    
+    
 	return SkillEffect;
 });

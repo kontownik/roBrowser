@@ -632,6 +632,7 @@ define(function( require )
 			    pkt.SKID === SkillId.AB_HIGHNESSHEAL ||
 			    pkt.SKID === SkillId.AB_CHEAL) {
 				Damage.add( pkt.level, dstEntity, Renderer.tick, Damage.TYPE.HEAL );
+                Sound.play('_heal_effect.wav'); // healing on neutral targets got another effect than undeads 
 			}
 
 			EffectManager.spamSkill( pkt.SKID, pkt.targetAID, null, null, pkt.srcAID);
@@ -866,6 +867,10 @@ define(function( require )
 					Session.hasCart = pkt.state;
 				}
 				break;
+                
+            case StatusConst.EXPLOSIONSPIRITS: //state: 1 ON  0 OFF
+				break;   
+                
 
 			// Cast a skill, TODO: add progressbar in shortcut
 			case StatusConst.POSTDELAY:

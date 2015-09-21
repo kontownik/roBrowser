@@ -368,6 +368,7 @@ define(function( require )
 			file: 'angelus',
 			wav:  'effect/ef_angelus',
 			min:  'jong_mini',
+            head:  true,
 			attachedEntity: true
 		}],
 
@@ -1506,7 +1507,7 @@ define(function( require )
 		}],
 
 		304: [{ //teleportation animation 
-            wav: 'ef_teleportation',
+            wav: 'effect/ef_teleportation',
 			attachedEntity: true
 		}],
         
@@ -1539,6 +1540,12 @@ define(function( require )
 			file: 'safetywall',
 			attachedEntity: false
 		}],
+        
+        316: [{
+            //type: 'FUNC',
+			wav: 'effect/ef_readyportal',
+			attachedEntity: false
+		}],
 
 		'315_ground': [{
 			type: 'FUNC',
@@ -1557,7 +1564,7 @@ define(function( require )
 				this.add(new PropertyGround(pos, 3.0, 1.0, 2, 'ring_blue', tick), AID);
 			}
 		}],
-		'316_ground': [{
+		317: [{
 			type: 'FUNC',
 			attachedEntity: false,
 			func: function(pos, tick, AID){
@@ -1581,7 +1588,18 @@ define(function( require )
             attachedEntity: true
 		}],
         
-		319: [{
+		318: [{
+			type: 'FUNC',
+			attachedEntity: false,
+			func: function(pos, tick, AID){
+				var FlatColorTile = require('Renderer/Effects/FlatColorTile');
+				var WhiteTile = FlatColorTile('white', {r: 1, g: 1, b: 1, a: 0.8});
+				this.add(new WhiteTile(pos, tick), AID);
+				//this.add(new SquareGround(pos, 1.0, 1.0, 3.0, 'magic_green', tick), AID);
+			}
+		}],
+        
+        319: [{
 			type: 'FUNC',
 			attachedEntity: false,
 			func: function(pos, tick, AID){
