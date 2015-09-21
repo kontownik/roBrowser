@@ -7468,7 +7468,7 @@ define(['Utils/BinaryWriter', './PacketVerManager'], function(BinaryWriter, PACK
 
 
 	// 0x20e
-	PACKET.ZC.STARSKILL = function PACKET_ZC_STARSKILL(fp, end) {
+	PACKET.ZC.STARSKILL = function PACKET_ZC_STARSKILL(fp, end) { //it's shared for both TK and SG
 		this.mapName = fp.readBinaryString(24);
 		this.monsterID = fp.readLong();
 		this.star = fp.readUChar();

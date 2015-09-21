@@ -68,6 +68,37 @@ define(function( require )
 		}
 	}
 
+    /**
+	 * Player Rankings
+	 *
+	 * @param {object} pkt - PACKET_ZC_ALCHEMIST_RANK
+	 */
+	function onServerRanking( pkt )
+	{
+    
+        var msg = '';
+        
+        for (var i = 0; i < 10; ++i) {
+            if(pkt.Point[i] == 0)
+                break;
+			msg = msg+i+'. '+ pkt.Name[i] +' (Points: '+pkt.Point[i]+')\n';
+        }
+    
+        if(msg == '')
+            msg = 'Ranking is empty. ';
+        else
+            msg = 'Ranking:\n' + msg;
+        
+		if (ChatRoom.isOpen) {
+			ChatRoom.message(msg);
+			return;
+		}
+
+		ChatBox.addText( msg, ChatBox.TYPE.PUBLIC | ChatBox.TYPE.SELF );
+		if (Session.Entity) {
+			Session.Entity.dialog.set( msg );
+		}
+	}
 
 	/**
 	 * Target too far to attack it
@@ -465,6 +496,94 @@ define(function( require )
 		Announce.set( pkt.msg, color );
 	}
 
+    /**
+	 * Received taekwon mission from server
+	 *
+	 * @param {object} pkt - PACKET.ZC.STARSKILL
+	 */
+	function onTaekwonMission( pkt )
+	{
+		var color = '#CECEFF';
+        var monsterID = 0;
+        var mapName = 'Unknown';
+        var star = 0;
+        var result = -1;  //type of action
+        
+        if (pkt.hasOwnProperty('monsterID')) {
+			monsterID = pkt.monsterID;
+		}
+        if (pkt.hasOwnProperty('mapName')) {
+			mapName = pkt.mapName;
+		}
+        if (pkt.hasOwnProperty('star')) {
+			star = pkt.star;
+		}
+        if (pkt.hasOwnProperty('result')) {
+			result = pkt.result;
+		}
+        
+        if(result == -1) //parse error?
+            return;       
+        
+        switch (result) {
+
+			case 0:
+                if(star == 0)
+                    var msg = 'Star Gladiator '+Session.Character.name+' has designed '+mapName+' as the Place of the Sun.';
+                if(star == 1)
+                    var msg = 'Star Gladiator '+Session.Character.name+' has designed '+mapName+' as the Place of the Moon.';
+                if(star == 2)
+                    var msg = 'Star Gladiator '+Session.Character.name+' has designed '+mapName+' as the Place of the Stars.';
+				break;
+
+            case 1:
+                if(star == 0)
+                    var msg = 'Star Gladiator '+Session.Character.name+'\'s Place of the Sun:'+mapName+'.';
+                if(star == 1)
+                    var msg = 'Star Gladiator '+Session.Character.name+'\'s Place of the Moon:'+mapName+'.';
+                if(star == 2)
+                    var msg = 'Star Gladiator '+Session.Character.name+'\'s Place of the Stars:'+mapName+'.';
+				break;
+
+            case 10:
+                if(star == 0)
+                    var msg = 'Star Gladiator '+Session.Character.name+' has designed '+mapName+' as the Target of the Sun.';
+                if(star == 1)
+                    var msg = 'Star Gladiator '+Session.Character.name+' has designed '+mapName+' as the Target of the Moon.';
+                if(star == 2)
+                    var msg = 'Star Gladiator '+Session.Character.name+' has designed '+mapName+' as the Target of the Stars.';
+				break;
+                
+            case 11:
+                if(star == 0)
+                    var msg = 'Star Gladiator '+Session.Character.name+'\'s Monster of the Sun:'+mapName+'.';
+                if(star == 1)
+                    var msg = 'Star Gladiator '+Session.Character.name+'\'s Monster of the Moon:'+mapName+'.';
+                if(star == 2)
+                    var msg = 'Star Gladiator '+Session.Character.name+'\'s Monster of the Stars:'+mapName+'.';
+				break;
+                
+            case 20:
+                var msg = '[Taekwon Mission] ('+monsterID+') '+mapName+' ('+star+'%)';
+                break;             
+            case 21:
+                var msg = '[Taming Mission] ('+monsterID+') '+mapName+'.';
+                break;
+            case 22:
+                var msg = '[Collector Rank] Target Item : '+monsterID+'.';
+                break;
+            case 30:
+                var msg = '[Sun, Moon and Stars Angel] Designed places and monsters have been reset.';
+                break;
+            case 40:
+                var msg = 'Target HP :'+monsterID+'.';
+                break;
+        }
+		
+		ChatBox.addText( msg, ChatBox.TYPE.ANNOUNCE, color );
+		Announce.append();
+		Announce.set( msg, color );
+	}
 
 	/**
 	 * Receive player count in server
@@ -595,5 +714,9 @@ define(function( require )
 		Network.hookPacket( PACKET.ZC.ACTION_FAILURE,              onActionFailure );
 		Network.hookPacket( PACKET.ZC.MSG,                         onMessage );
 		Network.hookPacket( PACKET.ZC.RECOVERY,                    onRecovery );
+        Network.hookPacket( PACKET.ZC.STARSKILL,                   onTaekwonMission );
+        Network.hookPacket( PACKET.ZC.ALCHEMIST_RANK,              onServerRanking );
+        Network.hookPacket( PACKET.ZC.BLACKSMITH_RANK,             onServerRanking );
+        Network.hookPacket( PACKET.ZC.TAEKWON_RANK,                onServerRanking );
 	};
 });
