@@ -30,19 +30,19 @@ define(["./WeaponType"], function( WeaponType )
 	WeaponSound[WeaponType.KNUKLE]                = "NONE";
 	WeaponSound[WeaponType.INSTRUMENT]            = "NONE";
 	WeaponSound[WeaponType.WHIP]                  = "attack_whip.wav";
-	WeaponSound[WeaponType.BOOK]                  = "attack_book.wav";
+	WeaponSound[WeaponType.BOOK]                  = "NONE";
 	WeaponSound[WeaponType.CATARRH]               = "NONE";
 	WeaponSound[WeaponType.GUN_HANDGUN]           = "NONE";
 	WeaponSound[WeaponType.GUN_RIFLE]             = "NONE";
 	WeaponSound[WeaponType.GUN_GATLING]           = "NONE";
 	WeaponSound[WeaponType.GUN_SHOTGUN]           = "NONE";
 	WeaponSound[WeaponType.GUN_GRANADE]           = "NONE";
-	WeaponSound[WeaponType.SYURIKEN]              = "NONE"; //not sure
+	WeaponSound[WeaponType.SYURIKEN]              = "NONE";
 	WeaponSound[WeaponType.TWOHANDROD]            = "attack_rod.wav";
 	WeaponSound[WeaponType.SHORTSWORD_SHORTSWORD] = "attack_short_sword.wav";
 	WeaponSound[WeaponType.SWORD_SWORD]           = "attack_sword.wav";
 	WeaponSound[WeaponType.AXE_AXE]               = "attack_axe.wav";
-	WeaponSound[WeaponType.SHORTSWORD_SWORD]      = "NONE";
+	WeaponSound[WeaponType.SHORTSWORD_SWORD]      = "NONE"; //unused by attack packets
 	WeaponSound[WeaponType.SHORTSWORD_AXE]        = "NONE";
 	WeaponSound[WeaponType.SWORD_AXE]             = "NONE";
 

@@ -15,7 +15,7 @@ define(["./WeaponType"], function( WeaponType )
 
 	var WeaponSound = {};
 
-	WeaponSound[WeaponType.NONE]                  = "_hit_fist1.wav"; // todo: random fist1-4 ??
+	WeaponSound[WeaponType.NONE]                  = "_hit_fist1.wav";
 	WeaponSound[WeaponType.SHORTSWORD]            = "_hit_dagger.wav";
 	WeaponSound[WeaponType.SWORD]                 = "_hit_sword.wav";
 	WeaponSound[WeaponType.TWOHANDSWORD]          = "_hit_sword.wav";
@@ -31,18 +31,18 @@ define(["./WeaponType"], function( WeaponType )
 	WeaponSound[WeaponType.INSTRUMENT]            = "_hit_arrow.wav";
 	WeaponSound[WeaponType.WHIP]                  = "_hit_arrow.wav";
 	WeaponSound[WeaponType.BOOK]                  = "_hit_mace.wav";
-	WeaponSound[WeaponType.CATARRH]               = "_hit_mace.wav"; //todo: find
+	WeaponSound[WeaponType.CATARRH]               = "_hit_mace.wav";
 	WeaponSound[WeaponType.GUN_HANDGUN]           = "_hit_±ÇÃÑ.wav";
 	WeaponSound[WeaponType.GUN_RIFLE]             = "_hit_¶óÀÌÇÃ.wav";
-	WeaponSound[WeaponType.GUN_GATLING]           = "_hit_mace.wav"; //todo: find
-	WeaponSound[WeaponType.GUN_SHOTGUN]           = "_hit_mace.wav"; //todo: find
-	WeaponSound[WeaponType.GUN_GRANADE]           = "_hit_mace.wav"; //todo: find
-	WeaponSound[WeaponType.SYURIKEN]              = "_hit_mace.wav"; //todo: find
+	WeaponSound[WeaponType.GUN_GATLING]           = "_hit_°łĆ˛¸µÇŃąß.wav";
+	WeaponSound[WeaponType.GUN_SHOTGUN]           = "_hit_Ľ¦°Ç.wav";
+	WeaponSound[WeaponType.GUN_GRANADE]           = "_hit_¶óŔĚÇĂ.wav";
+	WeaponSound[WeaponType.SYURIKEN]              = "_hit_mace.wav";
 	WeaponSound[WeaponType.TWOHANDROD]            = "_hit_rod.wav";
 	WeaponSound[WeaponType.SHORTSWORD_SHORTSWORD] = "_hit_dagger.wav";
 	WeaponSound[WeaponType.SWORD_SWORD]           = "_hit_sword.wav";
 	WeaponSound[WeaponType.AXE_AXE]               = "_hit_axe.wav";
-	WeaponSound[WeaponType.SHORTSWORD_SWORD]      = "_hit_dagger.wav";  //delete
+	WeaponSound[WeaponType.SHORTSWORD_SWORD]      = "_hit_dagger.wav"; //unused by attack packets
 	WeaponSound[WeaponType.SHORTSWORD_AXE]        = "_hit_dagger.wav";
 	WeaponSound[WeaponType.SWORD_AXE]             = "_hit_sword.wav";
 
