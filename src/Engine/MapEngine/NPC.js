@@ -68,6 +68,7 @@ define(function( require )
 		if (NpcBox.ui && NpcBox.ui.is(':visible'))  {
 			NpcBox.addClose( pkt.NAID );
 		}
+
 	}
 
 
@@ -247,10 +248,10 @@ define(function( require )
 
 		Client.loadFile( DB.INTERFACE_PATH + 'illust/' + pkt.imageName, function( url ){
 
-			// If the npc box is already closed, don't show the image
-			if (!NpcBox.ui || !NpcBox.ui.is(':visible')) {
-				return;
-			}
+			// If the npc box is already closed, don't show the image [
+			//if (!NpcBox.ui || !NpcBox.ui.is(':visible')) {
+			//	return;
+			//}
 
 			var img            = new Image();
 			img.src            = url;
