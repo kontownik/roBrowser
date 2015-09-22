@@ -85,7 +85,7 @@ define(function( require )
         }
     
         if(msg == '')
-            msg = 'Ranking is empty. ';
+            msg = 'Ranking is empty.';
         else
             msg = 'Ranking:\n' + msg;
         

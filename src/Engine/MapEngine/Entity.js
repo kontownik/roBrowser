@@ -869,7 +869,11 @@ define(function( require )
 				break;
                 
             case StatusConst.EXPLOSIONSPIRITS: //state: 1 ON  0 OFF
-				break;   
+                //red texture
+				break;  
+            case StatusConst.RUN: //state: 1 ON  0 OFF
+                //draw footprints on the floor
+				break;                 
                 
 
 			// Cast a skill, TODO: add progressbar in shortcut

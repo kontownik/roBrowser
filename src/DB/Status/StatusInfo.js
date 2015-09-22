@@ -169,9 +169,9 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.STORMKICK_ON] = {
-		icon: "i_stomkick.tga",
+		icon: "i_stormkick.tga",
 		descript: [
-			["Whirlwind Kick (Tornado Kick)", COLOR_TITLE_BUFF],
+			["Whirlwind Whirlwind Kick", COLOR_TITLE_BUFF],
 			["When attacking an enemy"],
 			["there is a chance to prepare a Whirlwind Kick"]
 		]
@@ -789,14 +789,14 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.STRUP] = {
+		icon: "i_run.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
-			["Spurt", COLOR_TITLE_BUFF], 
+			["Sprint", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
-			["Increases STR"], 
-			["if the user is unequipped"], 
-			["and the skill level is high enough"]
+			["Increases STR"],
+			["if the users weapon is unequipped"]
 		]
 	};
 
@@ -837,9 +837,9 @@ define(['./StatusConst'], function( SC )
 	StatusInfo[SC.TURNKICK_ON] = {
 		icon: "i_turnkick.tga",
 		descript: [
-			["Ready Turn Kick", COLOR_TITLE_BUFF], 
+			["Prepare Round Kick", COLOR_TITLE_BUFF], 
 			["When attacking,"], 
-			["there's a chance to prepare a Turn Kick"]
+			["there's a chance to prepare a Round Kick"]
 		]
 	};
 
@@ -1611,7 +1611,7 @@ define(['./StatusConst'], function( SC )
 			["Allows Flying Kick to be used as a counter"], 
 			["When receiving enemy magic attack"], 
 			["there is a chance of completely avoiding it"], 
-			["If Spurt is also active"], 
+			["If Spring is also active"], 
 			["chance of avoiding physical attacks as well"]
 		]
 	};
@@ -1908,8 +1908,8 @@ define(['./StatusConst'], function( SC )
 		icon: "i_counter.tga",
 		descript: [
 			["Prepare Counter Kick", COLOR_TITLE_BUFF], 
-			["Hit an enemy"], 
-			["to be ready for a counter kick"]
+			["When attacking,"], 
+			["there is a chance to prepare a Counter Kick"]
 		]
 	};
 
@@ -2399,9 +2399,9 @@ define(['./StatusConst'], function( SC )
 	StatusInfo[SC.DOWNKICK_ON] = {
 		icon: "i_downkick.tga",
 		descript: [
-			["Prepare Down Kick", COLOR_TITLE_BUFF], 
-			["Hit an enemy"], 
-			["for a chance to preform a kick"]
+			["Prepare Axe Kick", COLOR_TITLE_BUFF], 
+			["When attacking,"], 
+			["there's a chance to prepare an Axe Kick"]
 		]
 	};
 
