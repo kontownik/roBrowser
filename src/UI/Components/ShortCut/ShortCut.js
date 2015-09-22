@@ -266,6 +266,7 @@ define(function(require)
 	function addElement( index, isSkill, ID, count )
 	{
 		var file, name;
+        var index_name = '';
 		var ui = ShortCut.ui.find('.container:eq(' + index + ')').empty();
 
 		if (!_list[index]) {
@@ -276,6 +277,9 @@ define(function(require)
 		_list[index].ID      = ID;
 		_list[index].count   = count;
 
+        if(index >= 0 && index < 10)
+            index_name = 'F'+(index+1)+' ';
+        
 		if (isSkill) {
 			// Do not display if no level.
 			if (!count) {
@@ -283,7 +287,7 @@ define(function(require)
 			}
 
 			file = SkillInfo[ID].Name;
-			name = SkillInfo[ID].SkillName;
+			name = index_name+SkillInfo[ID].SkillName;
 		}
 		else {
 			var item = Inventory.getItemById(ID);
@@ -295,7 +299,7 @@ define(function(require)
 
 			var it = DB.getItemInfo(ID);
 			file   = item.IsIdentified ? it.identifiedResourceName : it.unidentifiedResourceName;
-			name   = DB.getItemName(item);
+			name   = index_name+DB.getItemName(item);
 
 			// If equipment, do not display count
 			if (item.type === ItemType.WEAPON || item.type === ItemType.EQUIP) {
