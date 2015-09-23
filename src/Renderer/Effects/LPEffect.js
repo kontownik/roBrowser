@@ -1,16 +1,7 @@
 import WebGL from 'Utils/WebGL';
-import Texture from 'Utils/Texture';
-import glMatrix from 'Utils/gl-matrix';
-import Client from 'Core/Client';
+import {FlatTexture} from 'es6!Renderer/Effects/Tiles';
 
-const mat4 = glMatrix.mat4;
-
-var _texture;
-var _program;
-var _buffer;
-var _matrix = mat4.create();
-
-var _vertexShader   = `
+var _LPVertexShader   = `
         attribute vec2 aPosition;
         attribute vec2 aTextureCoord;
         varying vec2 vTextureCoord;
@@ -26,7 +17,7 @@ var _vertexShader   = `
             vTextureCoord  = aTextureCoord;
         }
 `;
-var _fragmentShader = `
+var _LPFragmentShader = `
         varying vec2 vTextureCoord;
         uniform sampler2D uDiffuse;
         void main(void) {
@@ -40,110 +31,15 @@ var _fragmentShader = `
 `;
 
 
-var _num = 0;
-
-class LPEffect {
-
-    static init(gl){
-        _program = WebGL.createShaderProgram( gl, _vertexShader, _fragmentShader );
-        _buffer  = gl.createBuffer();
-
-        gl.bindBuffer( gl.ARRAY_BUFFER, _buffer );
-        gl.bufferData( gl.ARRAY_BUFFER, new Float32Array([
-            -1.0, -1.0, 0.0, 0.0,
-            +1.0, -1.0, 1.0, 0.0,
-            +1.0, +1.0, 1.0, 1.0,
-            +1.0, +1.0, 1.0, 1.0,
-            -1.0, +1.0, 0.0, 1.0,
-            -1.0, -1.0, 0.0, 0.0
-        ]), gl.STATIC_DRAW );
-
-        Client.loadFile('data/texture/effect/aaa copy.bmp', function(buffer) {
-            Texture.load(buffer, function() {
-                var ctx = this.getContext('2d');
-                ctx.save();
-                ctx.translate(  this.width/2,  this.height/2 );
-                // ctx.rotate( 45 / 180 * Math.PI);
-                ctx.translate( -this.width/2, -this.height/2 );
-                ctx.drawImage( this, 0, 0);
-                ctx.restore();
-
-                _texture = gl.createTexture();
-                gl.bindTexture( gl.TEXTURE_2D, _texture );
-                gl.texImage2D( gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this);
-                gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-                gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-                gl.generateMipmap( gl.TEXTURE_2D );
-
-                LPEffect.ready = true;
-            });
-        });
+var _lpNum = 0;
+export default class LPEffect extends FlatTexture('data/texture/effect/aaa copy.bmp'){
+    static createShaderProgram(gl){
+        return WebGL.createShaderProgram(gl, _LPVertexShader, _LPFragmentShader);
     }
 
-    static free(gl){
-        if (_texture) {
-            gl.deleteTexture(_texture);
-            _texture = null;
-        }
-
-        if (_program) {
-            gl.deleteProgram(_program);
-            _program = null;
-        }
-
-        if (_buffer) {
-            gl.deleteBuffer(_buffer);
-        }
-
-        this.ready = false;
-    }
-
-    static beforeRender(gl, modelView, projection, fog, tick){
-        var uniform   = _program.uniform;
-        var attribute = _program.attribute;
-
-        mat4.identity(_matrix);
-
-        gl.useProgram( _program );
-
-        // Bind matrix
-        gl.uniformMatrix4fv( uniform.uModelViewMat,  false, modelView );
-        gl.uniformMatrix4fv( uniform.uProjectionMat, false, projection );
-
-        // Texture
-        gl.activeTexture( gl.TEXTURE0 );
-        gl.bindTexture( gl.TEXTURE_2D, _texture );
-        gl.uniform1i( uniform.uDiffuse, 0 );
-
-        // Enable all attributes
-        gl.enableVertexAttribArray( attribute.aPosition );
-        gl.enableVertexAttribArray( attribute.aTextureCoord );
-
-        gl.bindBuffer( gl.ARRAY_BUFFER, _buffer );
-
-        gl.vertexAttribPointer( attribute.aPosition,     2, gl.FLOAT, false, 4*4,  0   );
-        gl.vertexAttribPointer( attribute.aTextureCoord, 2, gl.FLOAT, false, 4*4,  2*4 );
-
-        gl.depthMask(false);
-    }
-
-    static afterRender(gl) {
-        gl.depthMask(true);
-        gl.disableVertexAttribArray( _program.attribute.aPosition );
-        gl.disableVertexAttribArray( _program.attribute.aTextureCoord );
-    }
-
-    constructor(pos, startLifeTime){
-        this.position = pos;
-        this.ix = _num++;
-    }
-
-    init(){
-        this.ready = true;
-    }
-
-    free(){
-        this.ready = false;
+    constructor(){
+        super(...arguments);
+        this.ix = ++_lpNum;
     }
 
     render(gl, tick){
@@ -151,15 +47,10 @@ class LPEffect {
         var oddEven = (this.ix % 2 === 0) ? Math.PI : 0;
         var sizeMult = Math.sin(oddEven + (tick / (540 * Math.PI)));
 
-        gl.uniform3fv( _program.uniform.uPosition,  this.position);
-        gl.uniform1f(  _program.uniform.uSize, 0.8 + 0.05 * sizeMult);
+        gl.uniform3fv( this.constructor._program.uniform.uPosition,  this.position);
+        gl.uniform1f(  this.constructor._program.uniform.uSize, 0.8 + 0.05 * sizeMult);
 
-        gl.bindBuffer( gl.ARRAY_BUFFER, _buffer );
+        gl.bindBuffer( gl.ARRAY_BUFFER, this.constructor._buffer );
         gl.drawArrays( gl.TRIANGLES, 0, 6 );
     }
 }
-
-
-LPEffect.renderBeforeEntities = true;
-
-export default LPEffect;
