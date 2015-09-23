@@ -17,11 +17,11 @@ export default class FirePillarEffect {
     }
 
     static beforeRender(){
-        Cylinder.beforeRender.apply(Cylinder, arguments);
+        Cylinder.beforeRender(...arguments);
     }
 
     static afterRender(){
-        Cylinder.afterRender.apply(Cylinder, arguments);
+        Cylinder.afterRender(...arguments);
     }
 
     constructor(pos, tick, AID){
@@ -48,7 +48,7 @@ export default class FirePillarEffect {
 
     render(){
         for (let cylinder of this.cylinders){
-            cylinder.render.apply(cylinder, arguments);
+            cylinder.render(...arguments);
         }
     }
 }
