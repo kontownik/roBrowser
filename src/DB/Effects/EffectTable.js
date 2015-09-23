@@ -1502,9 +1502,8 @@ define(function( require )
             type: 'FUNC',
             attachedEntity: false,
             func: function(pos, tick, AID){
-                var FlatColorTile = require('Renderer/Effects/FlatColorTile');
-                var YellowTile = FlatColorTile('yellow', {r: 1.0, g: 1.0, b: 0, a: 0.6});
-                this.add(new YellowTile(pos, tick), AID);
+                var Apple = require('es6!Renderer/Effects/Apple');
+                this.add(new Apple(pos, tick), AID);
             }
         }],
 
