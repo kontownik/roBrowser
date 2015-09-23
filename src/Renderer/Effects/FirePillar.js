@@ -2,7 +2,12 @@ import WebGL from 'Utils/WebGL';
 import Cylinder from 'Renderer/Effects/Cylinder';
 
 
-class FirePillarEffect {
+export default class FirePillarEffect {
+
+    static get renderBeforeEntities() {
+        return true;
+    }
+
     static init(gl){
         Cylinder.init(gl);
         this.ready = true;
@@ -49,7 +54,3 @@ class FirePillarEffect {
         }
     }
 }
-
-FirePillarEffect.renderBeforeEntities = true;
-
-export default FirePillarEffect;
