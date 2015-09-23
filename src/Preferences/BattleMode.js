@@ -27,6 +27,7 @@ define( ['Core/Preferences', 'Controls/KeyEventHandler'], function( Preferences,
 	defaultKey[ KEYS.F7 ]  = { component:'ShortCut',        cmd:'EXECUTE6' };
 	defaultKey[ KEYS.F8 ]  = { component:'ShortCut',        cmd:'EXECUTE7' };
 	defaultKey[ KEYS.F9 ]  = { component:'ShortCut',        cmd:'EXECUTE8' };
+
 	defaultKey[ KEYS.F12 ] = { component:'ShortCut',        cmd:'EXTEND'   };
 
 	// UI
@@ -35,17 +36,16 @@ define( ['Core/Preferences', 'Controls/KeyEventHandler'], function( Preferences,
 	defaultKey[ KEYS.G ]   = { component:'Guild',           cmd:'TOGGLE', alt:true };
 	defaultKey[ KEYS.J ]   = { component:'PetInformations', cmd:'TOGGLE', alt:true };
 	defaultKey[ KEYS.L ]   = { component:'Emoticons',       cmd:'TOGGLE', alt:true };
-	defaultKey[ KEYS.Q ]   = { component:'Equipment',       cmd:'TOGGLE', alt:true };
 	defaultKey[ KEYS.S ]   = { component:'SkillList',       cmd:'TOGGLE', alt:true };
 	defaultKey[ KEYS.V ]   = { component:'BasicInfo',       cmd:'EXTEND', alt:true };
 	defaultKey[ KEYS.H ]   = { component:'PartyFriends',    cmd:'FRIEND', alt:true };
 	defaultKey[ KEYS.Z ]   = { component:'PartyFriends',    cmd:'PARTY',  alt:true };
-    // M - Shortcut List (text binds)
-    // Y Command list
+
+	defaultKey[ KEYS.Q ]   = [
+		{ component:'ShortCut',        cmd: 'EXECUTE9' },
+		{ component:'Equipment',       cmd:'TOGGLE', alt:true }
+	];
 
 
-	/**
-	 * Export
-	 */
 	return Preferences.get( 'BattleMode', defaultKey, 1.5 );
 });

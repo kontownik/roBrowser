@@ -26,6 +26,14 @@ define(function(require)
     var BattleMode  = {};
 
 
+    function _checkModifiersPressed(key){
+        return (
+           ((!!key.shift) === KEYS.SHIFT) &&
+           ((!!key.alt)   === KEYS.ALT)   &&
+           ((!!key.ctrl)  === KEYS.CTRL)
+        )
+    }
+
     /**
      * BattleMode processing
      *
@@ -34,21 +42,26 @@ define(function(require)
      */
     BattleMode.process = function process( keyId )
     {
-        var key = Preferences[keyId];
-
-        if (key &&
-           ((!!key.shift) === KEYS.SHIFT) &&
-           ((!!key.alt)   === KEYS.ALT)   &&
-           ((!!key.ctrl)  === KEYS.CTRL)
-        ) {
-            var component = UIManager.getComponent(key.component);
-            if (component.onShortCut) {
-                component.onShortCut(key);
-            }
-            return true;
+        var keySpec = Preferences[keyId];
+        if (!keySpec){
+            return false;
         }
 
-        return false;
+        var keys = [].concat(keySpec);
+        var found = false;
+        var key;
+
+        keys.forEach(function(key){
+            if (_checkModifiersPressed(key)){
+                var component = UIManager.getComponent(key.component);
+                if (component.onShortCut) {
+                    component.onShortCut(key);
+                }
+                found = true;
+            }
+        });
+
+        return found;
     };
 
 
