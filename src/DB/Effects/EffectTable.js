@@ -1502,7 +1502,7 @@ define(function( require )
             type: 'FUNC',
             attachedEntity: false,
             func: function(pos, tick, AID){
-                var Apple = require('es6!Renderer/Effects/Apple');
+                var Apple = require('es6!Renderer/Effects/Songs').Apple;
                 this.add(new Apple(pos, tick), AID);
             }
         }],
