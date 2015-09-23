@@ -887,9 +887,24 @@ define(function( require )
                 }
                 break;
 
+
             case StatusConst.EXPLOSIONSPIRITS: //state: 1 ON  0 OFF
                 //red texture
+                if (pkt.state){
+                    entity.skillState = StatusConst.EXPLOSIONSPIRITS;
+                } else {
+                    entity.skillState = 0;
+                }
                 break;
+
+            case StatusConst.TWOHANDQUICKEN: //state: 1 ON  0 OFF
+                if (pkt.state){
+                    entity.skillState = StatusConst.TWOHANDQUICKEN;
+                } else {
+                    entity.skillState = 0;
+                }
+                break;
+
             case StatusConst.RUN: //state: 1 ON  0 OFF
                 //draw footprints on the floor
                 break;
