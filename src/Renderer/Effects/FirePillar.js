@@ -27,7 +27,6 @@ class FirePillarEffect {
             new Cylinder(pos, 1.5, 0.7, 5, 'magic_red', tick),
             new Cylinder(pos, 2.0, 1.0, 3, 'magic_red', tick)
         ]
-
     }
 
     init(gl){
@@ -36,21 +35,21 @@ class FirePillarEffect {
         }
         this.ready = true;
     }
+
     free(gl){
         this.ready = false;
         for (let cylinder of this.cylinders){
             cylinder.free(gl);
         }
     }
+
     render(){
         for (let cylinder of this.cylinders){
             cylinder.render.apply(cylinder, arguments);
         }
     }
-
 }
 
 FirePillarEffect.renderBeforeEntities = true;
-FirePillarEffect._uid = 'FirePillar';
 
 export default FirePillarEffect;
