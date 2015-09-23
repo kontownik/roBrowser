@@ -26,10 +26,34 @@ define(function( require )
 	 */
 	function recalculateBlendingColor()
 	{
-		this.effectColor[0] = this._bodyStateColor[0] * this._healthStateColor[0] * this._effectStateColor[0];
-		this.effectColor[1] = this._bodyStateColor[1] * this._healthStateColor[1] * this._effectStateColor[1];
-		this.effectColor[2] = this._bodyStateColor[2] * this._healthStateColor[2] * this._effectStateColor[2];
-		this.effectColor[3] = this._bodyStateColor[3] * this._healthStateColor[3] * this._effectStateColor[3];
+		this.effectColor[0] = this._bodyStateColor[0] * this._healthStateColor[0] * this._effectStateColor[0] * this._skillStateColor[0];
+		this.effectColor[1] = this._bodyStateColor[1] * this._healthStateColor[1] * this._effectStateColor[1] * this._skillStateColor[1];
+		this.effectColor[2] = this._bodyStateColor[2] * this._healthStateColor[2] * this._effectStateColor[2] * this._skillStateColor[2];
+		this.effectColor[3] = this._bodyStateColor[3] * this._healthStateColor[3] * this._effectStateColor[3] * this._skillStateColor[3];
+	}
+
+
+
+	function updateSkillState(value){
+		// Reset value
+		this._skillStateColor[0] = 1.0;
+		this._skillStateColor[1] = 1.0;
+		this._skillStateColor[2] = 1.0;
+		this._skillStateColor[3] = 1.0;
+
+		switch (value) {
+			case StatusConst.Status.EXPLOSIONSPIRITS:
+				this._skillStateColor[1] = 0.7;
+				this._skillStateColor[2] = 0.7;
+				break;
+
+			case StatusConst.Status.TWOHANDQUICKEN:
+				this._skillStateColor[2] = 0.0;
+				break;
+		}
+
+		recalculateBlendingColor.call(this);
+		this._skillState = value;
 	}
 
 
@@ -208,7 +232,7 @@ define(function( require )
                 //TODO: animation above head
 			}
 		}
-        
+
 		this._healthState = value;
 		recalculateBlendingColor.call(this);
 	}
@@ -263,7 +287,7 @@ define(function( require )
 			costume = 22;
 		}
 
-		// Xmas costume 
+		// Xmas costume
 		if (value & StatusConst.EffectState.XMAS) {
 			costume = 26;
 		}
@@ -322,6 +346,7 @@ define(function( require )
 		this._bodyStateColor   = new Float32Array([1, 1, 1, 1]);
 		this._healthStateColor = new Float32Array([1, 1, 1, 1]);
 		this._effectStateColor = new Float32Array([1, 1, 1, 1]);
+		this._skillStateColor  = new Float32Array([1, 1, 1, 1]);
 		this.effectColor       = new Float32Array([1, 1, 1, 1]);
 
 
@@ -338,6 +363,11 @@ define(function( require )
 		Object.defineProperty(this, 'effectState', {
 			get: function(){ return this._effectState; },
 			set: updateEffectState
+		});
+
+		Object.defineProperty(this, 'skillState', {
+			get: function(){ return this._skillState; },
+			set: updateSkillState
 		});
 	};
 });
