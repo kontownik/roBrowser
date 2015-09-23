@@ -1502,8 +1502,11 @@ define(function( require )
             type: 'FUNC',
             attachedEntity: false,
             func: function(pos, tick, AID){
-                var Apple = require('es6!Renderer/Effects/Songs').Apple;
-                this.add(new Apple(pos, tick), AID);
+                var self = this;
+                var AppleEffects = require('es6!Renderer/Effects/Songs').AppleEffects;
+                AppleEffects.forEach(function(effect){
+                    self.add(new effect(pos, tick), AID);
+                });
             }
         }],
 
