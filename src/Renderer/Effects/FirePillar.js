@@ -1,6 +1,4 @@
-import WebGL from 'Utils/WebGL';
 import Cylinder from 'Renderer/Effects/Cylinder';
-
 
 export default class FirePillarEffect {
 
