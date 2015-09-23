@@ -1,130 +1,50 @@
-define(function( require ) {
+import WebGL from 'Utils/WebGL';
+import Texture from 'Utils/Texture';
+import glMatrix from 'Utils/gl-matrix';
+import Client from 'Core/Client';
 
-    'use strict';
+const mat4 = glMatrix.mat4;
 
+var _texture;
+var _program;
+var _buffer;
+var _matrix = mat4.create();
 
-    // Load dependencies
-    var WebGL    = require('Utils/WebGL');
-    var Texture  = require('Utils/Texture');
-    var glMatrix = require('Utils/gl-matrix');
-    var Client   = require('Core/Client');
-
-
-    /**
-     * @var {WebGLTexture}
-     */
-    var _texture;
-
-
-    /**
-     * @var {WebGLProgram}
-     */
-    var _program;
-
-
-    /**
-     * @var {WebGLBuffer}
-     */
-    var _buffer;
-
-
-    /**
-     * @var {mat4}
-     */
-    var mat4 = glMatrix.mat4;
-
-
-    /**
-     * @var {mat4} rotation matrix
-     */
-    var _matrix = mat4.create();
-
-
-    /**
-     * @var {string} Vertex Shader
-     */
-    var _vertexShader   = [
-        'attribute vec2 aPosition;',
-        'attribute vec2 aTextureCoord;',
-
-        'varying vec2 vTextureCoord;',
-
-        'uniform mat4 uModelViewMat;',
-        'uniform mat4 uProjectionMat;',
-
-        'uniform vec3 uPosition;',
-        'uniform float uSize;',
-
-        'void main(void) {',
-            'vec4 position  = vec4(uPosition.x + 0.5, -uPosition.z, uPosition.y + 0.5, 1.0);',
-            'position      += vec4(aPosition.x * uSize, 0.0, aPosition.y * uSize, 0.0);',
-
-            'gl_Position    = uProjectionMat * uModelViewMat * position;',
-            'gl_Position.z -= 0.01;',
-
-            'vTextureCoord  = aTextureCoord;',
-        '}'
-    ].join('\n');
+var _vertexShader   = `
+        attribute vec2 aPosition;
+        attribute vec2 aTextureCoord;
+        varying vec2 vTextureCoord;
+        uniform mat4 uModelViewMat;
+        uniform mat4 uProjectionMat;
+        uniform vec3 uPosition;
+        uniform float uSize;
+        void main(void) {
+            vec4 position  = vec4(uPosition.x + 0.5, -uPosition.z, uPosition.y + 0.5, 1.0);
+            position      += vec4(aPosition.x * uSize, 0.0, aPosition.y * uSize, 0.0);
+            gl_Position    = uProjectionMat * uModelViewMat * position;
+            gl_Position.z -= 0.01;
+            vTextureCoord  = aTextureCoord;
+        }
+`;
+var _fragmentShader = `
+        varying vec2 vTextureCoord;
+        uniform sampler2D uDiffuse;
+        void main(void) {
+            vec4 texture = texture2D( uDiffuse,  vTextureCoord.st );
+            if (texture.r < 0.5 || texture.g < 0.5 || texture.b < 0.5) {
+               discard;
+            }
+            texture.a = 0.7;
+            gl_FragColor = texture;
+        }
+`;
 
 
-    /**
-     * @var {string} Fragment Shader
-     */
-    var _fragmentShader = [
-        'varying vec2 vTextureCoord;',
+var _num = 0;
 
-        'uniform sampler2D uDiffuse;',
+class LPEffect {
 
-
-        'void main(void) {',
-            'vec4 texture = texture2D( uDiffuse,  vTextureCoord.st );',
-
-            'if (texture.r < 0.5 || texture.g < 0.5 || texture.b < 0.5) {',
-            '   discard;',
-            '}',
-            'texture.a = 0.7;',
-            'gl_FragColor = texture;',
-
-        '}'
-    ].join('\n');
-
-
-    var _num = 0;
-
-    function LPEffect(pos, startLifeTime)
-    {
-        this.position = pos;
-        this.ix = _num++;
-    }
-
-
-    LPEffect.prototype.init = function init( gl )
-    {
-        this.ready  = true;
-    };
-
-    LPEffect.prototype.free = function free( gl )
-    {
-        this.ready = false;
-    };
-
-
-    LPEffect.prototype.render = function render( gl, tick )
-    {
-
-        var oddEven = (this.ix % 2 === 0) ? Math.PI : 0;
-        var sizeMult = Math.sin(oddEven + (tick / (540 * Math.PI)));
-
-        gl.uniform3fv( _program.uniform.uPosition,  this.position);
-        gl.uniform1f(  _program.uniform.uSize, 0.8 + 0.05 * sizeMult);
-
-        gl.bindBuffer( gl.ARRAY_BUFFER, _buffer );
-        gl.drawArrays( gl.TRIANGLES, 0, 6 );
-
-    };
-
-    LPEffect.init = function init(gl)
-    {
+    static init(gl){
         _program = WebGL.createShaderProgram( gl, _vertexShader, _fragmentShader );
         _buffer  = gl.createBuffer();
 
@@ -158,19 +78,9 @@ define(function( require ) {
                 LPEffect.ready = true;
             });
         });
-    };
+    }
 
-
-    LPEffect.renderBeforeEntities = true;
-
-
-    /**
-     * Destroy objects
-     *
-     * @param {object} webgl context
-     */
-    LPEffect.free = function free(gl)
-    {
+    static free(gl){
         if (_texture) {
             gl.deleteTexture(_texture);
             _texture = null;
@@ -186,16 +96,9 @@ define(function( require ) {
         }
 
         this.ready = false;
-    };
+    }
 
-
-    /**
-     * Before render, set up program
-     *
-     * @param {object} webgl context
-     */
-    LPEffect.beforeRender = function beforeRender(gl, modelView, projection, fog, tick)
-    {
+    static beforeRender(gl, modelView, projection, fog, tick){
         var uniform   = _program.uniform;
         var attribute = _program.attribute;
 
@@ -222,24 +125,41 @@ define(function( require ) {
         gl.vertexAttribPointer( attribute.aTextureCoord, 2, gl.FLOAT, false, 4*4,  2*4 );
 
         gl.depthMask(false);
-    };
+    }
 
-
-    /**
-     * After render, clean attributes
-     *
-     * @param {object} webgl context
-     */
-    LPEffect.afterRender = function afterRender(gl)
-    {
+    static afterRender(gl) {
         gl.depthMask(true);
         gl.disableVertexAttribArray( _program.attribute.aPosition );
         gl.disableVertexAttribArray( _program.attribute.aTextureCoord );
-    };
+    }
+
+    constructor(pos, startLifeTime){
+        this.position = pos;
+        this.ix = _num++;
+    }
+
+    init(){
+        this.ready = true;
+    }
+
+    free(){
+        this.ready = false;
+    }
+
+    render(gl, tick){
+
+        var oddEven = (this.ix % 2 === 0) ? Math.PI : 0;
+        var sizeMult = Math.sin(oddEven + (tick / (540 * Math.PI)));
+
+        gl.uniform3fv( _program.uniform.uPosition,  this.position);
+        gl.uniform1f(  _program.uniform.uSize, 0.8 + 0.05 * sizeMult);
+
+        gl.bindBuffer( gl.ARRAY_BUFFER, _buffer );
+        gl.drawArrays( gl.TRIANGLES, 0, 6 );
+    }
+}
 
 
-    /**
-     * Export
-     */
-    return LPEffect;
-});
+LPEffect.renderBeforeEntities = true;
+
+export default LPEffect;

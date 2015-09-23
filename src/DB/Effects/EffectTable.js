@@ -1337,7 +1337,7 @@ define(function( require )
 			type: 'FUNC',
 			attachedEntity: false,
 			func: function(pos, tick, AID){
-				var LPEffect = require('Renderer/Effects/LPEffect');
+				var LPEffect = require('es6!Renderer/Effects/LPEffect');
 				this.add(new LPEffect(pos, tick), AID);
 			}
 		}],
