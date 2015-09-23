@@ -8,8 +8,7 @@
  * @author Vincent Thibault
  */
 
-define(function()
-{
+define(['DB/Status/StatusConst'], function(StatusConst) {
 	"use strict";
 
 	return {
@@ -69,6 +68,8 @@ define(function()
 			CART3        : 0x00000100,
 			CART4        : 0x00000200,
 			CART5        : 0x00000400,
-		}
+		},
+
+		Status: StatusConst
 	};
 });
