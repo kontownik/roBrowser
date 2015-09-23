@@ -1,6 +1,8 @@
 define({
     load: function (name, req, onload, config) {
-        var url = 'text!' + req.toUrl(name + '.js');
+        var url =  req.toUrl(name + '.js');
+        url = url.replace(/^\.\//, '');
+        url = 'text!' + url;
         req([url], function(value){
             var transformed = babel.transform(value, {
                 modules: 'amd',
