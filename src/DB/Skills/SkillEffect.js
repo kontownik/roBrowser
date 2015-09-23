@@ -15,10 +15,32 @@ define(['./SkillConst'], function( SK )
 
     var SkillEffect = {};
 
-
     SkillEffect[SK.SM_PROVOKE] = {
         effectId: 67
     };
+       
+    SkillEffect[SK.SM_ENDURE] = {
+        effectId: 11
+    };
+
+    SkillEffect[SK.SM_BASH] = {
+        effectId: 16,
+        hitEffectId: 1
+    };
+
+    SkillEffect[SK.MG_SOULSTRIKE] = {
+        effectId: 15,
+        hitEffectId: 1
+    };
+
+    SkillEffect[SK.SM_MAGNUM] = {
+        effectId: 17
+    };
+
+    SkillEffect[SK.AL_CRUCIS] = {
+        effectId: 40
+    };
+    
     SkillEffect[SK.AL_TELEPORT] = {
         effectId: 304
     };
@@ -100,7 +122,7 @@ define(['./SkillConst'], function( SK )
     };
 
     SkillEffect[SK.KN_AUTOCOUNTER] = {
-        effectId: 131
+        //effectId: 131
     };
 
     SkillEffect[SK.KN_BOWLINGBASH] = {

@@ -792,6 +792,17 @@ define(function( require )
 			});
 		}
 
+        // Hardcoded version of Auto Counter casting bar
+        // It's dont gey any delayTime so we need to handle it diffrent:
+        // if the monster hit us then PACKET_ZC_DISPEL is received (to force cast bar to cancel)
+        // if not it's end by itself (on kRO Renewal you can move during AC to cancel it but it's not implemented on privates yet)
+        if(pkt.SKID == 61){
+            srcEntity.cast.set( 1000 );
+            if (srcEntity === Session.Entity) {
+                Session.underAutoCounter = true;
+            }
+        }
+        
 		// Only mob to don't display skill name ?
 		if (srcEntity.objecttype !== Entity.TYPE_MOB) {
 			srcEntity.dialog.set(
@@ -831,6 +842,14 @@ define(function( require )
 			// Cancel effects
 			EffectManager.remove(LockOnTarget, entity.GID);
 			EffectManager.remove(MagicTarget, entity.GID);
+
+            if (entity === Session.Entity) { // Autocounter hardcoded animation (any better place to put this?)
+                if(Session.underAutoCounter) {
+                    if(Session.Entity.life.hp > 0)
+                        EffectManager.spam(131, pkt.AID);
+                    Session.underAutoCounter = false;
+                }
+            }
 		}
 	}
 

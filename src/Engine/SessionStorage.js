@@ -28,6 +28,7 @@ define(function()
 		AdminList:   [],
 
 		intravision: false,
+		underAutoCounter: false,
 
 		moveAction:  null,
 

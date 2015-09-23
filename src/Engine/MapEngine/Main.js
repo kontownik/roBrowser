@@ -260,6 +260,13 @@ define(function( require )
 			case StatusProperty.HP:
 				Session.Entity.life.hp = amount;
 				Session.Entity.life.update();
+                
+                if(amount == 0){
+                    if(Session.underAutoCounter) {
+                        Session.underAutoCounter = false;
+                    }
+                    //[TODO]death animation above head and single/aoe casting animation remove
+                }
 
 				if (Session.Entity.life.hp_max > -1) {
 					BasicInfo.update('hp', Session.Entity.life.hp, Session.Entity.life.hp_max);
