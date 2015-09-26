@@ -103,6 +103,7 @@ define(function(require)
 		loadTable( 'data/resnametable.txt',               2, function(index, key, val){    DB.mapalias[key]                                             = val;               }, onLoad());
 		loadTable( 'data/num2cardillustnametable.txt',    2, function(index, key, val){   (ItemTable[key] || (ItemTable[key] = {})).illustResourcesName = val;               }, onLoad());
 		loadTable( 'data/cardprefixnametable.txt',        2, function(index, key, val){   (ItemTable[key] || (ItemTable[key] = {})).prefixNameTable     = val;               }, onLoad());
+        loadTable( 'data/cardpostfixnametable.txt',        2, function(index, key, val){   (ItemTable[key] || (ItemTable[key] = {})).postfixNameTable     = val;               }, onLoad());
 		loadTable( 'data/fogparametertable.txt',          5, parseFogEntry,                                                                                                     onLoad());
 	};
 
@@ -514,6 +515,7 @@ define(function(require)
 				item.identifiedDisplayName       = TextEncoding.decodeString(item.identifiedDisplayName);
 				item.unidentifiedDisplayName     = TextEncoding.decodeString(item.unidentifiedDisplayName);
 				item.prefixNameTable             = TextEncoding.decodeString(item.prefixNameTable || '');
+                item.postfixNameTable            = TextEncoding.decodeString(item.postfixNameTable);
 				item._decoded                    = true;
 			}
 
@@ -542,10 +544,14 @@ define(function(require)
 	 * @param {object} item
 	 * @return {string} item full name
 	 */
-	DB.getItemName = function getItemName( item )
+
+	DB.getItemName = function getItemName( item, showSlots )
 	{
 		var it = DB.getItemInfo( item.ITID );
 		var str = '';
+        var hideSlotOnName = true; //by default we don't see slots in item names, only on display boxes
+        if(showSlots)
+            hideSlotOnName = false;
 
 		if (!item.IsIdentified) {
 			return it.unidentifiedDisplayName;
@@ -567,6 +573,7 @@ define(function(require)
 					var list  = ['', 'Double ', 'Triple ', 'Quadruple '];
 					var count = [0, 0, 0, 0];
 					var name, prefix = [];
+                    var isPostfix = false;
 					var i, j = 0, pos;
 
 					for (i = 1; i <= 4; ++i) {
@@ -575,6 +582,7 @@ define(function(require)
 						}
 
 						name = DB.getItemInfo(item.slot['card'+i]).prefixNameTable;
+                        isPostfix = DB.getItemInfo(item.slot['card'+i]).postfixNameTable;
 						if (name) {
 							pos = prefix.indexOf(name);
 							if (pos > -1) {
@@ -588,15 +596,20 @@ define(function(require)
 					}
 
 					for (i = 0; i < j; ++i) {
-						str += list[count[i]-1] + prefix[i] + ' ';
+                        if(!isPostfix){
+                            str += list[count[i]-1] + prefix[i] + ' ';
+                        }
 					}
 			}
 		}
 
 
 		str += it.identifiedDisplayName;
+        if(isPostfix){
+            str += ' ' + prefix[0]; // postfix can't be double/triple/quadruple, right?
+        }
 
-		if (it.slotCount) {
+		if (it.slotCount && !hideSlotOnName) {
 			str += ' [' + it.slotCount + ']';
 		}
 

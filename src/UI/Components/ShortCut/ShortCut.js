@@ -299,7 +299,7 @@ define(function(require)
 
 			var it = DB.getItemInfo(ID);
 			file   = item.IsIdentified ? it.identifiedResourceName : it.unidentifiedResourceName;
-			name   = index_name+DB.getItemName(item);
+			name   = index_name+DB.getItemName(item, true);
 
 			// If equipment, do not display count
 			if (item.type === ItemType.WEAPON || item.type === ItemType.EQUIP) {

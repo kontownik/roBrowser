@@ -108,14 +108,21 @@ define(function(require)
 		var it = DB.getItemInfo( item.ITID );
 		var ui = this.ui;
 		var cardList = ui.find('.cardlist .border');
+        var itemFullName = 'Unknown';
 
 		this.item = it;
 		Client.loadFile( DB.INTERFACE_PATH + 'collection/' + ( item.IsIdentified ? it.identifiedResourceName : it.unidentifiedResourceName ) + '.bmp', function(data){
 			ui.find('.collection').css('backgroundImage', 'url('+data+')' );
 		});
 
+        if(item.IsIdentified) {
+            itemFullName = DB.getItemName(item);
+        }
+        else {
+            itemFullName = it.unidentifiedDisplayName;
+        }
 
-		ui.find('.title').text( item.IsIdentified ? it.identifiedDisplayName : it.unidentifiedDisplayName );
+		ui.find('.title').text( itemFullName );
 		ui.find('.description').text( item.IsIdentified ? it.identifiedDescriptionName : it.unidentifiedDescriptionName );
 
 		// Add view button (for cards)
@@ -148,6 +155,8 @@ define(function(require)
 
 				cardList.parent().show();
 				cardList.empty();
+                if(!item.IsIdentified)
+                    cardList.parent().hide();
 
 				for (i = 0; i < 4; ++i) {
 					addCard(cardList, (item.slot && item.slot['card' + (i+1)]) || 0, i, slotCount);
