@@ -49,7 +49,11 @@ define(function( require )
 			console.log('toggleState: unknown state', state);
 			return;
 		}
-		this.virtue = this.virtue ^ value;
+		if (enabled){
+			this.virtue = this.virtue | value;
+		} else {
+			this.virtue = this.virtue ^ value;
+		}
 	}
 
 	function updateVirtue(value){
