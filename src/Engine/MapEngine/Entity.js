@@ -40,7 +40,7 @@ define(function( require )
     var BasicInfo     = require('UI/Components/BasicInfo/BasicInfo');
     var Escape        = require('UI/Components/Escape/Escape');
     var DB            = require('DB/DBManager'); //+
-
+    var SpiritSphere = require('Renderer/Effects/SpiritSphere');
 
     /**
      * Spam an entity on the map
@@ -72,8 +72,11 @@ define(function( require )
         var entity = EntityManager.get(pkt.GID);
         if (entity) {
             entity.remove( pkt.type );
+            // XXX this is a hack to make the spirit spheres vanish when a player vanishes
+            // it shouldn't be hardcoded like that, i think a better way to do it
+            // would be to make the spheres an 'attachment'?
+            EffectManager.remove({name: SpiritSphere._uid}, pkt.GID);
         }
-
         // Show escape menu
         if (pkt.GID === Session.Entity.GID && pkt.type === 1) {
             Escape.ui.show();
