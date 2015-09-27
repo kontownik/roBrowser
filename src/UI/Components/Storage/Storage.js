@@ -480,7 +480,7 @@ define(function(require)
 		// Display box
 		overlay.show();
 		overlay.css({top: pos.top-10, left:pos.left+35});
-		overlay.text(DB.getItemName(item) + ' ' + ( item.count || 1 ) + ' ea');
+		overlay.text(DB.getItemName(item, true) + ' ' + ( item.count || 1 ) + ' ea');
 
 		if (item.IsIdentified) {
 			overlay.removeClass('grey');

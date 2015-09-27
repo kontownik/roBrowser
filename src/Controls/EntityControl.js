@@ -67,6 +67,8 @@ define(function( require )
 				}
 
 				Cursor.setType( Cursor.ACTION.ATTACK );
+                if(this.display.load != this.display.TYPE.COMPLETE) //force it
+                    this.display.load = this.display.TYPE.NONE;
 				break;
 
 			case Entity.TYPE_MOB:
@@ -91,15 +93,9 @@ define(function( require )
 
 			// Ask for the name
 			case this.display.TYPE.NONE:
-				this.display.load = this.display.TYPE.LOADING;
-
 				var pkt = new PACKET.CZ.REQNAME();
 				pkt.AID = this.GID;
 				Network.sendPacket(pkt);
-				break;
-
-			// Nothing yet
-			case this.display.TYPE.LOADING:
 				break;
 
 			// Display the name

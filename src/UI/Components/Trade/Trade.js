@@ -150,7 +150,7 @@ define(function(require)
 			'<div class="item" data-index="'+ idx +'">' +
 				'<div class="icon"></div>' +
 				'<div class="amount"><span class="count">' + (_tmpCount[index] || 1) + '</span></div>' +
-				'<span class="name">' + jQuery.escape(DB.getItemName(item)) + '</span>' +
+				'<span class="name">' + jQuery.escape(DB.getItemName(item, true)) + '</span>' +
 			'</div>'
 		);
 
@@ -181,7 +181,7 @@ define(function(require)
 			'<div class="item" data-index="'+ idx +'">' +
 				'<div class="icon"></div>' +
 				'<div class="amount">'+ item.count + '</div>' +
-				'<span class="name">' + jQuery.escape(DB.getItemName(item)) + '</span>' +
+				'<span class="name">' + jQuery.escape(DB.getItemName(item, true)) + '</span>' +
 			'</div>'
 		);
 
@@ -375,7 +375,7 @@ define(function(require)
 		// Display box
 		overlay.show();
 		overlay.css({top: pos.top+5, left:pos.left+30});
-		overlay.text(DB.getItemName(item));
+		overlay.text(DB.getItemName(item, true));
 
 		if (item.IsIdentified) {
 			overlay.removeClass('grey');

@@ -571,7 +571,7 @@ define(function(require)
 		// Display box
 		overlay.show();
 		overlay.css({top: pos.top-22, left:pos.left-22});
-		overlay.text(DB.getItemName(item));
+		overlay.text(DB.getItemName(item, true));
 	}
 
 
