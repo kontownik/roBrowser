@@ -26,34 +26,58 @@ define(function( require )
 	 */
 	function recalculateBlendingColor()
 	{
-		this.effectColor[0] = this._bodyStateColor[0] * this._healthStateColor[0] * this._effectStateColor[0] * this._skillStateColor[0];
-		this.effectColor[1] = this._bodyStateColor[1] * this._healthStateColor[1] * this._effectStateColor[1] * this._skillStateColor[1];
-		this.effectColor[2] = this._bodyStateColor[2] * this._healthStateColor[2] * this._effectStateColor[2] * this._skillStateColor[2];
-		this.effectColor[3] = this._bodyStateColor[3] * this._healthStateColor[3] * this._effectStateColor[3] * this._skillStateColor[3];
+		this.effectColor[0] = this._bodyStateColor[0] * this._healthStateColor[0] * this._effectStateColor[0] * this._virtueColor[0];
+		this.effectColor[1] = this._bodyStateColor[1] * this._healthStateColor[1] * this._effectStateColor[1] * this._virtueColor[1];
+		this.effectColor[2] = this._bodyStateColor[2] * this._healthStateColor[2] * this._effectStateColor[2] * this._virtueColor[2];
+		this.effectColor[3] = this._bodyStateColor[3] * this._healthStateColor[3] * this._effectStateColor[3] * this._virtueColor[3];
 	}
 
 
+	var _stateToVirtue = {};
+	_stateToVirtue[StatusConst.Status.TWOHANDQUICKEN] = StatusConst.OPT3.QUICKEN;
+	_stateToVirtue[StatusConst.Status.EXPLOSIONSPIRITS] = StatusConst.OPT3.EXPLOSIONSPIRITS;
+	_stateToVirtue[StatusConst.Status.BERSERK] = StatusConst.OPT3.BERSERK;
+	_stateToVirtue[StatusConst.Status.MARIONETTE] = StatusConst.OPT3.MARIONETTE;
+	_stateToVirtue[StatusConst.Status.MARIONETTE_MASTER] = StatusConst.OPT3.MARIONETTE;
 
-	function updateSkillState(value){
+	function toggleOpt3(state, enabled){
+		if (state === 0){
+			return;
+		}
+		var value = _stateToVirtue[state];
+		if (value === undefined){
+			console.log('toggleState: unknown state', state);
+			return;
+		}
+		this.virtue = this.virtue ^ value;
+	}
+
+	function updateVirtue(value){
 		// Reset value
-		this._skillStateColor[0] = 1.0;
-		this._skillStateColor[1] = 1.0;
-		this._skillStateColor[2] = 1.0;
-		this._skillStateColor[3] = 1.0;
+		this._virtueColor[0] = 1.0;
+		this._virtueColor[1] = 1.0;
+		this._virtueColor[2] = 1.0;
+		this._virtueColor[3] = 1.0;
 
-		switch (value) {
-			case StatusConst.Status.EXPLOSIONSPIRITS:
-				this._skillStateColor[1] = 0.7;
-				this._skillStateColor[2] = 0.7;
-				break;
+		if (value & StatusConst.OPT3.QUICKEN){
+			this._virtueColor[2] = 0.0;
+		}
 
-			case StatusConst.Status.TWOHANDQUICKEN:
-				this._skillStateColor[2] = 0.0;
-				break;
+		if (value & StatusConst.OPT3.EXPLOSIONSPIRITS){
+			this._virtueColor[1] = 0.7;
+			this._virtueColor[2] = 0.7;
+		}
+
+		if ((value & StatusConst.OPT3.MARIONETTE) ||
+			(value & StatusConst.OPT3.BERSERK) ){
+			this._virtueColor[0] = 1.0;
+			this._virtueColor[1] = 0.3;
+			this._virtueColor[2] = 0.7;
+			this._virtueColor[3] = 0.5;
 		}
 
 		recalculateBlendingColor.call(this);
-		this._skillState = value;
+		this._virtue = value;
 	}
 
 
@@ -346,7 +370,7 @@ define(function( require )
 		this._bodyStateColor   = new Float32Array([1, 1, 1, 1]);
 		this._healthStateColor = new Float32Array([1, 1, 1, 1]);
 		this._effectStateColor = new Float32Array([1, 1, 1, 1]);
-		this._skillStateColor  = new Float32Array([1, 1, 1, 1]);
+		this._virtueColor  = new Float32Array([1, 1, 1, 1]);
 		this.effectColor       = new Float32Array([1, 1, 1, 1]);
 
 
@@ -365,9 +389,11 @@ define(function( require )
 			set: updateEffectState
 		});
 
-		Object.defineProperty(this, 'skillState', {
-			get: function(){ return this._skillState; },
-			set: updateSkillState
+		Object.defineProperty(this, 'virtue', {
+			get: function(){ return this._virtue; },
+			set: updateVirtue
 		});
+
+		this.toggleOpt3 = toggleOpt3;
 	};
 });

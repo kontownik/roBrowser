@@ -70,6 +70,28 @@ define(['DB/Status/StatusConst'], function(StatusConst) {
 			CART5        : 0x00000400,
 		},
 
+		OPT3: {
+			NORMAL           : 0x00000000,
+			QUICKEN          : 0x00000001,
+			OVERTHRUST       : 0x00000002,
+			ENERGYCOAT       : 0x00000004,
+			EXPLOSIONSPIRITS : 0x00000008,
+			STEELBODY        : 0x00000010,
+			BLADESTOP        : 0x00000020,
+			AURABLADE        : 0x00000040,
+			BERSERK          : 0x00000080,
+			LIGHTBLADE       : 0x00000100,
+			MOONLIT          : 0x00000200,
+			MARIONETTE       : 0x00000400,
+			ASSUMPTIO        : 0x00000800,
+			WARM             : 0x00001000,
+			KAITE            : 0x00002000,
+			BUNSIN           : 0x00004000,
+			SOULLINK         : 0x00008000,
+			UNDEAD           : 0x00010000,
+			CONTRACT         : 0x00020000
+		},
+
 		Status: StatusConst
 	};
 });
