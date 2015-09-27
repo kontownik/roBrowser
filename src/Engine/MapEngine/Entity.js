@@ -784,8 +784,10 @@ define(function( require )
         }
 
         if (pkt.delayTime) {
-            Sound.play('effect/ef_beginspell.wav');
-            srcEntity.cast.set( pkt.delayTime );
+            if(pkt.SKID != 62) { // Bowling Bash got cast but original client hide it for unknown reason
+                Sound.play('effect/ef_beginspell.wav');
+                srcEntity.cast.set( pkt.delayTime );
+            }
 
             srcEntity.setAction({
                 action: srcEntity.ACTION.SKILL,

@@ -12,7 +12,6 @@ define(['./SkillConst'], function( SK )
 {
     'use strict';
 
-
     var SkillEffect = {};
 
     SkillEffect[SK.SM_PROVOKE] = {
@@ -28,6 +27,15 @@ define(['./SkillConst'], function( SK )
         hitEffectId: 1
     };
 
+    SkillEffect[SK.KN_BOWLINGBASH] = {
+        effectId: 149,
+        hitEffectId: 1
+    };
+    
+    SkillEffect[SK.LK_CONCENTRATION] = {
+        effectId: 369
+    };
+    
     SkillEffect[SK.MG_SOULSTRIKE] = {
         effectId: 15,
         hitEffectId: 1
@@ -102,19 +110,20 @@ define(['./SkillConst'], function( SK )
     };
 
     SkillEffect[SK.KN_PIERCE] =  {
-        effectId: 148
+        effectIdOnCaster: 148
     };
 
     SkillEffect[SK.KN_BRANDISHSPEAR] = {
-        effectId: 144
+        effectId: 70,
+        effectIdOnCaster: 144
     };
 
     SkillEffect[SK.KN_SPEARSTAB] =  {
-        effectId: 150
+        effectIdOnCaster: 150
     };
 
     SkillEffect[SK.KN_SPEARBOOMERANG] = {
-        effectId: 151
+        effectIdOnCaster: 151
     };
 
     SkillEffect[SK.KN_TWOHANDQUICKEN] = {

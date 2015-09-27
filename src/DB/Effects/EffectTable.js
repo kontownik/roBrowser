@@ -200,7 +200,6 @@ define(function( require )
             attachedEntity: false
         }],
 
-
         18: [{
             //type: 'FUNC',
             //file: 'sprite/ÀÌÆÑÆ®/particle7',
@@ -920,6 +919,7 @@ define(function( require )
             type: 'STR',
             file: 'twohand',
             wav:  'effect/knight_twohandquicken',
+            head: true,
             attachedEntity: true
         }],
 
@@ -1030,6 +1030,7 @@ define(function( require )
             type: 'STR',
             file: 'pierce',
             attachedEntity: true
+            // attach animation at middle of body
         }],
 
 
@@ -1037,6 +1038,7 @@ define(function( require )
             type: 'STR',
             file: 'bowling',
             wav:  'effect/knight_bowling_bash',
+            head: true,
             attachedEntity: true
         }],
 
@@ -1045,6 +1047,7 @@ define(function( require )
             type: 'STR',
             file: 'spearstab',
             attachedEntity: true
+            // attach animation at middle of body
         }],
 
 
@@ -1052,6 +1055,7 @@ define(function( require )
             type: 'STR',
             file: 'spearboomerang',
             wav:  'effect/knight_spear_boomerang',
+            head: true,
             attachedEntity: true
         }],
 
@@ -1383,6 +1387,8 @@ define(function( require )
         249: [{
             type: 'STR',
             file: 'twohand',
+            wav:  'effect/knight_twohandquicken',
+            head: true,
             attachedEntity: true
         }],
 
@@ -1646,6 +1652,8 @@ define(function( require )
         369: [{
             type: 'STR',
             file: 'twohand',
+            wav:  'effect/knight_twohandquicken',
+            head: true,
             attachedEntity: true
         }],
 
