@@ -32,7 +32,7 @@ define(function( require )
 	var Ground         = require('Renderer/Map/Ground');
 	var Altitude       = require('Renderer/Map/Altitude');
 	var Water          = require('Renderer/Map/Water');
-	var Models         = require('Renderer/Map/Models');
+	var Models         = require('es6!Renderer/Map/Models');
 	var Sounds         = require('Renderer/Map/Sounds');
 	var Effects        = require('Renderer/Map/Effects');
 	var SpriteRenderer = require('Renderer/SpriteRenderer');
@@ -41,6 +41,8 @@ define(function( require )
 	var Damage         = require('Renderer/Effects/Damage');
 	var MapPreferences = require('Preferences/Map');
 
+
+	var _modelRenderer = null;
 
 	/**
 	 * Renderer Namespace
@@ -175,7 +177,9 @@ define(function( require )
 		Effects.free();
 		Ground.free( gl );
 		Water.free( gl );
-		Models.free( gl );
+		if (_modelRenderer !== null){
+			_modelRenderer.free( gl );
+		}
 		Damage.free( gl );
 		EffectManager.free( gl );
 		SoundManager.stop();
@@ -285,7 +289,7 @@ define(function( require )
 	 */
 	function onModelsComplete( data )
 	{
-		Models.init( Renderer.getContext(), data );
+		_modelRenderer = new Models(Renderer.getContext(), data);
 	}
 
 
@@ -372,7 +376,7 @@ define(function( require )
 		//Effects.spam( Session.Entity.position, tick);
 
 		Ground.render(gl, modelView, projection, normalMat, fog, light );
-		Models.render(gl, modelView, projection, normalMat, fog, light );
+		_modelRenderer.render(gl, modelView, projection, normalMat, fog, light );
 
 		if (Mouse.intersect && Altitude.intersect( modelView, projection, _pos)) {
 			x = _pos[0];

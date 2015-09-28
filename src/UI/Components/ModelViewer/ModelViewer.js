@@ -20,7 +20,7 @@ define(function(require)
 	var Client             = require('Core/Client');
 	var Model              = require('Loaders/Model');
 	var Renderer           = require('Renderer/Renderer');
-	var ModelRenderer      = require('Renderer/Map/Models');
+	var ModelRenderer      = require('es6!Renderer/Map/Models');
 	var Camera             = require('Renderer/Camera');
 
 	var UIManager          = require('UI/UIManager');
@@ -31,6 +31,7 @@ define(function(require)
 	var mat4               = glMatrix.mat4;
 	var mat3               = glMatrix.mat3;
 
+	var _modelRenderer = null;
 
 	/**
 	 * @var {object} fog structure
@@ -168,7 +169,9 @@ define(function(require)
 		var gl = Renderer.getContext();
 
 		Renderer.stop();
-		ModelRenderer.free(gl);
+		if (_modelRenderer !== null){
+			_modelRenderer.free(gl);
+		}
 		gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT );
 	}
 
@@ -245,7 +248,7 @@ define(function(require)
 				// Loading complete, rendering...
 				if ((++i) === count) {
 					// Initialize renderer
-					ModelRenderer.init( Renderer.getContext(), {
+					_modelRenderer = new ModelRenderer(Renderer.getContext(), {
 						buffer: buffer,
 						infos:  infos
 					});
@@ -288,7 +291,7 @@ define(function(require)
 		// Clear screen, update camera
 		gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT );
 
-		ModelRenderer.render(gl, _modelView, Camera.projection, _normalMat, _fog, _light );
+		_modelRenderer.render(gl, _modelView, Camera.projection, _normalMat, _fog, _light );
 	}
 
 

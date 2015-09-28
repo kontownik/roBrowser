@@ -26,7 +26,8 @@ require({
 	baseUrl: './src/',
 	paths: {
 		text:   'Vendors/text.require',
-		jquery: 'Vendors/jquery-1.9.1'
+		jquery: 'Vendors/jquery-1.9.1',
+		es6: 'Vendors/es6'
 	}
 },
    ['Core/Configs', 'Core/Thread', 'Core/Context', 'Core/Client', 'UI/Components/ModelViewer/ModelViewer'],
