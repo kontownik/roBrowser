@@ -618,7 +618,11 @@ define(function( require )
         var dstEntity = EntityManager.get(pkt.targetAID);
 
         // Only mob to don't display skill name ?
-        if (srcEntity && srcEntity.objecttype !== Entity.TYPE_MOB) {
+        if (srcEntity.objecttype === Entity.TYPE_PC || srcEntity.objecttype === Entity.TYPE_DISGUISED ||
+            srcEntity.objecttype === Entity.TYPE_PET || srcEntity.objecttype === Entity.TYPE_HOM ||
+            srcEntity.objecttype === Entity.TYPE_MERC || srcEntity.objecttype === Entity.TYPE_ELEM
+        ) 
+        {
             srcEntity.dialog.set(
                 ( (SkillInfo[pkt.SKID] && SkillInfo[pkt.SKID].SkillName ) || 'Unknown Skill' ) + ' !!',
                 'white'
@@ -662,6 +666,10 @@ define(function( require )
     function onSkillDisapear( pkt )
     {
         EffectManager.remove( null, pkt.AID );
+        var entity = EntityManager.get(pkt.AID);
+        if (entity) {
+            entity.remove();
+        }
     }
 
 
@@ -681,7 +689,12 @@ define(function( require )
             srcEntity.attack_speed = pkt.attackMT;
 
 
-            if (srcEntity.objecttype !== Entity.TYPE_MOB) {
+            console.error( '[debug] objecttype: "%s"', srcEntity.objecttype);
+            if (srcEntity.objecttype === Entity.TYPE_PC || srcEntity.objecttype === Entity.TYPE_DISGUISED ||
+                srcEntity.objecttype === Entity.TYPE_PET || srcEntity.objecttype === Entity.TYPE_HOM ||
+                srcEntity.objecttype === Entity.TYPE_MERC || srcEntity.objecttype === Entity.TYPE_ELEM
+            ) 
+            {
                 srcEntity.dialog.set( ( (SkillInfo[pkt.SKID] && SkillInfo[pkt.SKID].SkillName ) || 'Unknown Skill' ) + ' !!' );
             }
 
@@ -809,7 +822,11 @@ define(function( require )
         }
 
         // Only mob to don't display skill name ?
-        if (srcEntity.objecttype !== Entity.TYPE_MOB) {
+        if (srcEntity.objecttype === Entity.TYPE_PC || srcEntity.objecttype === Entity.TYPE_DISGUISED ||
+                srcEntity.objecttype === Entity.TYPE_PET || srcEntity.objecttype === Entity.TYPE_HOM ||
+                srcEntity.objecttype === Entity.TYPE_MERC || srcEntity.objecttype === Entity.TYPE_ELEM
+        )
+        {
             srcEntity.dialog.set(
                 ( ( SkillInfo[pkt.SKID] && SkillInfo[pkt.SKID].SkillName ) || 'Unknown Skill' ) + ' !!',
                 'white'

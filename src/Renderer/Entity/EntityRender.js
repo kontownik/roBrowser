@@ -218,8 +218,8 @@ define( function( require )
 			var direction = (Camera.direction + this.direction + 8) % 8;
 			var behind    = direction > 1 && direction < 6;
 
-			// Render shadow (shadow isn't render when player is sit or dead).
-			if (action !== this.ACTION.DIE && action !== this.ACTION.SIT) {
+			// Render shadow circle (shadow isn't render when entity is sit, dead or isn't creature at all).
+			if (action !== this.ACTION.DIE && action !== this.ACTION.SIT && this.objecttype !== Entity.TYPE_EFFECT) {
 	
 				// Shadow is base on gat height
 				SpriteRenderer.position[0] = this.position[0];

@@ -93,6 +93,9 @@ define(function( require )
 
 			// Ask for the name
 			case this.display.TYPE.NONE:
+                if(this.objecttype === Entity.TYPE_EFFECT || this.objecttype === Entity.TYPE_UNKNOWN || this.objecttype === Entity.TYPE_WARP){
+                    break;
+                }
 				var pkt = new PACKET.CZ.REQNAME();
 				pkt.AID = this.GID;
 				Network.sendPacket(pkt);
