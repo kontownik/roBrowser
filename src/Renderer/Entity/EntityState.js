@@ -399,5 +399,6 @@ define(function( require )
 		});
 
 		this.toggleOpt3 = toggleOpt3;
+        this.recalculateBlendingColor = recalculateBlendingColor;
 	};
 });

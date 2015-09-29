@@ -2670,5 +2670,32 @@ define(function( require )
             file: 'stormgust',
             attachedEntity: true
         }],
+        
+        
+        1111: [{
+            type: 'FUNC',
+            attachedEntity: true,
+            func: function EffectBodyColor(entity) {
+                entity._virtueColor[0] = 1.0;
+                entity._virtueColor[1] = 0.0;
+                entity._virtueColor[2] = 0.0;
+                entity._virtueColor[3] = 0.0;
+                entity.recalculateBlendingColor();
+
+                entity.animations.add(function(tick){
+                    entity._virtueColor[3] = 0.0 + tick/100;
+                    entity.recalculateBlendingColor();
+                    if(tick > 300) {
+                        entity._virtueColor[0] = 1.0;
+                        entity._virtueColor[1] = 1.0;
+                        entity._virtueColor[2] = 1.0;
+                        entity._virtueColor[3] = 1.0;
+                        entity.recalculateBlendingColor();
+                        return true;
+                    }
+                });
+            }
+        }],
+        
     };
 });
