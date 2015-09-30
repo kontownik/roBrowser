@@ -28,10 +28,18 @@ var _points = 0;
 var _btnLevelUp;
 
 
-const _levelupHTML = jQuery.parseHTML(`<button class="btn levelup" data-background="basic_interface/skill_up_a.bmp" data-hover="basic_interface/skill_up_b.bmp" data-down="basic_interface/skill_up_c.bmp"></button>`)[0]
+
+// this can't be just called at module loading time because the thread.js postmessage
+// target isn't set then yet. Maybe it should keep some buffer/queue to allow that?
+function makeLevelupButton(){
+    var _levelup = jQuery(`<button class="btn levelup" data-background="basic_interface/skill_up_a.bmp" data-hover="basic_interface/skill_up_b.bmp" data-down="basic_interface/skill_up_c.bmp"></button>`)[0]
+    UIComponent.prototype.parseHTML.call(_levelup);
+    return _levelup
+}
 
 function _templateSkillRow(skill){
     var sk = SkillInfo[skill.SKID];
+
 
     var className = !skill.level ? 'disabled' : skill.type ? 'active' : 'passive';
 
@@ -64,14 +72,13 @@ function _templateSkillRow(skill){
             </td>
         </tr>`)[0];
 
-    Client.loadFile( DB.INTERFACE_PATH + 'item/' + sk.Name + '.bmp', function(data){
+    Client.loadFile(`${DB.INTERFACE_PATH}item/${sk.Name}.bmp`, data => {
         element.getElementsByClassName('iconImage')[0].src = data;
     });
 
     if (skill.upgradable && _points > 0){
-        var x = element.getElementsByClassName('levelupcontainer')[0];
-        console.log('asd lv',x, element)
-        x.appendChild(_levelupHTML);
+        let container = element.getElementsByClassName('levelupcontainer')[0];
+        container.appendChild(makeLevelupButton());
     }
 
     return element;
@@ -82,135 +89,6 @@ function stopPropagation(event){
     event.stopImmediatePropagation();
     return false;
 }
-
-
-function getSkillById(id){
-    for (let skill of _list) {
-        if (skill.SKID === id) {
-            return skill
-        }
-    }
-    return null;
-}
-
-
-/**
- * Extend SkillList window size
- */
-function onResize()
-{
-    var self = this;
-    var ui      = SkillList.ui;
-    var top     = ui.position().top;
-    var left    = ui.position().left;
-    var lastWidth  = 0;
-    var lastHeight = 0;
-    var _Interval;
-
-    function resizing()
-    {
-        var extraX = -6;
-        var extraY = 32;
-
-        var w = Math.floor( (Mouse.screen.x - left - extraX) / 32 );
-        var h = Math.floor( (Mouse.screen.y - top  - extraY) / 32 );
-
-        // Maximum and minimum window size
-        w = Math.min( Math.max(w, 8), 8);
-        h = Math.min( Math.max(h, 4), 10);
-
-        if (w === lastWidth && h === lastHeight) {
-            return;
-        }
-
-        this.resize( w, h );
-        lastWidth  = w;
-        lastHeight = h;
-    }
-
-    // Start resizing
-    _Interval = setInterval(resizing, 30);
-
-    // Stop resizing on left click
-    jQuery(window).on('mouseup.resize', function(event){
-        if (event.which === 1) {
-            clearInterval(_Interval);
-            jQuery(window).off('mouseup.resize');
-        }
-    });
-}
-
-
-
-/**
- * Request to use a skill
- */
-function onRequestUseSkill(evt){
-    var main  = jQuery(evt.target).parent();
-
-    if (!main.hasClass('skill')) {
-        main = main.parent();
-    }
-
-    this.useSkillID(parseInt(main.data('index'), 10));
-}
-
-
-/**
- * Request to get skill info (right click on a skill)
- */
-function onRequestSkillInfo(evt){
-    var main = jQuery(evt.target).parent();
-    var skill;
-
-    if (!main.hasClass('skill')) {
-        main = main.parent();
-    }
-
-    skill = getSkillById(parseInt(main.data('index'), 10));
-
-    // Don't add the same UI twice, remove it
-    if (SkillDescription.uid === skill.SKID) {
-        SkillDescription.remove();
-        return;
-    }
-
-    // Add ui to window
-    SkillDescription.append();
-    SkillDescription.setSkill(skill.SKID);
-}
-
-
-
-
-/**
- * Start to drag a skill (to put it on the hotkey UI ?)
- */
-function onSkillDragStart(event){
-    var index = parseInt(event.target.getAttribute('data-index'), 10);
-    var skill = getSkillById(index);
-
-    // Can't drag a passive skill (or disabled)
-    if (!skill || !skill.level || !skill.type) {
-        return stopPropagation(event);
-    }
-
-    var img   = new Image();
-    console.log('dupa', event.target)
-    img.src = event.target.getElementsByTagName('img')[0].src;
-
-    event.originalEvent.dataTransfer.setDragImage( img, 12, 12 );
-    event.originalEvent.dataTransfer.setData('Text',
-        JSON.stringify( window._OBJ_DRAG_ = {
-            type: 'skill',
-            from: 'SkillList',
-            data:  skill
-        })
-    );
-}
-
-
-
 
 
 class SkillListUI extends UIComponent {
@@ -234,7 +112,7 @@ class SkillListUI extends UIComponent {
 
     prepareUI(ui){
         ui.find('.titlebar .base').mousedown(stopPropagation);
-        ui.find('.footer .extend').mousedown(onResize.bind(this));
+        ui.find('.footer .extend').mousedown(this.onResize.bind(this));
         ui.find('.titlebar .close').click(evt => {
             ui[0].style.display = 'none';
         });
@@ -243,10 +121,10 @@ class SkillListUI extends UIComponent {
             .on('click', '.levelup', this.onRequestSkillUp.bind(this))
             .on('click', '.skill_lv_increase', this.onSkillLvIncrease.bind(this))
             .on('click', '.skill_lv_decrease', this.onSkillLvDecrease.bind(this))
-            .on('dblclick', '.skill .icon, .skill .name', onRequestUseSkill.bind(this))
-            .on('contextmenu', '.skill .icon, .skill .name', onRequestSkillInfo.bind(this))
+            .on('dblclick', '.skill .icon, .skill .name', this.onRequestUseSkill.bind(this))
+            .on('contextmenu', '.skill .icon, .skill .name', this.onRequestSkillInfo.bind(this))
             .on('mousedown', '.selectable', this.onSkillFocus.bind(this))
-            .on('dragstart', '.skill', onSkillDragStart.bind(this))
+            .on('dragstart', '.skill', this.onSkillDragStart.bind(this))
             .on('dragend', '.skill', evt => {
                 delete window._OBJ_DRAG_;
             });
@@ -343,7 +221,7 @@ class SkillListUI extends UIComponent {
     }
 
     updateSkill(skill){
-        var target = getSkillById(skill.SKID);
+        var target = this.getSkillById(skill.SKID);
         var element;
 
         if (!target) {
@@ -375,7 +253,6 @@ class SkillListUI extends UIComponent {
         element = this.ui.find(`.skill.id${skill.SKID}:first`)[0];
         var updatedElement = _templateSkillRow(skill);
         var parent = element.parentElement;
-        console.log('asd replace', updatedElement)
         parent.replaceChild(updatedElement, element);
 
         this.onUpdateSkill(skill.SKID, skill.level);
@@ -385,20 +262,28 @@ class SkillListUI extends UIComponent {
         // Not implemented by gravity ? server have to send the whole list again ?
     }
 
-    useSkillID(id){
-        var skill = getSkillById(id);
+    useSkillID(id, level){
+        var skill = this.getSkillById(id);
 
         if (!skill || !skill.level || !skill.type) {
             return;
         }
 
-        this.useSkill( skill );
+        this.useSkill(skill, level);
     }
 
-    useSkill(skill){
+    useSkill(skill, level){
+        if (level === undefined){
+            level = skill.current;
+        }
         // Self
         if (skill.type & SkillTargetSelection.TYPE.SELF) {
-            this.onUseSkill( skill.SKID, skill.current);
+            this.onUseSkill(skill.SKID, level);
+        }
+
+        if (level !== skill.level){
+            skill = Object.create(skill);
+            skill.current = level;
         }
 
         // no elseif intended (see flying kick).
@@ -431,20 +316,13 @@ class SkillListUI extends UIComponent {
         _btnLevelUp.appendTo('body');
     }
 
-    getSkillById(){
-        return getSkillById(...arguments);
-    }
-
-    onUseSkill(){
-
-    }
-
-    onIncreaseSkill(){
-
-    }
-
-    onUpdateSkill(){
-
+    getSkillById(id){
+        for (let skill of _list) {
+            if (skill.SKID === id) {
+                return skill
+            }
+        }
+        return null;
     }
 
     onRequestSkillUp(evt){
@@ -456,7 +334,7 @@ class SkillListUI extends UIComponent {
 
     onSkillLvDecrease(evt){
         var index = evt.target.parentNode.parentNode.parentNode.parentNode.getAttribute('data-index'); // lol
-        var skill = getSkillById(parseInt(index, 10));
+        var skill = this.getSkillById(parseInt(index, 10));
         if (skill.current > 1){
             skill.current--;
             this.updateSkill(skill);
@@ -465,11 +343,43 @@ class SkillListUI extends UIComponent {
 
     onSkillLvIncrease(evt){
         var index = evt.target.parentNode.parentNode.parentNode.parentNode.getAttribute('data-index');
-        var skill = getSkillById(parseInt(index, 10));
+        var skill = this.getSkillById(parseInt(index, 10));
         if (skill.current < skill.level){
             skill.current++;
             this.updateSkill(skill);
         }
+    }
+
+
+    onRequestUseSkill(evt){
+        var main  = jQuery(evt.target).parent();
+
+        if (!main.hasClass('skill')) {
+            main = main.parent();
+        }
+
+        this.useSkillID(parseInt(main.data('index'), 10));
+    }
+
+    onRequestSkillInfo(evt){
+        var main = jQuery(evt.target).parent();
+        var skill;
+
+        if (!main.hasClass('skill')) {
+            main = main.parent();
+        }
+
+        skill = this.getSkillById(parseInt(main.data('index'), 10));
+
+        // Don't add the same UI twice, remove it
+        if (SkillDescription.uid === skill.SKID) {
+            SkillDescription.remove();
+            return;
+        }
+
+        // Add ui to window
+        SkillDescription.append();
+        SkillDescription.setSkill(skill.SKID);
     }
 
     onSkillFocus(evt){
@@ -481,6 +391,83 @@ class SkillListUI extends UIComponent {
 
         this.ui.find('.skill').removeClass('selected');
         main.addClass('selected');
+    }
+
+    onSkillDragStart(event){
+        var index = parseInt(event.target.getAttribute('data-index'), 10);
+        var skill = this.getSkillById(index);
+
+        // Can't drag a passive skill (or disabled)
+        if (!skill || !skill.level || !skill.type) {
+            return stopPropagation(event);
+        }
+
+        var img   = new Image();
+        img.src = event.target.getElementsByTagName('img')[0].src;
+
+        event.originalEvent.dataTransfer.setDragImage( img, 12, 12 );
+        event.originalEvent.dataTransfer.setData('Text',
+            JSON.stringify( window._OBJ_DRAG_ = {
+                type: 'skill',
+                from: 'SkillList',
+                data:  skill
+            })
+        );
+    }
+
+    onResize(){
+        var self = this;
+        var ui      = SkillList.ui;
+        var top     = ui.position().top;
+        var left    = ui.position().left;
+        var lastWidth  = 0;
+        var lastHeight = 0;
+        var _Interval;
+
+        function resizing(){
+            var extraX = -6;
+            var extraY = 32;
+
+            var w = Math.floor( (Mouse.screen.x - left - extraX) / 32 );
+            var h = Math.floor( (Mouse.screen.y - top  - extraY) / 32 );
+
+            // Maximum and minimum window size
+            w = Math.min( Math.max(w, 8), 8);
+            h = Math.min( Math.max(h, 4), 10);
+
+            if (w === lastWidth && h === lastHeight) {
+                return;
+            }
+
+            this.resize( w, h );
+            lastWidth  = w;
+            lastHeight = h;
+        }
+
+        // Start resizing
+        _Interval = setInterval(resizing, 30);
+
+        // Stop resizing on left click
+        jQuery(window).on('mouseup.resize', function(event){
+            if (event.which === 1) {
+                clearInterval(_Interval);
+                jQuery(window).off('mouseup.resize');
+            }
+        });
+    }
+
+
+
+    onUseSkill(){
+
+    }
+
+    onIncreaseSkill(){
+
+    }
+
+    onUpdateSkill(){
+
     }
 }
 

@@ -268,7 +268,6 @@ define(function(require)
 		var file, name;
         var index_name = '';
 		var ui = ShortCut.ui.find('.container:eq(' + index + ')').empty();
-
 		if (!_list[index]) {
 			_list[index] = {};
 		}
@@ -390,14 +389,14 @@ define(function(require)
 
 		switch (data.from) {
 			case 'SkillList':
-				ShortCut.onChange( index, true, element.SKID, element.level);
-				removeElement( true, element.SKID, row);
-				addElement( index, true, element.SKID, element.level);
+				ShortCut.onChange( index, true, element.SKID, element.current || element.level);
+				// removeElement( true, element.SKID, row);
+				addElement( index, true, element.SKID, element.current || element.level);
 				break;
 
 			case 'Inventory':
 				ShortCut.onChange( index, false, element.ITID, 0);
-				removeElement( false, element.ITID, row);
+				// removeElement( false, element.ITID, row);
 				addElement( index, false, element.ITID, 0);
 				break;
 
@@ -515,7 +514,7 @@ define(function(require)
 
 		// Execute skill
 		if (shortcut.isSkill) {
-			SkillWindow.useSkillID(shortcut.ID);
+			SkillWindow.useSkillID(shortcut.ID, shortcut.count);
 		}
 
 		// Use the item
@@ -550,20 +549,6 @@ define(function(require)
 	{
 		ShortCut.setElement( false, index, count);
 	};
-
-
-	/**
-	 * Hook Skill List, get informations when there is a change
-	 * to update the shortcut
-	 *
-	 * @param {number} skill id
-	 * @param {number} level
-	 */
-	SkillWindow.onUpdateSkill = function( id, level)
-	{
-		ShortCut.setElement( true, id, level);
-	};
-
 
 	/**
 	 * Method to define to notify a change.
