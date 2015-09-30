@@ -43,10 +43,16 @@ function _templateSkillRow(skill){
 
     var className = !skill.level ? 'disabled' : skill.type ? 'active' : 'passive';
 
-    var skillLvlToggle = sk.bSeperateLv ? `
-        <button class="btn skill_lv_decrease">&lt;</button>
-        <button class="btn skill_lv_increase">&gt;</button>
-    ` : '';
+    var levelDisplay;
+    if (sk.bSeperateLv){
+        levelDisplay = `
+            <button class="btn skill_lv_decrease">&lt;</button>
+            Lv : <span class="current">${skill.current}</span> / <span class="max">${skill.level}</span>
+            <button class="btn skill_lv_increase">&gt;</button>
+        `
+    } else {
+        levelDisplay = `Lv : <span class="current">${skill.level}</span>`
+    }
 
     var element = jQuery(`<tr class="skill id${skill.SKID} ${className}" data-index="${skill.SKID}" draggable="true">
             <td class="icon"><img class="iconImage" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" width="24" height="24" /></td>
@@ -54,13 +60,7 @@ function _templateSkillRow(skill){
             <td class=selectable>
                 <div class="name">
                     ${jQuery.escape(sk.SkillName)} <br/>
-                    <span class="level">
-                    ${skillLvlToggle}
-                    ${(
-                        sk.bSeperateLv ? 'Lv : <span class="current">'+ skill.current + '</span> / <span class="max">' + skill.level + '</span>'
-                                       : 'Lv : <span class="current">'+ skill.level +'</span>'
-                    )}
-                    </span>
+                    <span class="level">${levelDisplay}</span>
                 </div>
             </td>
             <td class="selectable type">
