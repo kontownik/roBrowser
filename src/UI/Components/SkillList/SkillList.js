@@ -32,9 +32,9 @@ var _btnLevelUp;
 // this can't be just called at module loading time because the thread.js postmessage
 // target isn't set then yet. Maybe it should keep some buffer/queue to allow that?
 function makeLevelupButton(){
-    var _levelup = jQuery(`<button class="btn levelup" data-background="basic_interface/skill_up_a.bmp" data-hover="basic_interface/skill_up_b.bmp" data-down="basic_interface/skill_up_c.bmp"></button>`)[0]
+    var _levelup = jQuery(`<button class="btn levelup" data-background="basic_interface/skill_up_a.bmp" data-hover="basic_interface/skill_up_b.bmp" data-down="basic_interface/skill_up_c.bmp"></button>`);
     UIComponent.prototype.parseHTML.call(_levelup);
-    return _levelup
+    return _levelup[0];
 }
 
 function _templateSkillRow(skill){
