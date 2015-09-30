@@ -394,7 +394,7 @@ class SkillListUI extends UIComponent {
     }
 
     onSkillDragStart(event){
-        var index = parseInt(event.target.getAttribute('data-index'), 10);
+        var index = parseInt(event.currentTarget.getAttribute('data-index'), 10);
         var skill = this.getSkillById(index);
 
         // Can't drag a passive skill (or disabled)
@@ -403,7 +403,7 @@ class SkillListUI extends UIComponent {
         }
 
         var img   = new Image();
-        img.src = event.target.getElementsByTagName('img')[0].src;
+        img.src = event.currentTarget.getElementsByTagName('img')[0].src;
 
         event.originalEvent.dataTransfer.setDragImage( img, 12, 12 );
         event.originalEvent.dataTransfer.setData('Text',
