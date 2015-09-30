@@ -27,7 +27,7 @@ define(function( require )
 	var Altitude             = require('Renderer/Map/Altitude');
 	var ShortCut             = require('UI/Components/ShortCut/ShortCut');
 	var ChatBox              = require('UI/Components/ChatBox/ChatBox');
-	var SkillWindow          = require('UI/Components/SkillList/SkillList');
+	var SkillWindow          = require('es6!UI/Components/SkillList/SkillList');
 	var SkillTargetSelection = require('UI/Components/SkillTargetSelection/SkillTargetSelection');
 	var ItemSelection        = require('UI/Components/ItemSelection/ItemSelection');
 	var Inventory            = require('UI/Components/Inventory/Inventory');
@@ -201,9 +201,9 @@ define(function( require )
 	 *
 	 * @param {object} pkt - PACKET.ZC.ADD_SKILL
 	 */
-	function onSkillAdded( pkt)
+	function onSkillAdded(pkt)
 	{
-		SkillWindow.addSkill( pkt );
+		SkillWindow.addSkill(pkt);
 	}
 
 

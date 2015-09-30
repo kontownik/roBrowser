@@ -47,7 +47,7 @@ define(function( require )
 	var StatusIcons      = require('UI/Components/StatusIcons/StatusIcons');
 	var ChatRoomCreate   = require('UI/Components/ChatRoomCreate/ChatRoomCreate');
 	var Emoticons        = require('UI/Components/Emoticons/Emoticons');
-	var SkillList        = require('UI/Components/SkillList/SkillList');
+	var SkillList        = require('es6!UI/Components/SkillList/SkillList');
 	var PartyFriends     = require('UI/Components/PartyFriends/PartyFriends');
 	var Guild            = require('UI/Components/Guild/Guild');
 

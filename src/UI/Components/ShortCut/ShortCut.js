@@ -27,7 +27,7 @@ define(function(require)
 	var UIComponent          = require('UI/UIComponent');
 	var ItemInfo             = require('UI/Components/ItemInfo/ItemInfo');
 	var Inventory            = require('UI/Components/Inventory/Inventory');
-	var SkillWindow          = require('UI/Components/SkillList/SkillList');
+	var SkillWindow          = require('es6!UI/Components/SkillList/SkillList');
 	var SkillDescription     = require('UI/Components/SkillDescription/SkillDescription');
 	var SkillTargetSelection = require('UI/Components/SkillTargetSelection/SkillTargetSelection');
 	var htmlText             = require('text!./ShortCut.html');
@@ -165,7 +165,7 @@ define(function(require)
 			if (list[i].isSkill) {
 				skill = SkillWindow.getSkillById(list[i].ID);
 				if (skill && skill.level) {
-					addElement( i, true, list[i].ID, list[i].count || skill.level );
+					addElement( i, true, list[i].ID, list[i].count || skill.current || skill.level );
 				}
 				else {
 					if (!_list[i]) {
@@ -279,7 +279,7 @@ define(function(require)
 
         if(index >= 0 && index < 10)
             index_name = 'F'+(index+1)+' ';
-        
+
 		if (isSkill) {
 			// Do not display if no level.
 			if (!count) {

@@ -25,7 +25,7 @@ define(function(require)
 	var UIComponent        = require('UI/UIComponent');
 	var Inventory          = require('UI/Components/Inventory/Inventory');
 	var Equipment          = require('UI/Components/Equipment/Equipment');
-	var SkillList          = require('UI/Components/SkillList/SkillList');
+	var SkillList          = require('es6!UI/Components/SkillList/SkillList');
 	var PartyFriends       = require('UI/Components/PartyFriends/PartyFriends');
 	var Guild              = require('UI/Components/Guild/Guild');
 	var Escape             = require('UI/Components/Escape/Escape');

@@ -1,7 +1,7 @@
 /**
  * Engine/MapEngine/Main.js
  *
- * Manage Entity based on received packets from server 
+ * Manage Entity based on received packets from server
  *
  * This file is part of ROBrowser, Ragnarok Online in the Web Browser (http://www.robrowser.com/).
  *
@@ -30,7 +30,7 @@ define(function( require )
 	var WinStats       = require('UI/Components/WinStats/WinStats');
 	var Announce       = require('UI/Components/Announce/Announce');
 	var Equipment      = require('UI/Components/Equipment/Equipment');
-	var SkillList      = require('UI/Components/SkillList/SkillList');
+	var SkillList      = require('es6!UI/Components/SkillList/SkillList');
 	var PartyUI        = require('UI/Components/PartyFriends/PartyFriends');
 
 
@@ -75,20 +75,20 @@ define(function( require )
 	 */
 	function onServerRanking( pkt )
 	{
-    
+
         var msg = '';
-        
+
         for (var i = 0; i < 10; ++i) {
             if(pkt.Point[i] == 0)
                 break;
 			msg = msg+i+'. '+ pkt.Name[i] +' (Points: '+pkt.Point[i]+')\n';
         }
-    
+
         if(msg == '')
             msg = 'Ranking is empty.';
         else
             msg = 'Ranking:\n' + msg;
-        
+
 		if (ChatRoom.isOpen) {
 			ChatRoom.message(msg);
 			return;
@@ -260,7 +260,7 @@ define(function( require )
 			case StatusProperty.HP:
 				Session.Entity.life.hp = amount;
 				Session.Entity.life.update();
-                
+
                 if(amount == 0){
                     if(Session.underAutoCounter) {
                         Session.underAutoCounter = false;
@@ -497,7 +497,7 @@ define(function( require )
 		else {
 			color = '#FFFF00';
 		}
-		
+
 		ChatBox.addText( pkt.msg, ChatBox.TYPE.ANNOUNCE, color );
 		Announce.append();
 		Announce.set( pkt.msg, color );
@@ -515,7 +515,7 @@ define(function( require )
         var mapName = 'Unknown';
         var star = 0;
         var result = -1;  //type of action
-        
+
         if (pkt.hasOwnProperty('monsterID')) {
 			monsterID = pkt.monsterID;
 		}
@@ -528,10 +528,10 @@ define(function( require )
         if (pkt.hasOwnProperty('result')) {
 			result = pkt.result;
 		}
-        
+
         if(result == -1) //parse error?
-            return;       
-        
+            return;
+
         switch (result) {
 
 			case 0:
@@ -560,7 +560,7 @@ define(function( require )
                 if(star == 2)
                     var msg = 'Star Gladiator '+Session.Character.name+' has designed '+mapName+' as the Target of the Stars.';
 				break;
-                
+
             case 11:
                 if(star == 0)
                     var msg = 'Star Gladiator '+Session.Character.name+'\'s Monster of the Sun:'+mapName+'.';
@@ -569,10 +569,10 @@ define(function( require )
                 if(star == 2)
                     var msg = 'Star Gladiator '+Session.Character.name+'\'s Monster of the Stars:'+mapName+'.';
 				break;
-                
+
             case 20:
                 var msg = '[Taekwon Mission] ('+monsterID+') '+mapName+' ('+star+'%)';
-                break;             
+                break;
             case 21:
                 var msg = '[Taming Mission] ('+monsterID+') '+mapName+'.';
                 break;
@@ -586,7 +586,7 @@ define(function( require )
                 var msg = 'Target HP :'+monsterID+'.';
                 break;
         }
-		
+
 		ChatBox.addText( msg, ChatBox.TYPE.ANNOUNCE, color );
 		Announce.append();
 		Announce.set( msg, color );
