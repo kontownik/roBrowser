@@ -71,6 +71,21 @@ define(['./SkillConst'], function( SK )
         groundEffectId: 25
     };
 
+    SkillEffect[SK.MG_COLDBOLT] = {
+        effectId: 'coldbolt',
+        hitEffectId: 51
+    };
+    
+    SkillEffect[SK.MG_FROSTDIVER] = {
+        effectId: 27,
+        hitEffectId: 18
+    };
+    
+    SkillEffect[SK.MG_FIREBOLT] = {
+        effectId: 'firebolt',
+        hitEffectId: 49
+    };
+    
     SkillEffect[SK.MG_LIGHTNINGBOLT] = {
         effectId: 29,
         hitEffectId: 52
@@ -120,6 +135,18 @@ define(['./SkillConst'], function( SK )
 
     SkillEffect[SK.KN_SPEARSTAB] =  {
         effectIdOnCaster: 150
+    };
+    
+    SkillEffect[SK.LK_BERSERK] =  {
+        effectId: 368
+    };
+    
+    SkillEffect[SK.LK_HEADCRUSH] =  {
+        effectIdOnCaster: 399
+    };
+    
+    SkillEffect[SK.LK_AURABLADE] =  {
+        effectId: 367
     };
 
     SkillEffect[SK.KN_SPEARBOOMERANG] = {

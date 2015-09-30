@@ -689,7 +689,6 @@ define(function( require )
             srcEntity.attack_speed = pkt.attackMT;
 
 
-            console.error( '[debug] objecttype: "%s"', srcEntity.objecttype);
             if (srcEntity.objecttype === Entity.TYPE_PC || srcEntity.objecttype === Entity.TYPE_DISGUISED ||
                 srcEntity.objecttype === Entity.TYPE_PET || srcEntity.objecttype === Entity.TYPE_HOM ||
                 srcEntity.objecttype === Entity.TYPE_MERC || srcEntity.objecttype === Entity.TYPE_ELEM

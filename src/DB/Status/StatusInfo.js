@@ -96,10 +96,10 @@ define(['./StatusConst'], function( SC )
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
-			["¸¶´©Å©ÀÇ ÀÇÁö", COLOR_TITLE_BUFF],
+			["Manuk's Will", COLOR_TITLE_BUFF],
 			["%s", COLOR_TIME],
-			["¸¶´©Å© ÇÊµåÁö¿ª ¸ó½ºÅÍ¿¡°Ô ¹Þ´Â"],
-			["¹°¸®, ¸¶¹ý µ¥¹ÌÁö °¨¼Ò"]
+			["Decrease physical/magical damage"],
+			["from the monsters in Manuk field"]
 		]
 	};
 
@@ -572,6 +572,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.PARRYING] = {
+        icon: "icon10.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -639,10 +640,10 @@ define(['./StatusConst'], function( SC )
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
-			["·ç½Ã¿Ã¶óÀÇ ²ÜÂ´", COLOR_TITLE_BUFF], 
+			["Honey Jam", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
-			["½ºÇÃ¶ûµðµå ÇÊµåÁö¿ª ¸ó½ºÅÍ¿¡°Ô ¹Þ´Â"], 
-			["Reduces DEF, MDEF"]
+			["Decrease Physical, Magical damage received"], 
+			["from the monsters in Splendid field"]
 		]
 	};
 
@@ -738,10 +739,10 @@ define(['./StatusConst'], function( SC )
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
-			["¸¶´©Å©ÀÇ ½Å³ä", COLOR_TITLE_BUFF], 
+			["Manuk's Faith", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
-			["¸¶´©Å© ÇÊµåÁö¿ª ¸ó½ºÅÍ¿¡°Ô"], 
-			["¸¶¹ý°ø°Ý µ¥¹ÌÁö »ó½Â"]
+			["Increase Magical attack against"], 
+			["all monsters in Manuk Field"]
 		]
 	};
 
@@ -858,10 +859,10 @@ define(['./StatusConst'], function( SC )
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
-			["ÇÉ±ÍÅ§¶óÀÇ ¿­¸ÅÀýÀÓ", COLOR_TITLE_BUFF], 
+			["Pinguicula's Pickled Fruit", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
-			["½ºÇÃ¶ûµðµå ÇÊµåÁö¿ª ¸ó½ºÅÍ¿¡°Ô"], 
-			["¹°¸®°ø°Ý µ¥¹ÌÁö »ó½Â"]
+			["Increase physical ATK against"], 
+			["all monsters in Splendid fields"]
 		]
 	};
 
@@ -895,18 +896,17 @@ define(['./StatusConst'], function( SC )
 		posTimeLimitStr: 2,
 		descript: [
 			["Spear Quicken", COLOR_TITLE_BUFF], 
-			["%s", COLOR_TIME], 
-			["Ã¢ »ç¿ë ½Ã"], 
-			["Increases ASPD"], 
-			["Increases CRIT"], 
-			["Increases Flee"]
+			["%s", COLOR_TIME],  
+			["Increase ASPD when using Spear"], 
+			["Increase Critical rate"], 
+			["Increase Flee"]
 		]
 	};
 
 	StatusInfo[SC.BROKENWEAPON] = {
 		icon: "\xb9\xab\xb1\xe2\xc6\xc4\xb1\xab.tga",
 		descript: [
-			["Weapon is damaged.", COLOR_TITLE_DEBUFF]
+			["Broken Weapon", COLOR_TITLE_DEBUFF]
 		]
 	};
 
@@ -1174,6 +1174,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.TENSIONRELAX] = {
+        icon: "icon08.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -1189,7 +1190,7 @@ define(['./StatusConst'], function( SC )
 		descript: [
 			["Death Hurt (Contaminated Wound Poison)", COLOR_TITLE_DEBUFF],
 			["%s", COLOR_TIME],
-			["È¸º¹ ½ºÅ³À» ¹ÞÀ» ¶§ È¿°ú ÀúÇÏ"]
+			["Decrease the effect when receiving Heal skills"]
 		]
 	};
 
@@ -1477,10 +1478,10 @@ define(['./StatusConst'], function( SC )
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
-			["Cornelia Anubis' Tears", COLOR_TITLE_BUFF], 
+			["Cornus's Tear", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME],
-			["½ºÇÃ¶ûµðµå ÇÊµåÁö¿ª ¸ó½ºÅÍ¿¡°Ô"], 
-			["Magical attack damage increased"]
+			["Increase Magical attack against"], 
+			["all monsters in Splendide fields"]
 		]
 	};
 
@@ -2093,10 +2094,10 @@ define(['./StatusConst'], function( SC )
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
-			["¸¶´©Å©ÀÇ È£±â", COLOR_TITLE_BUFF], 
+			["Manuk's Golden Chance", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
-			["¸¶´©Å© ÇÊµåÁö¿ª ¸ó½ºÅÍ¿¡°Ô"], 
-			["¹°¸®°ø°Ý µ¥¹ÌÁö »ó½Â"]
+			["Increase physical attack against"], 
+			["all monsters in Manuk fields"]
 		]
 	};
 
@@ -2274,9 +2275,9 @@ define(['./StatusConst'], function( SC )
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
-			["È¯¿µÀÇ ¼úÀÜ", COLOR_TITLE_BUFF], 
+			["Cup of Welcome", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
-			["¿ÏÀü È¸ÇÇ Áõ°¡"]
+			["Increase Perfect Dodge"]
 		]
 	};
 
@@ -2429,7 +2430,7 @@ define(['./StatusConst'], function( SC )
 	StatusInfo[SC.RIDING] = {
 		icon: "\xb6\xf3\xc0\xcc\xb5\xf9.tga",
 		descript: [
-			["Riding Vehicle", COLOR_TITLE_TOGGLE]
+			["Peco Peco Rental", COLOR_TITLE_TOGGLE]
 		]
 	};
 
@@ -2560,9 +2561,9 @@ define(['./StatusConst'], function( SC )
 			["Stomachache", COLOR_TITLE_BUFF],
 			["%s", COLOR_TIME], 
 			["Reduces All Stats"], 
-			["Reduces Movement Speed"],
-			["10ÃÊ ´ç ÇÑ ¹ø¾¿ /¾É±â ¹ß»ý"],
-			["Drains SP every 10 seconds"]
+			["Decrease Movement Speed"],
+			["Forced to sit down once in every 10 sec"],
+			["Consume certain amount of SP for 10 sec"]
 		]
 	};
 
@@ -2758,7 +2759,7 @@ define(['./StatusConst'], function( SC )
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
-			["´ëÈ¯´Ü", COLOR_TITLE_BUFF],
+			["Super Medicine", COLOR_TITLE_BUFF],
 			["%s", COLOR_TIME], 
 			["Increases Max HP"], 
 			["Increases HP recovery"]
@@ -2769,7 +2770,7 @@ define(['./StatusConst'], function( SC )
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
-			["ÅÂÃ»´Ü", COLOR_TITLE_BUFF],
+			["Revive Medicine", COLOR_TITLE_BUFF],
 			["%s", COLOR_TIME], 
 			["Increases Max SP"], 
 			["Increases SP recovery"]
@@ -3117,7 +3118,7 @@ define(['./StatusConst'], function( SC )
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
-			["ÀüÅõ¾à", COLOR_TITLE_BUFF], 
+			["Combat drug", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
 			["Increases ATK and MATK"],
 			["Reduced MHP and MSP"]
@@ -3128,7 +3129,7 @@ define(['./StatusConst'], function( SC )
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
-			["°í±ÞÀüÅõ¾à", COLOR_TITLE_BUFF], 
+			["Advanced Combat Drug", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
 			["Increases ATK and MATK"],
 			["Reduces MHP and MSP"]
@@ -3153,7 +3154,7 @@ define(['./StatusConst'], function( SC )
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
-			["¸í°æÁö¼ö (Ù¥Ìðò­â©)", COLOR_TITLE_BUFF], 
+			["Sealed Mirror", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
 			["Recovers a certain amount of HP"],
 			["Recovers a certain amount of SP"],
@@ -3218,7 +3219,7 @@ define(['./StatusConst'], function( SC )
 		descript: [
 			["Distorted Crescent Moon", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
-			["º£ÀÌ½º ·¹º§¿¡ µû¸¥ È¿°ú ºÎ¿©"]
+			["Grant effects based on base level"]
 		]
 	};
 
@@ -3279,10 +3280,11 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.FLOWER_LEAF] = {
+		icon: "flower_leaf.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
-			["Ç³¼ºÇÑ ²É°¡Áö", COLOR_TITLE_BUFF], 
+			["Rich Flower Leaf", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
 			["Increases FLEE"],
 			["Increases perfect dodge"]
@@ -3307,10 +3309,6 @@ define(['./StatusConst'], function( SC )
 
 	StatusInfo[SC.DARKCROW] = {
 		icon: "darkcrow.tga"
-	};
-
-	StatusInfo[SC.FLOWER_LEAF] = {
-		icon: "flower_leaf.tga"
 	};
 
 	StatusInfo[SC.FRIGG_SONG] = {

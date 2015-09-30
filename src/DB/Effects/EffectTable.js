@@ -411,10 +411,16 @@ define(function( require )
             attachedEntity: true
         }],
 
+        51: [{ // water hit
+            wav:  '_hit_fist%d',
+            rand: [3, 4],
+            attachedEntity: true
+        }],  
 
         52: [{
             type: 'STR',
             file: 'windhit%d',
+            wav:  '_hit_fist%d',
             rand: [1, 3],
             attachedEntity: true
         }],
@@ -1054,7 +1060,7 @@ define(function( require )
         151: [{ //spear boomerang caster
             type: 'STR',
             file: 'spearboomerang',
-            wav:  'effect/knight_spear_boomerang',
+            //wav:  'effect/knight_spear_boomerang' it's fake
             head: true,
             attachedEntity: true
         }],
@@ -1603,6 +1609,18 @@ define(function( require )
             wav:  'effect/ÇĂ¸ł',
             attachedEntity: true
         }],
+        
+        'coldbolt': [{ //coldbolt falling objects
+            wav:  'effect/ef_icearrow%d',
+            rand: [1, 3],
+            attachedEntity: true
+        }],
+        
+        'firebolt': [{ //fireolt falling objects
+            wav:  'effect/ef_firearrow%d',
+            rand: [1, 3],
+            attachedEntity: true
+        }],
 
         318: [{
             type: 'FUNC',
@@ -1642,11 +1660,18 @@ define(function( require )
             type: 'SPR',
             file: 'vallentine',
             attachedEntity: true
-        }],
-
-        368: [{
-            wav:  'ąöĽ­Ĺ©',  // knight berserk?
+        }],       
+        
+        367: [{ //aura blade
+            wav:  'żŔ¶ó şí·ąŔĚµĺ',
             attachedEntity: true
+            //+ on cast small white-magic aura (double)
+        }],
+        
+        368: [{
+            wav:  'ąöĽ­Ĺ©',
+            attachedEntity: true
+            //shake screen
         }],
 
         369: [{
@@ -1712,7 +1737,23 @@ define(function( require )
             attachedEntity: true
         }],
 
-
+        399: [{ //headcrush caster
+            wav:  'effect/Çěµĺ Ĺ©·Ż˝¬',
+            //same effect on caster like 'Bash' but stripes are yellow
+            attachedEntity: true
+        }],
+        
+        400: [{ //joint beat caster
+            //same effect on caster like 'Bash' + assumptio effect on caster
+            attachedEntity: true
+        }],
+        
+        'charge_attack': [{ //charge attack (quest-skill)
+            //same effect on target like 'Bash' + on cast big white-magic aura
+            attachedEntity: true
+        }],
+        
+        
         406: [{
             type: 'STR',
             file: '¼Ò¿ï¹ø',
@@ -1814,7 +1855,12 @@ define(function( require )
             file: 'ramadan',
             attachedEntity: true
         }],
-
+        
+        493: [{ // edp
+            wav:  'effect/assasin_cloaking',
+            //blinking
+            attachedEntity: true
+        }],
 
         507: [{ //Authoritative Badge
             type: 'STR',
@@ -2696,6 +2742,27 @@ define(function( require )
                 });
             }
         }],
+        
+        2222: [{
+            type: 'FUNC',
+            attachedEntity: false,
+            func: function(pos, tick, AID){
+                var Cylinder = require('Renderer/Effects/Cylinder');
+                this.add(new Cylinder(pos, 1.85, 0.8, 1.25, 'ring_white', tick), AID);
+            }
+        }],
+        
+        
+        3333: [{
+            type: 'FUNC',
+            attachedEntity: false,
+            func: function(pos, tick, AID){
+                var MagnumBreak = require('Renderer/Effects/MagnumBreak');
+                this.add(new MagnumBreak(pos, 3.0, 1.0, 2, 'ring_yellow', tick), AID);
+            }
+        }],
+        
+        
         
     };
 });
