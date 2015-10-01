@@ -79,6 +79,9 @@ define(function(require)
 
 		for (i = 0, count = list.length; i < count; ++i) {
 			if (isSkill) {
+                if (list[i] == 0) { //no more spells on list
+                    break;
+                }
 				item = SkillInfo[list[i]];
 				file = item.Name;
 				name = item.SkillName;
