@@ -2743,15 +2743,32 @@ define(function( require )
             }
         }],
         
-        2222: [{
+        'magic_ring_red': [{
             type: 'FUNC',
             attachedEntity: false,
             func: function(pos, tick, AID){
                 var Cylinder = require('Renderer/Effects/Cylinder');
-                this.add(new Cylinder(pos, 1.85, 0.8, 1.25, 'ring_white', tick), AID);
+                this.add(new Cylinder(pos, 2.45, 0.8, 2.80, 'ring_red', tick), AID);
             }
         }],
         
+        'magic_ring_blue': [{
+            type: 'FUNC',
+            attachedEntity: false,
+            func: function(pos, tick, AID){
+                var Cylinder = require('Renderer/Effects/Cylinder');
+                this.add(new Cylinder(pos, 2.45, 0.8, 2.80, 'ring_blue', tick), AID);
+            }
+        }],
+        
+        'magic_ring_yellow': [{
+            type: 'FUNC',
+            attachedEntity: false,
+            func: function(pos, tick, AID){
+                var Cylinder = require('Renderer/Effects/Cylinder');
+                this.add(new Cylinder(pos, 2.45, 0.8, 2.80, 'ring_yello', tick), AID);
+            }
+        }],
         
         3333: [{
             type: 'FUNC',

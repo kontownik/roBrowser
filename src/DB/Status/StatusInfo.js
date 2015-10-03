@@ -1760,6 +1760,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.CHASEWALK2] = {
+		icon: "\x69\x5f\xc4\x82\xc4\xbd\xc5\x94\xc4\x9a\xcb\x9d\xc5\x9f\xc4\x8c\xc5\xb1.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -1769,6 +1770,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.FOOD_STR_CASH] = {
+		icon: "str_gogi.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
