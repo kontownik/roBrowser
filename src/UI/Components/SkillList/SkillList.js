@@ -209,7 +209,7 @@ class SkillListUI extends UIComponent {
         }
         var sk = SkillInfo[skill.SKID];
 
-        if (sk.bSeperateLv && skill.current === undefined){
+        if (skill.current === undefined){
             skill.current = skill.level;
         }
         var element = _templateSkillRow(skill);
@@ -230,7 +230,7 @@ class SkillListUI extends UIComponent {
 
         var sk = SkillInfo[skill.SKID];
 
-        if (sk.bSeperateLv && skill.current === undefined){
+        if (skill.current === undefined){
             skill.current = skill.level;
         }
 
