@@ -42,6 +42,7 @@ define(function( require )
     var DB            = require('DB/DBManager');
     var SpiritSphere  = require('Renderer/Effects/SpiritSphere');
     var MagicRing     = require('Renderer/Effects/MagicRing');
+	var SkillEffect   = require('DB/Skills/SkillEffect');
 
     /**
      * Spam an entity on the map
@@ -834,6 +835,13 @@ define(function( require )
                 'white'
             );
         }
+        
+        if(pkt.SKID in SkillEffect) {
+            if (SkillEffect[pkt.SKID].beforeCastEffectId) { //in spells like Bash, Hide, Double Strafe etc. effect goes before cast/animation (on instant)
+                EffectManager.spam(SkillEffect[pkt.SKID].beforeCastEffectId, pkt.AID);
+            }
+        }
+        
         
         if (dstEntity && dstEntity !== srcEntity) {
             srcEntity.lookTo( dstEntity.position[0], dstEntity.position[1] );

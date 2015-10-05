@@ -23,7 +23,7 @@ define(['./SkillConst'], function( SK )
     };
 
     SkillEffect[SK.SM_BASH] = {
-        effectId: 16,
+        beforeCastEffectId: 16,
         hitEffectId: 1
     };
 
