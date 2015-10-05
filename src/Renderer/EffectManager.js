@@ -106,11 +106,12 @@ define(function( require )
 	 */
 	EffectManager.remove = function removeClosure()
 	{
-		function clean(name, uid) {
+		function clean(effect, uid) {
 			var list;
 			var i, count;
+			var effectUid = effect._uid;
 
-			list  = _list[name];
+			list  = _list[effectUid];
 			count = list.length;
 
 			for (i = 0; i < count; ++i) {
@@ -125,10 +126,10 @@ define(function( require )
 			}
 
 			if (!count) {
-				//if (effect.free) {
-				//	effect.free(_gl);
-				//}
-				delete _list[name];
+				if (effect.free) {
+					effect.free(_gl);
+				}
+				delete _list[effectUid];
 			}
 		}
 
@@ -145,8 +146,8 @@ define(function( require )
 				return;
 			}
 
-			if (effect.name in _list) {
-				clean( effect.name, uid);
+			if (effect._uid in _list) {
+				clean(effect, uid);
 			}
 		};
 	}();
