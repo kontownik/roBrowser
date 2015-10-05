@@ -2766,7 +2766,7 @@ define(function( require )
             attachedEntity: false,
             func: function(pos, tick, AID){
                 var Cylinder = require('Renderer/Effects/Cylinder');
-                this.add(new Cylinder(pos, 2.45, 0.8, 2.80, 'ring_yello', tick), AID);
+                this.add(new Cylinder(pos, 2.45, 0.8, 2.80, 'ring_yellow', tick), AID);
             }
         }],
         

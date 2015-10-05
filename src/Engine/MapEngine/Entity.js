@@ -39,8 +39,9 @@ define(function( require )
     var StatusIcons   = require('UI/Components/StatusIcons/StatusIcons');
     var BasicInfo     = require('UI/Components/BasicInfo/BasicInfo');
     var Escape        = require('UI/Components/Escape/Escape');
-    var DB            = require('DB/DBManager'); //+
-    var SpiritSphere = require('Renderer/Effects/SpiritSphere');
+    var DB            = require('DB/DBManager');
+    var SpiritSphere  = require('Renderer/Effects/SpiritSphere');
+    var MagicRing     = require('Renderer/Effects/MagicRing');
 
     /**
      * Spam an entity on the map
@@ -776,14 +777,16 @@ define(function( require )
     function onEntityCastSkill( pkt )
     {
         // property:
-        //     0 = Yellow cast aura
+        //     0 = Yellow cast aura (neutral property)
         //     1 = Water elemental cast aura
         //     2 = Earth elemental cast aura
         //     3 = Fire elemental cast aura
         //     4 = Wind elemental cast aura
         //     5 = Poison elemental cast aura
         //     6 = Holy elemental cast aura
-        //     ? = like 0
+        //     7 = Shadow/Dark elemental cast aura
+        //     8 = Ghost elemental cast aura (same as 6?)
+        //     9 = Undead elemental cast aura
         // is disposable:
         //     0 = yellow chat text "[src name] will use skill [skill name]."
         //     1 = no text
@@ -831,12 +834,32 @@ define(function( require )
                 'white'
             );
         }
-
+        
         if (dstEntity && dstEntity !== srcEntity) {
             srcEntity.lookTo( dstEntity.position[0], dstEntity.position[1] );
 
             if (pkt.delayTime) {
                 EffectManager.add(new LockOnTarget( dstEntity, Renderer.tick, Renderer.tick + pkt.delayTime), srcEntity.GID);
+
+                if (pkt.property > 0) { // skip "0" property for now
+                    switch(pkt.property) {
+                    case 1:
+                        EffectManager.add(new MagicRing(srcEntity, 2.45, 0.8, 2.80, 'ring_blue', Renderer.tick + pkt.delayTime), srcEntity.GID);
+                        break;
+                    case 3:
+                        EffectManager.add(new MagicRing(srcEntity, 2.45, 0.8, 2.80, 'ring_red', Renderer.tick + pkt.delayTime), srcEntity.GID);
+                        break;
+                    case 4:
+                        EffectManager.add(new MagicRing(srcEntity, 2.45, 0.8, 2.80, 'ring_yellow', Renderer.tick + pkt.delayTime), srcEntity.GID);
+                        break;
+                    case 5:
+                        EffectManager.add(new MagicRing(srcEntity, 2.45, 0.8, 2.80, 'ring_jadu', Renderer.tick + pkt.delayTime), srcEntity.GID);
+                        break;
+                    case 7:
+                        EffectManager.add(new MagicRing(srcEntity, 2.45, 0.8, 2.80, 'ring_black', Renderer.tick + pkt.delayTime), srcEntity.GID);
+                        break;
+                    }
+                }
             }
         }
         else if (pkt.xPos && pkt.yPos) {
@@ -863,6 +886,7 @@ define(function( require )
             // Cancel effects
             EffectManager.remove(LockOnTarget, entity.GID);
             EffectManager.remove(MagicTarget, entity.GID);
+            EffectManager.remove(MagicRing, entity.GID);
 
             if (entity === Session.Entity) { // Autocounter hardcoded animation (any better place to put this?)
                 if(Session.underAutoCounter) {
