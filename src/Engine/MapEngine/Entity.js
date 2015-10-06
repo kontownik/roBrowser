@@ -77,7 +77,7 @@ define(function( require )
             // XXX this is a hack to make the spirit spheres vanish when a player vanishes
             // it shouldn't be hardcoded like that, i think a better way to do it
             // would be to make the spheres an 'attachment'?
-            EffectManager.remove({name: SpiritSphere._uid}, pkt.GID);
+            EffectManager.remove(SpiritSphere, pkt.GID);
         }
         // Show escape menu
         if (pkt.GID === Session.Entity.GID && pkt.type === 1) {
@@ -623,7 +623,7 @@ define(function( require )
         if (srcEntity.objecttype === Entity.TYPE_PC || srcEntity.objecttype === Entity.TYPE_DISGUISED ||
             srcEntity.objecttype === Entity.TYPE_PET || srcEntity.objecttype === Entity.TYPE_HOM ||
             srcEntity.objecttype === Entity.TYPE_MERC || srcEntity.objecttype === Entity.TYPE_ELEM
-        ) 
+        )
         {
             srcEntity.dialog.set(
                 ( (SkillInfo[pkt.SKID] && SkillInfo[pkt.SKID].SkillName ) || 'Unknown Skill' ) + ' !!',
@@ -694,7 +694,7 @@ define(function( require )
             if (srcEntity.objecttype === Entity.TYPE_PC || srcEntity.objecttype === Entity.TYPE_DISGUISED ||
                 srcEntity.objecttype === Entity.TYPE_PET || srcEntity.objecttype === Entity.TYPE_HOM ||
                 srcEntity.objecttype === Entity.TYPE_MERC || srcEntity.objecttype === Entity.TYPE_ELEM
-            ) 
+            )
             {
                 srcEntity.dialog.set( ( (SkillInfo[pkt.SKID] && SkillInfo[pkt.SKID].SkillName ) || 'Unknown Skill' ) + ' !!' );
             }
@@ -835,14 +835,14 @@ define(function( require )
                 'white'
             );
         }
-        
+
         if(pkt.SKID in SkillEffect) {
             if (SkillEffect[pkt.SKID].beforeCastEffectId) { //in spells like Bash, Hide, Double Strafe etc. effect goes before cast/animation (on instant)
                 EffectManager.spam(SkillEffect[pkt.SKID].beforeCastEffectId, pkt.AID);
             }
         }
-        
-        
+
+
         if (dstEntity && dstEntity !== srcEntity) {
             srcEntity.lookTo( dstEntity.position[0], dstEntity.position[1] );
 
