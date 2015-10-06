@@ -102,7 +102,7 @@ define(function( require )
         6: [{ //portal - entering the new map
             //type: 'FUNC',
             //file: 'effect/ring_blue',
-            wav: 'ef_portal',
+            wav: 'effect/ef_portal',
             attachedEntity: true
         }],
 
@@ -550,7 +550,7 @@ define(function( require )
         70: [{
             type: 'STR',
             file: 'brandish',
-            wav:  'effect/knight_brandish_spear',
+            wav: '_enemy_hit_normal1',  //wav:  'effect/knight_brandish_spear', fake
             attachedEntity: true
         }],
 
@@ -1043,7 +1043,7 @@ define(function( require )
         149: [{
             type: 'STR',
             file: 'bowling',
-            wav:  'effect/knight_bowling_bash',
+            wav: '_enemy_hit_normal1',  //'effect/knight_bowling_bash', fake
             head: true,
             attachedEntity: true
         }],
@@ -1052,6 +1052,7 @@ define(function( require )
         150: [{
             type: 'STR',
             file: 'spearstab',
+            wav: '_enemy_hit_normal1',
             attachedEntity: true
             // attach animation at middle of body
         }],
@@ -2768,6 +2769,21 @@ define(function( require )
                 var Cylinder = require('Renderer/Effects/Cylinder');
                 this.add(new Cylinder(pos, 2.45, 0.8, 2.80, 'ring_yellow', tick), AID);
             }
+        }],
+        
+        'spear_hit_sound': [{
+            wav: '_hit_spear',
+            attachedEntity: true
+        }],
+        
+         'enemy_hit_normal1': [{
+            wav: '_enemy_hit_normal1',
+            attachedEntity: true
+        }],
+        
+        'ef_hit2_sound': [{
+            wav: 'effect/ef_hit2',
+            attachedEntity: true
         }],
         
         3333: [{

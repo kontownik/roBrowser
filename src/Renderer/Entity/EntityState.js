@@ -35,7 +35,12 @@ define(function( require )
 
 	var _stateToVirtue = {};
 	_stateToVirtue[StatusConst.Status.TWOHANDQUICKEN] = StatusConst.OPT3.QUICKEN;
+	_stateToVirtue[StatusConst.Status.SPEARQUICKEN] = StatusConst.OPT3.QUICKEN;
+	_stateToVirtue[StatusConst.Status.LKCONCENTRATION] = StatusConst.OPT3.QUICKEN;
 	_stateToVirtue[StatusConst.Status.EXPLOSIONSPIRITS] = StatusConst.OPT3.EXPLOSIONSPIRITS;
+	_stateToVirtue[StatusConst.Status.BLADESTOP] = StatusConst.OPT3.BLADESTOP;
+	_stateToVirtue[StatusConst.Status.OVERTHRUST] = StatusConst.OPT3.OVERTHRUST;
+	_stateToVirtue[StatusConst.Status.ENERGYCOAT] = StatusConst.OPT3.ENERGYCOAT;
 	_stateToVirtue[StatusConst.Status.BERSERK] = StatusConst.OPT3.BERSERK;
 	_stateToVirtue[StatusConst.Status.MARIONETTE] = StatusConst.OPT3.MARIONETTE;
 	_stateToVirtue[StatusConst.Status.MARIONETTE_MASTER] = StatusConst.OPT3.MARIONETTE;
@@ -70,6 +75,23 @@ define(function( require )
 		if (value & StatusConst.OPT3.EXPLOSIONSPIRITS){
 			this._virtueColor[1] = 0.7;
 			this._virtueColor[2] = 0.7;
+		}
+        
+		if (value & StatusConst.OPT3.BLADESTOP){
+			this._virtueColor[0] = 0.25;
+			this._virtueColor[1] = 0.25;
+			this._virtueColor[2] = 0.25;
+		}
+        
+		if (value & StatusConst.OPT3.ENERGYCOAT){
+			this._virtueColor[0] = 0.5;
+			this._virtueColor[1] = 0.5;
+			this._virtueColor[2] = 0.85;
+		}
+
+		if (value & StatusConst.OPT3.OVERTHRUST){
+			this._virtueColor[1] = 0.0;
+			this._virtueColor[2] = 0.0;
 		}
 
 		if ((value & StatusConst.OPT3.MARIONETTE) ||

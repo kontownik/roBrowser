@@ -942,10 +942,15 @@ define(function( require )
 
 
             case StatusConst.EXPLOSIONSPIRITS: //state: 1 ON  0 OFF
+            case StatusConst.BLADESTOP:
             case StatusConst.MARIONETTE_MASTER:
             case StatusConst.MARIONETTE:
             case StatusConst.TWOHANDQUICKEN:
+            case StatusConst.SPEARQUICKEN:
+            case StatusConst.LKCONCENTRATION:
             case StatusConst.BERSERK:
+            case StatusConst.ENERGYCOAT:
+            case StatusConst.OVERTHRUST:
                 entity.toggleOpt3(pkt.index, pkt.state)
                 break;
 

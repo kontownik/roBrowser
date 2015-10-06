@@ -29,15 +29,25 @@ define(['./SkillConst'], function( SK )
 
     SkillEffect[SK.KN_BOWLINGBASH] = {
         effectId: 149,
-        hitEffectId: 1
+        //hitEffectId: 1 [todo: test]
     };
     
     SkillEffect[SK.LK_CONCENTRATION] = {
         effectId: 369
     };
     
+    SkillEffect[SK.LK_SPIRALPIERCE] = {
+        effectId: 369,
+        hitEffectId: 'spear_hit_sound'
+    };
+    
     SkillEffect[SK.MG_SOULSTRIKE] = {
         effectId: 15,
+        hitEffectId: 1
+    };
+    
+    SkillEffect[SK.MG_NAPALMBEAT] = {
+        // this skill don't get any animation/missile
         hitEffectId: 1
     };
 
@@ -125,7 +135,8 @@ define(['./SkillConst'], function( SK )
     };
 
     SkillEffect[SK.KN_PIERCE] =  {
-        effectIdOnCaster: 148
+        effectIdOnCaster: 148,
+        hitEffectId: 'spear_hit_sound'
     };
 
     SkillEffect[SK.KN_BRANDISHSPEAR] = {
@@ -150,7 +161,8 @@ define(['./SkillConst'], function( SK )
     };
 
     SkillEffect[SK.KN_SPEARBOOMERANG] = {
-        effectIdOnCaster: 151
+        effectIdOnCaster: 151,
+        hitEffectId: 'enemy_hit_normal1'
     };
 
     SkillEffect[SK.KN_TWOHANDQUICKEN] = {
