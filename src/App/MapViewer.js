@@ -27,7 +27,8 @@ require({
 	baseUrl: './src/',
 	paths: {
 		text:   'Vendors/text.require',
-		jquery: 'Vendors/jquery-1.9.1'
+		jquery: 'Vendors/jquery-1.9.1',
+		es6: 'Vendors/es6'
 	}
 },
 	['Utils/Queue',
@@ -134,13 +135,13 @@ function(
 				Thread.hook('THREAD_READY', q.next );
 				Thread.init();
 			});
-	
+
 			// Initialize renderer
 			q.add(function(){
 				Renderer.init();
 				q._next();
 			});
-	
+
 			// Start Intro, wait the user to add files
 			q.add(function(){
 				Intro.onFilesSubmit = function( files ) {
