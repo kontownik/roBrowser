@@ -963,6 +963,26 @@ define(function( require )
                 //draw footprints on the floor
                 break;
 
+            case StatusConst.TRICKDEAD:
+                if(pkt.state == 1) {
+                    entity.setAction({
+                        action: entity.ACTION.DIE,
+                        frame:  0,
+                        repeat: false,
+                        play:   true,
+                        next:   false
+                    });
+                }
+                if(pkt.state == 0) {
+                    entity.setAction({
+                        action: entity.ACTION.IDLE,
+                        frame:  0,
+                        repeat: false,
+                        play:   true,
+                        next:   false
+                    });
+                }
+                break;
 
             // Cast a skill, TODO: add progressbar in shortcut
             case StatusConst.POSTDELAY:
