@@ -947,7 +947,6 @@ define(function( require )
 
 
             case StatusConst.EXPLOSIONSPIRITS: //state: 1 ON  0 OFF
-            case StatusConst.BLADESTOP:
             case StatusConst.MARIONETTE_MASTER:
             case StatusConst.MARIONETTE:
             case StatusConst.TWOHANDQUICKEN:
@@ -1122,6 +1121,48 @@ define(function( require )
         }
     }
 
+    
+    /**
+     * "Blade Stop" / "Root" visual
+     */
+
+    function onBladeStopVisual(srcEntity, dstEntity, state)
+    {
+            srcEntity.lookTo( dstEntity.position[0], dstEntity.position[1] );
+            srcEntity.toggleOpt3(StatusConst.BLADESTOP, state);
+            if(state == 1)
+                srcEntity.setAction({
+                    action: srcEntity.ACTION.READYFIGHT,
+                    frame:  0,
+                    repeat: false,
+                    play:   true,
+                    next:   false
+                });
+            if(state == 0)
+                srcEntity.setAction({
+                    action: srcEntity.ACTION.IDLE,
+                    frame:  0,
+                    repeat: false,
+                    play:   true,
+                    next:   false
+                });
+    }
+  
+     /**
+     * "Blade Stop" / "Root" skill status
+     *
+     * @param {object} pkt - PACKET.ZC.BLADESTOP
+     */
+    function onBladeStopPacket(pkt)
+    {
+        var srcEntity = EntityManager.get(pkt.srcAID);
+        var dstEntity = EntityManager.get(pkt.destAID);
+        if (srcEntity && dstEntity) {
+            onBladeStopVisual(srcEntity, dstEntity, pkt.flag);
+            onBladeStopVisual(dstEntity, srcEntity, pkt.flag);
+        }
+    }
+    
 
     /**
      * Initialize
@@ -1195,5 +1236,6 @@ define(function( require )
         Network.hookPacket( PACKET.ZC.RESURRECTION,                 onEntityResurect);
         Network.hookPacket( PACKET.ZC.EMOTION,                      onEntityEmotion);
         Network.hookPacket( PACKET.ZC.NOTIFY_MONSTER_HP,            onEntityLifeUpdate);
+        Network.hookPacket( PACKET.ZC.BLADESTOP,                    onBladeStopPacket);
     };
 });
