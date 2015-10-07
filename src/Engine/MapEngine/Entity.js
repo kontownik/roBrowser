@@ -805,12 +805,14 @@ define(function( require )
                 srcEntity.cast.set( pkt.delayTime );
             }
 
-            srcEntity.setAction({
-                action: srcEntity.ACTION.SKILL,
-                frame:  0,
-                repeat: false,
-                play:   false
-            });
+            if (srcEntity.objecttype === Entity.TYPE_PC) { //monsters don't use ACTION.SKILL animation
+                srcEntity.setAction({
+                    action: srcEntity.ACTION.SKILL,
+                    frame:  0,
+                    repeat: false,
+                    play:   false
+                });
+            }
         }
 
         // Hardcoded version of Auto Counter casting bar
