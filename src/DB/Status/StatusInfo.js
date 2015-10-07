@@ -93,6 +93,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.MANU_DEF] = {
+		icon: "efst_def.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -233,6 +234,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.FOOD_CRITICALSUCCESSVALUE] = {
+		icon: "gogi.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -371,6 +373,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.CASH_DEATHPENALTY] = {
+		icon: "death.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -513,6 +516,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.MELTDOWN] = {
+		icon: "icon03.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -627,6 +631,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.CASH_RECEIVEITEM] = {
+		icon: "item.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -637,6 +642,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.SPL_DEF] = {
+		icon: "efst_def.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -736,6 +742,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.MANU_MATK] = {
+		icon: "efst_matk.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -856,6 +863,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.SPL_ATK] = {
+		icon: "efst_atk.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -911,6 +919,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.ASSUMPTIO] = {
+		icon: "icon05.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -979,6 +988,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.MOVHASTE_HORSE] = {
+		icon: "\xb9\xce\xc3\xb8\xbc\xba\xc1\xf5\xb0\xa1.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -1155,6 +1165,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.CASH_PLUSONLYJOBEXP] = {
+		icon: "job.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -1164,6 +1175,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.ARMOR_PROPERTY] = {
+		icon: "\xc3\x84\xc5\x82\xcb\x9d\xc4\x82\xc2\xb0\xc2\xa9\xc5\xbc\xc4\x98\xc4\xbd\xc3\x93\xc4\xbd\xc5\x9f\xc5\x9f\xc3\x8e\xc5\xbc\xc2\xa9.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -1321,6 +1333,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.EARTHSCROLL] = {
+		icon: "\xb1\xdb\xb7\xce\xb8\xae\xbe\xc6.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -1475,6 +1488,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.SPL_MATK] = {
+		icon: "efst_matk.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -1517,6 +1531,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.FOOD_BASICAVOIDANCE] = {
+		icon: "gogi.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -1652,6 +1667,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.SLOWCAST] = {
+		icon: "slowcast.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -1707,6 +1723,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.CASH_PLUSEXP] = {
+		icon: "exp.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -1760,7 +1777,6 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.CHASEWALK2] = {
-		icon: "\x69\x5f\xc4\x82\xc4\xbd\xc5\x94\xc4\x9a\xcb\x9d\xc5\x9f\xc4\x8c\xc5\xb1.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -1789,6 +1805,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.ASSUMPTIO2] = {
+		icon: "icon05.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2042,6 +2059,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.FOOD_BASICHIT] = {
+		icon: "gogi.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -2093,6 +2111,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.MANU_ATK] = {
+		icon: "efst_atk.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2104,6 +2123,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.MARIONETTE_MASTER] = {
+		icon: "icon01.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2115,6 +2135,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.MARIONETTE] = {
+		icon: "icon01.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2347,6 +2368,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.CARTBOOST] = {
+		icon: "icon07.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2484,6 +2506,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.HELLPOWER] = {
+		icon: "npc_hellpower.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2792,6 +2815,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.PLUSATTACKPOWER] = {
+		icon: "plusattackpower.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -2801,6 +2825,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.PLUSMAGICPOWER] = {
+		icon: "plusmagicpower.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -2889,6 +2914,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.REWARD_PLUSONLYJOBEXP] = {
+		icon: "job.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -3085,6 +3111,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.ATTHASTE_CASH] = {
+		icon: "aspdcash.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [

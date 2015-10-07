@@ -19,8 +19,7 @@ define(function( require )
 	var StatusConst = require('DB/Status/StatusState');
 	var MountTable  = require('DB/Jobs/MountTable');
 	var Session     = require('Engine/SessionStorage');
-
-
+    
 	/**
 	 * Calculate new color
 	 */
@@ -73,8 +72,9 @@ define(function( require )
 		}
 
 		if (value & StatusConst.OPT3.EXPLOSIONSPIRITS){
-			this._virtueColor[1] = 0.7;
-			this._virtueColor[2] = 0.7;
+            this._virtueColor[0] = 1.0;
+            this._virtueColor[1] = 0.75;
+            this._virtueColor[2] = 0.75;
 		}
         
 		if (value & StatusConst.OPT3.BLADESTOP){
@@ -90,8 +90,8 @@ define(function( require )
 		}
 
 		if (value & StatusConst.OPT3.OVERTHRUST){
-			this._virtueColor[1] = 0.0;
-			this._virtueColor[2] = 0.0;
+			this._virtueColor[1] = 0.75;
+			this._virtueColor[2] = 0.75;
 		}
 
 		if ((value & StatusConst.OPT3.MARIONETTE) ||

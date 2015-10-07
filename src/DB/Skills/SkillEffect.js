@@ -153,10 +153,17 @@ define(['./SkillConst'], function( SK )
     };
     
     SkillEffect[SK.LK_HEADCRUSH] =  {
-        effectIdOnCaster: 399
+        beforeCastEffectId: 399,
+        hitEffectId: 'enemy_hit_normal1'
+    };
+    
+    SkillEffect[SK.LK_JOINTBEAT] =  {
+        beforeCastEffectId: 400,
+        hitEffectId: 'enemy_hit_normal1'
     };
     
     SkillEffect[SK.LK_AURABLADE] =  {
+        beforeCastEffectId: 'white_pulse',
         effectId: 367
     };
 
@@ -177,6 +184,11 @@ define(['./SkillConst'], function( SK )
         effectId: 149
     };
 
+    SkillEffect[SK.KN_CHARGEATK] =  {
+        beforeCastEffectId: 'white_pulse',
+        hitEffectId: 'enemy_hit_normal1'
+    };
+    
     SkillEffect[SK.PR_IMPOSITIO] = {
         effectId: 84
     };
@@ -361,6 +373,10 @@ define(['./SkillConst'], function( SK )
         groundEffectId: 242
     };
 
+    SkillEffect[SK.PF_SPIDERWEB] = {
+        groundEffectId: 404
+    };
+    
     SkillEffect[SK.BA_ASSASSINCROSS] = {
         groundEffectId: 287
     }

@@ -805,12 +805,14 @@ define(function( require )
                 srcEntity.cast.set( pkt.delayTime );
             }
 
-            srcEntity.setAction({
-                action: srcEntity.ACTION.SKILL,
-                frame:  0,
-                repeat: false,
-                play:   false
-            });
+            if (srcEntity.objecttype === Entity.TYPE_PC) { //monsters don't use ACTION.SKILL animation
+                srcEntity.setAction({
+                    action: srcEntity.ACTION.SKILL,
+                    frame:  0,
+                    repeat: false,
+                    play:   false
+                });
+            }
         }
 
         // Hardcoded version of Auto Counter casting bar
@@ -863,6 +865,9 @@ define(function( require )
                     case 5:
                         EffectManager.add(new MagicRing(srcEntity, 2.45, 0.8, 2.80, 'ring_jadu', Renderer.tick + pkt.delayTime), srcEntity.GID);
                         break;
+                    //case 6: 'white_pulse' effect
+                    //case 8: 'yellow_pulse' effect
+                    //case 9: 'black_pulse' effect
                     case 7:
                         EffectManager.add(new MagicRing(srcEntity, 2.45, 0.8, 2.80, 'ring_black', Renderer.tick + pkt.delayTime), srcEntity.GID);
                         break;
@@ -942,7 +947,6 @@ define(function( require )
 
 
             case StatusConst.EXPLOSIONSPIRITS: //state: 1 ON  0 OFF
-            case StatusConst.BLADESTOP:
             case StatusConst.MARIONETTE_MASTER:
             case StatusConst.MARIONETTE:
             case StatusConst.TWOHANDQUICKEN:
@@ -958,6 +962,26 @@ define(function( require )
                 //draw footprints on the floor
                 break;
 
+            case StatusConst.TRICKDEAD:
+                if(pkt.state == 1) {
+                    entity.setAction({
+                        action: entity.ACTION.DIE,
+                        frame:  0,
+                        repeat: false,
+                        play:   true,
+                        next:   false
+                    });
+                }
+                if(pkt.state == 0) {
+                    entity.setAction({
+                        action: entity.ACTION.IDLE,
+                        frame:  0,
+                        repeat: false,
+                        play:   true,
+                        next:   false
+                    });
+                }
+                break;
 
             // Cast a skill, TODO: add progressbar in shortcut
             case StatusConst.POSTDELAY:
@@ -1097,6 +1121,65 @@ define(function( require )
         }
     }
 
+    
+    /**
+     * "Blade Stop" / "Root" visual
+     */
+
+    function onBladeStopVisual(srcEntity, dstEntity, state)
+    {
+            srcEntity.lookTo( dstEntity.position[0], dstEntity.position[1] );
+            srcEntity.toggleOpt3(StatusConst.BLADESTOP, state);
+            if(state == 1)
+                srcEntity.setAction({
+                    action: srcEntity.ACTION.READYFIGHT,
+                    frame:  0,
+                    repeat: false,
+                    play:   true,
+                    next:   false
+                });
+            if(state == 0)
+                srcEntity.setAction({
+                    action: srcEntity.ACTION.IDLE,
+                    frame:  0,
+                    repeat: false,
+                    play:   true,
+                    next:   false
+                });
+    }
+  
+     /**
+     * "Blade Stop" / "Root" skill status
+     *
+     * @param {object} pkt - PACKET.ZC.BLADESTOP
+     */
+    function onBladeStopPacket(pkt)
+    {
+        var srcEntity = EntityManager.get(pkt.srcAID);
+        var dstEntity = EntityManager.get(pkt.destAID);
+        if (srcEntity && dstEntity) {
+            onBladeStopVisual(srcEntity, dstEntity, pkt.flag);
+            onBladeStopVisual(dstEntity, srcEntity, pkt.flag);
+        }
+    }
+    
+    /**
+	 * Notify experience gained
+	 *
+	 * @param {object} pkt - PACKET_ZC_NOTIFY_EXP
+	 */
+
+	function onNotifyExp( pkt )
+	{
+        if(pkt.expType == 1) {  // for now it will be only for quest (for common exp @showexp is much better)
+            if(pkt. varID == 1) {
+                ChatBox.addText( 'Experience gained from Quest, Base:'+pkt.amount, null, '#A442DC');
+            }
+            if(pkt. varID == 2) {
+                ChatBox.addText( 'Experience gained from Quest, Job:'+pkt.amount, null, '#A442DC');
+            }
+        }
+	}
 
     /**
      * Initialize
@@ -1170,5 +1253,7 @@ define(function( require )
         Network.hookPacket( PACKET.ZC.RESURRECTION,                 onEntityResurect);
         Network.hookPacket( PACKET.ZC.EMOTION,                      onEntityEmotion);
         Network.hookPacket( PACKET.ZC.NOTIFY_MONSTER_HP,            onEntityLifeUpdate);
+        Network.hookPacket( PACKET.ZC.BLADESTOP,                    onBladeStopPacket);
+        Network.hookPacket( PACKET.ZC.NOTIFY_EXP,                   onNotifyExp);
     };
 });
