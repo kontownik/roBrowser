@@ -1740,20 +1740,29 @@ define(function( require )
 
         399: [{ //headcrush caster
             wav:  'effect/Çěµĺ Ĺ©·Ż˝¬',
-            //same effect on caster like 'Bash' but stripes are yellow
+            //same effect on caster like 'Bash' but stripes are yellow + assumptio effect on caster
             attachedEntity: true
         }],
         
         400: [{ //joint beat caster
+            //sound missing
             //same effect on caster like 'Bash' + assumptio effect on caster
             attachedEntity: true
         }],
         
         'charge_attack': [{ //charge attack (quest-skill)
-            //same effect on target like 'Bash' + on cast big white-magic aura
+            //same effect on target like 'Bash'
             attachedEntity: true
         }],
         
+        404: [{
+            type: 'FUNC',
+            attachedEntity: false,
+            func: function(pos, tick, AID){
+                var SpiderWeb = require('es6!Renderer/Effects/SpiderWeb');
+                this.add(new SpiderWeb(pos, tick), AID);
+            }
+        }],
         
         406: [{
             type: 'STR',
@@ -2769,6 +2778,21 @@ define(function( require )
                 var Cylinder = require('Renderer/Effects/Cylinder');
                 this.add(new Cylinder(pos, 2.45, 0.8, 2.80, 'ring_yellow', tick), AID);
             }
+        }],
+        
+        'white_pulse': [{
+            //type: 'FUNC',
+            attachedEntity: true
+        }],
+        
+        'yellow_pulse': [{
+            //type: 'FUNC',
+            attachedEntity: true
+        }],
+        
+        'black_pulse': [{
+            //type: 'FUNC',
+            attachedEntity: true
         }],
         
         'spear_hit_sound': [{

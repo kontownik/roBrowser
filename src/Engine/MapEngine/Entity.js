@@ -863,6 +863,9 @@ define(function( require )
                     case 5:
                         EffectManager.add(new MagicRing(srcEntity, 2.45, 0.8, 2.80, 'ring_jadu', Renderer.tick + pkt.delayTime), srcEntity.GID);
                         break;
+                    //case 6: 'white_pulse' effect
+                    //case 8: 'yellow_pulse' effect
+                    //case 9: 'black_pulse' effect
                     case 7:
                         EffectManager.add(new MagicRing(srcEntity, 2.45, 0.8, 2.80, 'ring_black', Renderer.tick + pkt.delayTime), srcEntity.GID);
                         break;
