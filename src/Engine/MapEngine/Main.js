@@ -265,7 +265,6 @@ define(function( require )
                     if(Session.underAutoCounter) {
                         Session.underAutoCounter = false;
                     }
-                    //[TODO]death animation above head and single/aoe casting animation remove
                 }
 
 				if (Session.Entity.life.hp_max > -1) {

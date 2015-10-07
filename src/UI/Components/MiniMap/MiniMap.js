@@ -342,6 +342,25 @@ define(function(require)
 			}
 		}
 	};
+    
+    /**
+	 * Remove a NPC mark from minimap
+	 *
+	 * @param {number} key id
+	 */
+	MiniMap.isNpcMarkExist = function isNpcMarkExist( key )
+	{
+		var i, count = _markers.length;
+
+		for (i = 0; i < count; ++i) {
+			if (_markers[i].key === key) {
+				return true;
+				break;
+			}
+		}
+        
+        return false;
+	};
 
 	MiniMap.clearNpcMarks = function clearNpcMarks(){
 		_markers.length = 0;
