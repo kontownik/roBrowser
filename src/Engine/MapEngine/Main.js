@@ -71,7 +71,7 @@ define(function( require )
     /**
 	 * Player Rankings
 	 *
-	 * @param {object} pkt - PACKET_ZC_ALCHEMIST_RANK
+	 * @param {object} pkt - PACKET_ZC_ALCHEMIST_RANK PACKET_ZC_BLACKSMITH_RANK PACKET_ZC_TAEKWON_RANK
 	 */
 	function onServerRanking( pkt )
 	{
@@ -94,7 +94,7 @@ define(function( require )
 			return;
 		}
 
-		ChatBox.addText( msg, ChatBox.TYPE.PUBLIC | ChatBox.TYPE.SELF );
+		ChatBox.addText( msg, ChatBox.TYPE.SELF );
 		if (Session.Entity) {
 			Session.Entity.dialog.set( msg );
 		}

@@ -1163,6 +1163,23 @@ define(function( require )
         }
     }
     
+    /**
+	 * Notify experience gained
+	 *
+	 * @param {object} pkt - PACKET_ZC_NOTIFY_EXP
+	 */
+
+	function onNotifyExp( pkt )
+	{
+        if(pkt.expType == 1) {  // for now it will be only for quest (for common exp @showexp is much better)
+            if(pkt. varID == 1) {
+                ChatBox.addText( 'Experience gained from Quest, Base:'+pkt.amount, null, '#A442DC');
+            }
+            if(pkt. varID == 2) {
+                ChatBox.addText( 'Experience gained from Quest, Job:'+pkt.amount, null, '#A442DC');
+            }
+        }
+	}
 
     /**
      * Initialize
@@ -1237,5 +1254,6 @@ define(function( require )
         Network.hookPacket( PACKET.ZC.EMOTION,                      onEntityEmotion);
         Network.hookPacket( PACKET.ZC.NOTIFY_MONSTER_HP,            onEntityLifeUpdate);
         Network.hookPacket( PACKET.ZC.BLADESTOP,                    onBladeStopPacket);
+        Network.hookPacket( PACKET.ZC.NOTIFY_EXP,                   onNotifyExp);
     };
 });
