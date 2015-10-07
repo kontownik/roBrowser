@@ -40,10 +40,11 @@ export function loadTexture(gl, texture, cb){
 
     var _texture = gl.createTexture();
 
-    Client.loadFile(texture, function(buffer) {
+    Client.loadFile(texture.filename, function(buffer) {
         Texture.load(buffer, function() {
+            var size = texture.size;
             var canvas = document.createElement('canvas');
-            canvas.width = canvas.height = 64;
+            canvas.width = canvas.height = size;
 
             var ctx = canvas.getContext('2d');
 
@@ -53,7 +54,7 @@ export function loadTexture(gl, texture, cb){
             ctx.rotate(Math.PI);
             ctx.translate( -canvas.width/2, -canvas.height/2 );
 
-            ctx.drawImage(this, 0, 0, 64, 64);
+            ctx.drawImage(this, 0, 0, size, size);
             ctx.restore();
 
             gl.bindTexture( gl.TEXTURE_2D, _texture );
@@ -68,7 +69,7 @@ export function loadTexture(gl, texture, cb){
 }
 
 
-export var FlatTexture = textureFilename => class {
+export var FlatTexture = (textureFilename, size=64) => class {
     static get renderBeforeEntities(){
         return true;
     }
@@ -93,7 +94,7 @@ export var FlatTexture = textureFilename => class {
             -1.0, -1.0, 0.0, 0.0
         ]), gl.STATIC_DRAW );
 
-        loadTexture(gl, textureFilename, texture => {
+        loadTexture(gl, {filename: textureFilename, size}, texture => {
             self._texture = texture;
             self.ready = true;
         })
