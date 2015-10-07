@@ -43,6 +43,7 @@ define(function( require )
     var SpiritSphere  = require('Renderer/Effects/SpiritSphere');
     var MagicRing     = require('Renderer/Effects/MagicRing');
 	var SkillEffect   = require('DB/Skills/SkillEffect');
+	var MiniMap       = require('UI/Components/MiniMap/MiniMap');
 
     /**
      * Spam an entity on the map
@@ -73,6 +74,9 @@ define(function( require )
     {
         var entity = EntityManager.get(pkt.GID);
         if (entity) {
+            if (entity.objecttype === Entity.TYPE_PC && pkt.GID === Session.Entity.GID) {  //death animation only for myself
+                EffectManager.spam(372, pkt.GID);
+            }
             entity.remove( pkt.type );
             // XXX this is a hack to make the spirit spheres vanish when a player vanishes
             // it shouldn't be hardcoded like that, i think a better way to do it
@@ -1182,6 +1186,28 @@ define(function( require )
 	}
 
     /**
+	 * Mark MVP position on map (Convex Mirror item)
+	 * it's show small icon  at minimap when MVP is spawned (but I will use cross, it's more accurate)
+	 * @param {object} pkt - PACKET_ZC_BOSS_INFO
+     *
+     *   probably it's not updated with Tombstone system, but Tombstones are fail...
+	 */
+
+	function onMarkMvp( pkt )
+	{
+        MiniMap.removeNpcMark('mvp'); //hack for mark system (todo: debug this)
+        if(pkt.infoType == 1) {
+            MiniMap.addNpcMark( 'mvp', pkt.xPos, pkt.yPos, 0x0ff0000, Infinity );
+            /**if(!MiniMap.isNpcMarkExist('mvp')) {    // wtf marker is pushed with delay??
+                ChatBox.addText( pkt.name+' is already spawned at ('+pkt.xPos+','+pkt.yPos+')', null, '#FFFF63');
+            }*/
+        }
+        if(pkt.infoType == 0) {
+            ChatBox.addText( 'Boss monster not found.', ChatBox.TYPE.ERROR);
+        }
+	}
+
+    /**
      * Initialize
      */
     return function EntityEngine()
@@ -1255,5 +1281,6 @@ define(function( require )
         Network.hookPacket( PACKET.ZC.NOTIFY_MONSTER_HP,            onEntityLifeUpdate);
         Network.hookPacket( PACKET.ZC.BLADESTOP,                    onBladeStopPacket);
         Network.hookPacket( PACKET.ZC.NOTIFY_EXP,                   onNotifyExp);
+        Network.hookPacket( PACKET.ZC.BOSS_INFO,                    onMarkMvp);
     };
 });

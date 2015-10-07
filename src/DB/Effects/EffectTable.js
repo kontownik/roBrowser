@@ -1923,7 +1923,7 @@ define(function( require )
         }],
 
 
-        568: [{
+        568: [{ //homun?
             type: 'STR',
             file: 'h_levelup',
             attachedEntity: true

@@ -64,7 +64,7 @@ define(function( require )
 			// TODO: find level up effect
 			371,
 			158,
-			371
+			371 //wrong one
 		];
 
 		if (EnumEffect[pkt.effectID] > -1) {

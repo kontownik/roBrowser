@@ -28,6 +28,7 @@ define(function( require )
 	var ItemSelection = require('UI/Components/ItemSelection/ItemSelection');
 	var Inventory     = require('UI/Components/Inventory/Inventory');
 	var Equipment     = require('UI/Components/Equipment/Equipment');
+    var StatusIcons   = require('UI/Components/StatusIcons/StatusIcons');
 
 
 	/**
@@ -149,6 +150,9 @@ define(function( require )
 				if (!(pkt.wearLocation & EquipLocation.AMMO)) {
 					Inventory.addItem(item);
 				}
+                else { //hack this should be server side but it's bugged ATM
+                    StatusIcons.update( 695, 0, 0 );
+                }
 			}
 
 			if (pkt.wearLocation & EquipLocation.HEAD_TOP)    Session.Entity.accessory2 = 0;
@@ -336,7 +340,7 @@ define(function( require )
 			case 2: // downgrade
 		}
 
-		debugger;
+		//debugger;
 	}
 
 
