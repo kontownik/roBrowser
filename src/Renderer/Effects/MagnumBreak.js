@@ -105,7 +105,7 @@ function(      WebGL,         Texture,          glMatrix,        Client) {
             'if (texture.r < 0.5 || texture.g < 0.5 || texture.b < 0.5) {',
             '   discard;',
             '}',
-			'texture.a = 0.55;',
+			'texture.a = 0.65;',
 			'gl_FragColor = texture;',
 
 			'if (uFogUse) {',
@@ -170,6 +170,8 @@ function(      WebGL,         Texture,          glMatrix,        Client) {
 		this.textureName = textureName;
 		this.height      = height;
 		this.tick        = tick;
+        this.lastmulti   = 0;
+        this.timer       = tick;
 	}
 
 
@@ -211,11 +213,16 @@ function(      WebGL,         Texture,          glMatrix,        Client) {
 	{
 		var uniform = _program.uniform;
 		var attribute = _program.attribute;
-		var sizeMult = Math.sin(tick / (85 * Math.PI)) + 1.50;
-        console.error( '[debug]mag: "%s"', Math.ceil(sizeMult).toString(16));
+		//var sizeMult = Math.sin(this.timer / (4 * Math.PI)) + 0.5; //var sizeMult = Math.sin(tick / (85 * Math.PI)) + 1.50;
+        var sizeMult = 0.15 + this.timer/10;
 		if(sizeMult < 0.5)
-		sizeMult = 0.5;
-
+            sizeMult = 0.5;
+        
+        ++this.timer;
+        if(this.timer == 21) {
+            this.needCleanUp = true;
+        }
+        
 		gl.bindTexture( gl.TEXTURE_2D, this.texture );
 
 		// Enable all attributes
@@ -233,10 +240,6 @@ function(      WebGL,         Texture,          glMatrix,        Client) {
 		gl.uniform1f(  uniform.uHeight,     this.height);
 
 		gl.drawArrays( gl.TRIANGLES, 0, _verticeCount );
-        
-        if(Math.ceil(sizeMult) == 3) {
-            this.needCleanUp = true;
-        }
 	};
 
 

@@ -31,7 +31,7 @@ define(['./SkillConst'], function( SK )
         effectId: 149,
         //hitEffectId: 1 [todo: test]
     };
-    
+
     SkillEffect[SK.LK_CONCENTRATION] = {
         effectId: 369
     };
@@ -52,7 +52,7 @@ define(['./SkillConst'], function( SK )
     };
 
     SkillEffect[SK.SM_MAGNUM] = {
-        effectId: 17
+        effectIdOnCaster: 17
     };
 
     SkillEffect[SK.AL_CRUCIS] = {
@@ -266,7 +266,7 @@ define(['./SkillConst'], function( SK )
     };
 
     SkillEffect[SK.BS_HAMMERFALL] = {
-        effectId: 102
+        effectIdOnCaster: 102
     };
 
     SkillEffect[SK.BS_WEAPONPERFECT] = {
@@ -418,6 +418,14 @@ define(['./SkillConst'], function( SK )
         effectId: 96,
         groundEffectId: 138
     }
+
+    SkillEffect[SK.HT_CLAYMORETRAP] = {
+        hitEffectId: 107
+    };
+    
+    SkillEffect[SK.NPC_CRITICALWOUND] = {
+        hitEffectId: 677
+    };
 
     return SkillEffect;
 });

@@ -138,20 +138,13 @@ define(function( require )
         }],
 
 
-        //11: [{
+        11: [{
             //type: 'FUNC',
             //file: 'effect/endure',
-        //  wav:  'effect/ef_endure',
-        //  attachedEntity: true
-        //}],
-
-        11: [{
-            type: 'SPR',
-            file: 'sm_endure',
-            wav:  'effect/ef_endure',
-            head: true,
-            attachedEntity: true
+          wav:  'effect/ef_endure',
+          attachedEntity: true
         }],
+
 
         12: [{
             //type: 'FUNC',
@@ -192,13 +185,17 @@ define(function( require )
             attachedEntity: true
         }],
 
-
-        17: [{
-            //type: 'FUNC',
-            //file: 'effect/´ëÆø¹ß',
+        
+        17: [{   // still missing half of sphere with text. 'effect/´ëÆø¹ß',
+            type: 'FUNC',
             wav: 'effect/ef_magnumbreak',
-            attachedEntity: false
+            attachedEntity: false,
+            func: function(pos, tick, AID){
+                var MagnumBreak = require('Renderer/Effects/MagnumBreak');
+                this.add(new MagnumBreak(pos, 3.0, 1.0, 2, 'ring_yellow', 0), AID);
+            }
         }],
+        
 
         18: [{
             //type: 'FUNC',
@@ -2808,18 +2805,7 @@ define(function( require )
         'ef_hit2_sound': [{
             wav: 'effect/ef_hit2',
             attachedEntity: true
-        }],
-        
-        3333: [{
-            type: 'FUNC',
-            attachedEntity: false,
-            func: function(pos, tick, AID){
-                var MagnumBreak = require('Renderer/Effects/MagnumBreak');
-                this.add(new MagnumBreak(pos, 3.0, 1.0, 2, 'ring_yellow', tick), AID);
-            }
-        }],
-        
-        
+        }],      
         
     };
 });
