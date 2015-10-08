@@ -2750,6 +2750,72 @@ define(function( require )
             }
         }],
         
+        2222: [{
+            type: 'FUNC',
+            attachedEntity: true,
+            func: function EffectBodyColor(entity) {
+                entity._virtueColor[0] = 1.0;
+                entity._virtueColor[1] = 1.0;
+                entity._virtueColor[2] = 1.0;
+                entity._virtueColor[3] = 1.0;
+                entity.recalculateBlendingColor();
+                var up = true;
+
+                entity.animations.add(function(tick, up){
+                    if(up) {
+                        entity._virtueColor[0] = 0.0 + tick/100;
+                        entity._virtueColor[3] = 0.0 + tick/100;
+                        if(entity._virtueColor[0] == 1.0)
+                            up = false;
+                    }
+                    else {
+                        entity._virtueColor[0] = 1.0 - tick/100;
+                        entity._virtueColor[3] = 1.0 - tick/100;
+                        if(entity._virtueColor[0] == 0.0)
+                            up = true;
+                    }
+                    entity.recalculateBlendingColor();
+                    /**if(dummy%5 == 0) {
+                        entity._virtueColor[0] = 1.0;
+                        entity._virtueColor[1] = 1.0;
+                        entity._virtueColor[2] = 1.0;
+                        entity._virtueColor[3] = 1.0;
+                        entity.recalculateBlendingColor();
+                        if(dummy == 1000)
+                            return true;
+                    }*/
+                });
+            }
+        }],
+        
+        'spiral_pierce_color': [{
+            type: 'FUNC',
+            attachedEntity: true,
+            func: function EffectBodyColor(entity) {
+                entity._virtueColor[0] = 1.0;
+                entity._virtueColor[1] = 1.0;
+                entity._virtueColor[2] = 1.0;
+                entity._virtueColor[3] = 1.0;
+                entity.recalculateBlendingColor();
+
+                entity.animations.add(function(tick){
+                
+                    if (!entity.cast.display) {     //we don't know cast time here so.. let's hack
+                        entity._virtueColor[0] = 1.0;
+                        entity._virtueColor[1] = 1.0;
+                        entity._virtueColor[2] = 1.0;
+                        entity._virtueColor[3] = 1.0;
+                        entity.recalculateBlendingColor();
+                        return true;
+                    }
+                        entity._virtueColor[1] = 0.0 + Math.sin(tick / (6 * Math.PI));
+                        entity._virtueColor[2] = 0.0 + Math.sin(tick / (6 * Math.PI));
+                        entity.recalculateBlendingColor();
+                });
+            }
+        }],        
+        
+        
         'magic_ring_red': [{
             type: 'FUNC',
             attachedEntity: false,

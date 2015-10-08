@@ -29,7 +29,7 @@ define(['./SkillConst'], function( SK )
 
     SkillEffect[SK.KN_BOWLINGBASH] = {
         effectId: 149,
-        //hitEffectId: 1 [todo: test]
+        hitEffectId: 1
     };
 
     SkillEffect[SK.LK_CONCENTRATION] = {
@@ -37,7 +37,7 @@ define(['./SkillConst'], function( SK )
     };
     
     SkillEffect[SK.LK_SPIRALPIERCE] = {
-        effectId: 369,
+        beforeCastEffectId: 'spiral_pierce_color',  // [todo: color should be white but how to use white texture?]
         hitEffectId: 'spear_hit_sound'
     };
     
@@ -178,10 +178,6 @@ define(['./SkillConst'], function( SK )
 
     SkillEffect[SK.KN_AUTOCOUNTER] = {
         //effectId: 131
-    };
-
-    SkillEffect[SK.KN_BOWLINGBASH] = {
-        effectId: 149
     };
 
     SkillEffect[SK.KN_CHARGEATK] =  {
