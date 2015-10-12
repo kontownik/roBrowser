@@ -371,6 +371,9 @@ class SkillListUI extends UIComponent {
 
         skill = this.getSkillById(parseInt(main.data('index'), 10));
 
+        if(!skill) { 
+            return;
+        }
         // Don't add the same UI twice, remove it
         if (SkillDescription.uid === skill.SKID) {
             SkillDescription.remove();
