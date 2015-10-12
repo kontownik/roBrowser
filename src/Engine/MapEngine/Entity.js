@@ -648,6 +648,11 @@ define(function( require )
                 Sound.play('_heal_effect.wav'); // healing on neutral targets got another effect than undeads
             }
 
+            // Steal Coin zeny
+            if (pkt.SKID === SkillId.RG_STEALCOIN) {
+                ChatBox.addText('You got '+pkt.level+' zeny.', ChatBox.TYPE.BLUE );
+            }
+            
             EffectManager.spamSkill( pkt.SKID, pkt.targetAID, null, null, pkt.srcAID);
         }
     }
