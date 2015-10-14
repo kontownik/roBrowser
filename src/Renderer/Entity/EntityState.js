@@ -43,6 +43,7 @@ define(function( require )
 	_stateToVirtue[StatusConst.Status.BERSERK] = StatusConst.OPT3.BERSERK;
 	_stateToVirtue[StatusConst.Status.MARIONETTE] = StatusConst.OPT3.MARIONETTE;
 	_stateToVirtue[StatusConst.Status.MARIONETTE_MASTER] = StatusConst.OPT3.MARIONETTE;
+	_stateToVirtue[StatusConst.Status.NJ_BUNSINJYUTSU] = StatusConst.OPT3.BUNSIN;
 
 	function toggleOpt3(state, enabled){
 		if (state === 0){
@@ -83,7 +84,8 @@ define(function( require )
 			this._virtueColor[2] = 0.25;
 		}
         
-		if (value & StatusConst.OPT3.ENERGYCOAT){
+		if ((value & StatusConst.OPT3.ENERGYCOAT) ||
+            (value & StatusConst.OPT3.BUNSIN) ){
 			this._virtueColor[0] = 0.5;
 			this._virtueColor[1] = 0.5;
 			this._virtueColor[2] = 0.85;

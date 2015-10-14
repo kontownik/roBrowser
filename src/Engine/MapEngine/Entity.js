@@ -964,6 +964,7 @@ define(function( require )
             case StatusConst.BERSERK:
             case StatusConst.ENERGYCOAT:
             case StatusConst.OVERTHRUST:
+            case StatusConst.NJ_BUNSINJYUTSU:
                 entity.toggleOpt3(pkt.index, pkt.state)
                 break;
 
