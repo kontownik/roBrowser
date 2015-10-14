@@ -330,7 +330,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.ATKERATKER_BLOOD] = { //Item ID# 12298 (SP_Potion)
+	StatusInfo[SC.ATKER_BLOOD] = { //Item ID# 12298 (SP_Potion)
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [

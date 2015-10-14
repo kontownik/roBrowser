@@ -371,7 +371,7 @@ class SkillListUI extends UIComponent {
 
         skill = this.getSkillById(parseInt(main.data('index'), 10));
 
-        if(!skill) { 
+        if(!skill) {
             return;
         }
         // Don't add the same UI twice, remove it
