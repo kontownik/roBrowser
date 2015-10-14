@@ -56,7 +56,7 @@ def parseGRF(filename, target):
     for count, (filename, fileinfo) in enumerate(ft.iteritems()):
 
         filename = filename.replace('\\', '/')
-       if '\xc5\xac\xb7\xce\xc5\xb7' in filename:
+        if '\xc5\xac\xb7\xce\xc5\xb7' in filename:
             print 'dupa', repr(filename)
         else:
             continue
