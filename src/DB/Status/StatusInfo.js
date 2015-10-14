@@ -140,7 +140,7 @@ define(['./StatusConst'], function( SC )
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
-			["Increasing Accuracy (Increase Accuracy)", COLOR_TITLE_BUFF],
+			["Increasing Accuracy", COLOR_TITLE_BUFF],
 			["%s", COLOR_TIME],
 			["Increases Accuracy"],
 			["Increases DEX"],
@@ -172,7 +172,7 @@ define(['./StatusConst'], function( SC )
 	StatusInfo[SC.STORMKICK_ON] = {
 		icon: "i_stormkick.tga",
 		descript: [
-			["Whirlwind Whirlwind Kick", COLOR_TITLE_BUFF],
+			["Prepare Whirlwind Kick", COLOR_TITLE_BUFF],
 			["When attacking an enemy"],
 			["there is a chance to prepare a Whirlwind Kick"]
 		]
@@ -211,7 +211,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.PROTECT_MDEF] = {
+	StatusInfo[SC.PROTECT_MDEF] = { // Item ID# 14544 (B_Mdef_Potion)
 		icon: "\xb8\xb6\xb9\xfd\xb9\xe6\xbe\xee\xc6\xf7\xbc\xc7.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
@@ -248,6 +248,7 @@ define(['./StatusConst'], function( SC )
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
+			["Warm Wind", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
 			["Enchants Weapon with Ghost Property"]
 		]
@@ -329,13 +330,13 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.ATKER_BLOOD] = {
+	StatusInfo[SC.ATKERATKER_BLOOD] = { //Item ID# 12298 (SP_Potion)
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
-			["SP Consumption Potion", COLOR_TITLE_BUFF], 
+			["SP Consumption Reduction Potion", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
-			["Skills using SP have their consumption increased"]
+			["Reduced SP Consumption of skills by 15%"]
 		]
 	};
 
@@ -352,6 +353,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.NJ_UTSUSEMI] = {
+		icon: "i_maemi.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -377,6 +379,7 @@ define(['./StatusConst'], function( SC )
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
+			["Life Insurance", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
 			["No EXP loss upon death"]
 		]
@@ -453,7 +456,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.TAROTCARD] = {
+	StatusInfo[SC.TAROTCARD] = { // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -732,6 +735,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.ADRENALINE2] = {
+		icon: "i_\xef\x82\xbf\xef\x83\x80\xef\x82\xb9\xef\x83\xb6\xef\x82\xb8\xc6\xbd\xef\x82\xba.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -1043,6 +1047,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.PRESERVE] = {
+		icon: "i_\xef\x83\x87\xef\x83\x81\xef\x82\xb8\xef\x82\xae\xef\x83\x80\xef\x83\xba\xef\x82\xba\xef\x83\xaa.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -1076,7 +1081,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.MOVHASTE_POTION] = {
+	StatusInfo[SC.MOVHASTE_POTION] = { //Item ID# 12016 (Speed_Up_Potion)
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -1086,6 +1091,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.EDP] = {
+		icon: "i_\xc4\xa1\xef\x82\xb5\xef\x82\xb6.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -1097,6 +1103,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.JOINTBEAT] = {
+		icon: "\xef\x82\xb0\xef\x83\xbc\xef\x83\x80\xef\x83\xbd\xef\x82\xb0\xef\x83\xb8\xef\x82\xb0\xef\x83\x9d.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -1175,7 +1182,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.ARMOR_PROPERTY] = {
-		icon: "\xc3\x84\xc5\x82\xcb\x9d\xc4\x82\xc2\xb0\xc2\xa9\xc5\xbc\xc4\x98\xc4\xbd\xc3\x93\xc4\xbd\xc5\x9f\xc5\x9f\xc3\x8e\xc5\xbc\xc2\xa9.tga",
+		icon: "\xc4\xb3\xef\x82\xbd\xc3\xb0\xef\x82\xa9\xef\x82\xbf\xca\xbc\xd3\xbc\xef\x82\xba\xef\x82\xba\xce\xbf\xef\x82\xa9.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -1294,7 +1301,7 @@ define(['./StatusConst'], function( SC )
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
-			["Frost Weapon (Endow Tsunami)", COLOR_TITLE_BUFF], 
+			["Frost Weapon", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
 			["Enchants Weapon with Water Property"]
 		]
@@ -1329,7 +1336,7 @@ define(['./StatusConst'], function( SC )
 			["%s", COLOR_TIME],
 			["DEF/MDEF up"],
 			["Neutralizes ranged attacks"]
-			]
+		]
 	};
 
 	StatusInfo[SC.EARTHSCROLL] = {
@@ -1411,7 +1418,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.STR_SCROLL] = {
+	StatusInfo[SC.STR_SCROLL] = { // Item ID# 12740 (Inc_Str_Scroll) NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -1454,6 +1461,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.DOUBLECASTING] = {
+		icon: "i_\xef\x82\xb4\xef\x83\xb5\xef\x82\xba\xef\x83\xad\xc4\xb3\xef\x82\xbd\xef\x82\xba\xef\x83\x86\xef\x83\x83.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -1521,7 +1529,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.TARGET_ASPD] = {
+	StatusInfo[SC.TARGET_ASPD] = { // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -1552,21 +1560,21 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.WEAPONPROPERTY] = {
+	StatusInfo[SC.WEAPONPROPERTY] = { // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 0,
 		descript: [
 			["Granted a weapon property"]
 		]
 	};
 
-	StatusInfo[SC.S_LIFEPOTION] = {
+	StatusInfo[SC.S_LIFEPOTION] = { // Item ID# 14534 (Small_Life_Potion)
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
 			["Small Life Potion", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
-			["Recoverys HP every 5 seconds"], 
-			["No effect if Berserk State is active"]
+			["Regenerate 5% of your Maximum HP every 5 seconds"], 
+			["Can not be used while in Berserk"]
 		]
 	};
 
@@ -1581,6 +1589,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.BLOODING] = {
+		icon: "\xef\x83\x83\xef\x83\xa2\xef\x83\x87\xef\x83\xb7\xef\x82\xbb\xef\x83\xb3\xef\x83\x85\xef\x83\x82.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -1632,13 +1641,13 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.TARGET_BLOOD] = {
+	StatusInfo[SC.TARGET_BLOOD] = { // Item ID# 12299 (Mega_Resist_Potion)
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
-			["Resistance Potion", COLOR_TITLE_BUFF], 
+			["Mega Resist Potion", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
-			["Increases resistance to"], 
+			["Adds 10% resistance to the"], 
 			["Stun, Frozen, Stone, Sleep, Silence"],
 			["Blind, Curse, Poison, Bleeding, Confusion"]
 		]
@@ -1777,6 +1786,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.CHASEWALK2] = {
+		icon: "i_\xc3\xbc\xef\x83\x80\xcc\xbd\xef\x82\xba\xef\x83\x88\xef\x83\xbb.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -1847,16 +1857,16 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.PARTYFLEE] = {
+	StatusInfo[SC.PARTYFLEE] = { //Item ID# 12311 (Large_Spray_Of_Flowers)
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
 			["%s", COLOR_TIME], 
-			["Increases Flee Rate"]
+			["Increases Flee Rate by 10"]
 		]
 	};
 
-	StatusInfo[SC.CRITICALPERCENT] = {
+	StatusInfo[SC.CRITICALPERCENT] = { //Item ID# 14536 (Abrasive)
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2028,7 +2038,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.PROPERTYUNDEAD] = {
+	StatusInfo[SC.PROPERTYUNDEAD] = { //NPC_CHANGEUNDEAD   SC_CHANGEUNDEAD
 		haveTimeLimit: 1,
 		descript: [
 			["Enchants Armor with Undead Property"]
@@ -2127,10 +2137,10 @@ define(['./StatusConst'], function( SC )
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
-			["Marionette Control (caster)", COLOR_TITLE_BUFF], 
+			["Marionette Control (master)", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
 			["Passes the stats"], 
-			["to a Player"]
+			["to a player"]
 		]
 	};
 
@@ -2180,7 +2190,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.INT_SCROLL] = {
+	StatusInfo[SC.INT_SCROLL] = { //Item ID# 12741 (Inc_Int_Scroll)  NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -2200,7 +2210,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.MOVHASTE_INFINITY] = {
+	StatusInfo[SC.MOVHASTE_INFINITY] = {  // NOT IMPLEMENTED SERVER-SIDE
 		descript: [
 			["Increases Movement Speed"]
 		]
@@ -2294,17 +2304,17 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.PLUSAVOIDVALUE] = {
+	StatusInfo[SC.PLUSAVOIDVALUE] = { // Item ID# 14538 (Glass_Of_Illusion)
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
 			["Cup of Welcome", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
-			["Increase Perfect Dodge"]
+			["Increase Perfect Dodge by 20"]
 		]
 	};
 
-	StatusInfo[SC.OBLIVIONCURSE] = {
+	StatusInfo[SC.OBLIVIONCURSE] = { // Item ID# 12719 (Poison_Oblivion)  quest item ??
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2314,7 +2324,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.HEALPLUS] = {
+	StatusInfo[SC.HEALPLUS] = {   // Item ID# 14537 (Regeneration_Potion)
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2325,13 +2335,13 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.PROTECT_DEF] = {
+	StatusInfo[SC.PROTECT_DEF] = { // Item ID# 14542 (B_Def_Potion)
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
-			["Defense Protection", COLOR_TITLE_BUFF], 
+			["Defense Potion", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
-			["Increases physical DEF"]
+			["Add a 3% resistance to the Physical attacks"]
 		]
 	};
 
@@ -2378,14 +2388,14 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.L_LIFEPOTION] = {
+	StatusInfo[SC.L_LIFEPOTION] = { // Item ID# 14535 (Med_Life_Potion)
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
 			["Medium Life Potion", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
-			["Recovers HP every 4 seconds"], 
-			["No effect if Berserk State is active"]
+			["Regenerate 7% of your Maximum HP every 4 seconds"], 
+			["Can not be used while in Berserk"]
 		]
 	};
 
@@ -2431,11 +2441,13 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.PROPERTYDARK] = {
+		icon: "i_p_dark.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
+			["Warm Wind", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
-			["Enchants Armor with Shadow Property"]
+			["Enchants Weapon with Shadow Property"]
 		]
 	};
 
@@ -2592,7 +2604,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.PROTECTEXP] = {
+	StatusInfo[SC.PROTECTEXP] = { // skill: WE_BABY     SC_BABY
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2602,7 +2614,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.ANGEL_PROTECT] = {
+	StatusInfo[SC.ANGEL_PROTECT] = {   // SI_ANGEL_PROTECT  NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2612,7 +2624,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.MORA_BUFF] = {
+	StatusInfo[SC.MORA_BUFF] = { // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2623,7 +2635,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.POPECOOKIE] = {
+	StatusInfo[SC.POPECOOKIE] = {  // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2634,7 +2646,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.VITALIZE_POTION] = {
+	StatusInfo[SC.VITALIZE_POTION] = { // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2645,18 +2657,18 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.G_LIFEPOTION] = {
+	StatusInfo[SC.G_LIFEPOTION] = { //Item ID# 12578 (Rapid_Life_Water)
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
 			["Rapid Life-giving Water", COLOR_TITLE_BUFF],
 			["%s", COLOR_TIME], 
-			["Recovers HP every 3 seconds"], 
-			["No effect if Berserk State is active"]
+			["Regenerate 6% of your Maximum HP every 3 seconds"], 
+			["Can not be used while in Berserk"]
 		]
 	};
 
-	StatusInfo[SC.ODINS_POWER] = {
+	StatusInfo[SC.ODINS_POWER] = { // skill: ALL_ODINS_POWER      SC_ODINS_POWER
 		icon: "all_odins_power.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
@@ -2668,7 +2680,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.MAGIC_CANDY] = {
+	StatusInfo[SC.MAGIC_CANDY] = {  // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2693,7 +2705,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.PAIN_KILLER] = {
+	StatusInfo[SC.PAIN_KILLER] = { //Homunculus S
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2704,7 +2716,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.LIGHT_OF_REGENE] = {
+	StatusInfo[SC.LIGHT_OF_REGENE] = { //Homunculus S
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2715,7 +2727,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.OVERED_BOOST] = {
+	StatusInfo[SC.OVERED_BOOST] = { //Homunculus S
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2726,7 +2738,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.STYLE_CHANGE] = {
+	StatusInfo[SC.STYLE_CHANGE] = { //Homunculus S
 		haveTimeLimit: 0,
 		descript: [
 			["Style Change", COLOR_TITLE_TOGGLE],
@@ -2734,7 +2746,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.MAGMA_FLOW] = {
+	StatusInfo[SC.MAGMA_FLOW] = { //Homunculus S
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2745,7 +2757,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.GRANITIC_ARMOR] = {
+	StatusInfo[SC.GRANITIC_ARMOR] = { //Homunculus S
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2756,7 +2768,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.PYROCLASTIC] = {
+	StatusInfo[SC.PYROCLASTIC] = { //Homunculus S
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2768,7 +2780,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.VOLCANIC_ASH] = {
+	StatusInfo[SC.VOLCANIC_ASH] = { //Homunculus S
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2780,7 +2792,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.ATKER_ASPD] = {
+	StatusInfo[SC.ATKER_ASPD] = { // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2791,7 +2803,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.ATKER_MOVESPEED] = {
+	StatusInfo[SC.ATKER_MOVESPEED] = { // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2802,7 +2814,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.OVERLAPEXPUP] = {
+	StatusInfo[SC.OVERLAPEXPUP] = { // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2814,7 +2826,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.PLUSATTACKPOWER] = {
+	StatusInfo[SC.PLUSATTACKPOWER] = {  // item: SC_ATKPOTION
 		icon: "plusattackpower.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
@@ -2824,7 +2836,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.PLUSMAGICPOWER] = {
+	StatusInfo[SC.PLUSMAGICPOWER] = { // item: SC_ATKPOTION
 		icon: "plusmagicpower.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
@@ -2834,7 +2846,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.MACRO_PERMIT] = {
+	StatusInfo[SC.MACRO_PERMIT] = { // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2844,7 +2856,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.MACRO_POSTDELAY] = {
+	StatusInfo[SC.MACRO_POSTDELAY] = { // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2854,7 +2866,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.MONSTER_TRANSFORM] = {
+	StatusInfo[SC.MONSTER_TRANSFORM] = {  // need research
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -2871,13 +2883,13 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.ALL_RIDING] = {
+	StatusInfo[SC.ALL_RIDING] = {   // player mounts?
 		descript: [
 			["Riding", COLOR_TITLE_TOGGLE],
 		]
 	};
 
-	StatusInfo[SC.SKF_MATK] = {
+	StatusInfo[SC.SKF_MATK] = {  // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -2886,7 +2898,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.SKF_ATK] = {
+	StatusInfo[SC.SKF_ATK] = {  // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -2895,7 +2907,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.SKF_ASPD] = {
+	StatusInfo[SC.SKF_ASPD] = {  // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -2904,7 +2916,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.SKF_CAST] = {
+	StatusInfo[SC.SKF_CAST] = {  // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -3018,7 +3030,8 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.MVPCARD_TAOGUNKA] = {
+	StatusInfo[SC.MVPCARD_TAOGUNKA] = {  //Item ID# 14602 (TaogunkaS)
+		icon: "mvpcard_taogunka.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -3029,7 +3042,8 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.MVPCARD_MISTRESS] = {
+	StatusInfo[SC.MVPCARD_MISTRESS] = {  //Item ID# 14603 (MistressS)
+		icon: "mvpcard_mistress.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -3040,7 +3054,8 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.MVPCARD_ORCHERO] = {
+	StatusInfo[SC.MVPCARD_ORCHERO] = {  //Item ID# 14604 (Orc_HeroS)
+		icon: "mvpcard_orchero.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -3050,7 +3065,8 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.MVPCARD_ORCLORD] = {
+	StatusInfo[SC.MVPCARD_ORCLORD] = {  //Item ID# 14605 (Orc_LoadS)
+		icon: "mvpcard_orclord.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -3060,7 +3076,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.HANDICAPSTATE_NORECOVER] = {
+	StatusInfo[SC.HANDICAPSTATE_NORECOVER] = { // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -3070,7 +3086,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.SET_NUM_DEF] = {
+	StatusInfo[SC.SET_NUM_DEF] = { // SC_DEFSET no items
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -3079,7 +3095,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.SET_NUM_MDEF] = {
+	StatusInfo[SC.SET_NUM_MDEF] = { // SC_MDEFSET no items
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
@@ -3088,19 +3104,19 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.SET_PER_DEF] = {
+	StatusInfo[SC.SET_PER_DEF] = {  // NOT IMPLEMENTED SERVER-SIDE
 		descript: [
 			["DEF amount is fixed at certain percentage."]
 		]
 	};
 
-	StatusInfo[SC.SET_PER_MDEF] = {
+	StatusInfo[SC.SET_PER_MDEF] = {  // NOT IMPLEMENTED SERVER-SIDE
 		descript: [
 			["MDEF amount is fixed at certain percentage."]
 		]
 	};
 
-	StatusInfo[SC.EXTREMITYFIST] = {
+	StatusInfo[SC.EXTREMITYFIST] = { // SC_EXTREMITYFIST2 only implemented on renewal clients
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -3110,7 +3126,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.ATTHASTE_CASH] = {
+	StatusInfo[SC.ATTHASTE_CASH] = { // SC_ATTHASTE_CASH no items
 		icon: "aspdcash.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
@@ -3121,7 +3137,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.RWC2011] = {
+	StatusInfo[SC.RWC2011] = {  // Item ID# 12696 (RWC_Cele_Fire)
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -3132,7 +3148,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.PHI_DEMON] = {
+	StatusInfo[SC.PHI_DEMON] = {  // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -3143,7 +3159,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.GM_BATTLE] = {
+	StatusInfo[SC.GM_BATTLE] = { // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -3154,7 +3170,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.GM_BATTLE2] = {
+	StatusInfo[SC.GM_BATTLE2] = { // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -3165,7 +3181,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.RWC_SCROLL2011] = {
+	StatusInfo[SC.RWC_SCROLL2011] = { // research
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -3277,7 +3293,7 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.MYSTICPOWDER] = {
+	StatusInfo[SC.MYSTICPOWDER] = { // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -3287,7 +3303,8 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.ACARAJE] = {
+	StatusInfo[SC.ACARAJE] = { // Item ID# 12375 (Acaraje)
+		icon: "\xb0\xf8\xbc\xd3\xb9\xb0\xbe\xe0.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -3297,18 +3314,18 @@ define(['./StatusConst'], function( SC )
 		]
 	};
 
-	StatusInfo[SC.M_LIFEPOTION] = {
+	StatusInfo[SC.M_LIFEPOTION] = { // NOT IMPLEMENTED SERVER-SIDE
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
 			["Mysterious Life Potion", COLOR_TITLE_BUFF], 
 			["%s", COLOR_TIME], 
-			["Recovers a certain amount of HP every 3 seconds"],
-			["No effect on Berserk status."]
+			["Regenerate 5% of your Maximum HP every 5 seconds"], 
+			["Can not be used while in Berserk"]
 		]
 	};
 
-	StatusInfo[SC.FLOWER_LEAF] = {
+	StatusInfo[SC.FLOWER_LEAF] = { //research
 		icon: "flower_leaf.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
