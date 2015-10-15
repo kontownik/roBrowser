@@ -750,6 +750,11 @@ define(function( require )
             attachedEntity: true
         }],
 
+        '98_beforecast': [{
+            wav:  'effect/black_adrenalinerush_a',
+            attachedEntity: true
+        }],
+        
 
         99: [{
             //type: 'FUNC',
@@ -793,7 +798,6 @@ define(function( require )
         104: [{
             type: 'STR',
             file: 'maximizepower',
-            wav:  'effect/black_maximize_power_sword', //effect/black_maximize_power_sword_bic
             min:  'maximize_min',
             attachedEntity: true
         }],
@@ -1661,13 +1665,13 @@ define(function( require )
         }],       
         
         367: [{ //aura blade
-            wav:  'żŔ¶ó şí·ąŔĚµĺ',
+            //wav:  'effect/żŔ¶ó şí·ąŔĚµĺ',
             attachedEntity: true
             //+ on cast small white-magic aura (double)
         }],
         
         368: [{
-            wav:  'ąöĽ­Ĺ©',
+            //wav:  'effect/\xef\x82\xb9\xef\x83\xb6\xef\x82\xbc\xef\x82\xad\xc5\xa9',
             attachedEntity: true
             //shake screen
         }],
@@ -2787,6 +2791,21 @@ define(function( require )
                 });
             }
         }],
+        
+        'maximize_power_sounds': [{
+            type: 'FUNC',
+            attachedEntity: true,
+            func: function MaximizePowerSounds(entity) {
+                var Eventss = require('Core/Events');
+                var Soundd = require('Audio/SoundManager');
+                Eventss.setTimeout(function(){ Soundd.play('effect/black_maximize_power_circle.wav'); }, 1 );
+                Eventss.setTimeout(function(){ Soundd.play('effect/black_maximize_power_sword.wav'); }, 550 );
+                Eventss.setTimeout(function(){ Soundd.play('effect/black_maximize_power_sword.wav'); }, 700 );
+                Eventss.setTimeout(function(){ Soundd.play('effect/black_maximize_power_sword_bic.wav'); }, 950 );
+
+            }
+        }],
+        
         
         'spiral_pierce_color': [{
             type: 'FUNC',

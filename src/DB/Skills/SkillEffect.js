@@ -268,9 +268,20 @@ define(['./SkillConst'], function( SK )
     SkillEffect[SK.BS_WEAPONPERFECT] = {
         effectId: 103
     };
+    
+    SkillEffect[SK.BS_ADRENALINE] = {
+        beforeCastEffectId: '98_beforecast',
+        effectId: 98
+    };
 
     SkillEffect[SK.BS_MAXIMIZE] = {
+        beforeCastEffectId: 'maximize_power_sounds',
         effectId: 104
+    };
+    
+    SkillEffect[SK.MC_CARTREVOLUTION] = { //same effect
+        beforeCastEffectId: 170,
+        hitEffectId: 170
     };
 
     SkillEffect[SK.HT_SPRINGTRAP] = {
