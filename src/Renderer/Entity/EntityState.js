@@ -36,14 +36,30 @@ define(function( require )
 	_stateToVirtue[StatusConst.Status.TWOHANDQUICKEN] = StatusConst.OPT3.QUICKEN;
 	_stateToVirtue[StatusConst.Status.SPEARQUICKEN] = StatusConst.OPT3.QUICKEN;
 	_stateToVirtue[StatusConst.Status.LKCONCENTRATION] = StatusConst.OPT3.QUICKEN;
+	_stateToVirtue[StatusConst.Status.ONEHANDQUICKEN] = StatusConst.OPT3.QUICKEN;
 	_stateToVirtue[StatusConst.Status.EXPLOSIONSPIRITS] = StatusConst.OPT3.EXPLOSIONSPIRITS;
+	_stateToVirtue[StatusConst.Status.STEELBODY] = StatusConst.OPT3.STEELBODY;
+	_stateToVirtue[StatusConst.Status.AURABLADE] = StatusConst.OPT3.AURABLADE;
 	_stateToVirtue[StatusConst.Status.BLADESTOP] = StatusConst.OPT3.BLADESTOP;
 	_stateToVirtue[StatusConst.Status.OVERTHRUST] = StatusConst.OPT3.OVERTHRUST;
+	_stateToVirtue[StatusConst.Status.OVERTHRUSTMAX] = StatusConst.OPT3.OVERTHRUST;
+	_stateToVirtue[StatusConst.Status.SWOO] = StatusConst.OPT3.OVERTHRUST;
 	_stateToVirtue[StatusConst.Status.ENERGYCOAT] = StatusConst.OPT3.ENERGYCOAT;
+	_stateToVirtue[StatusConst.Status.SKE] = StatusConst.OPT3.ENERGYCOAT;
 	_stateToVirtue[StatusConst.Status.BERSERK] = StatusConst.OPT3.BERSERK;
 	_stateToVirtue[StatusConst.Status.MARIONETTE] = StatusConst.OPT3.MARIONETTE;
 	_stateToVirtue[StatusConst.Status.MARIONETTE_MASTER] = StatusConst.OPT3.MARIONETTE;
+	_stateToVirtue[StatusConst.Status.ASSUMPTIO] = StatusConst.OPT3.ASSUMPTIO;
+	_stateToVirtue[StatusConst.Status.ASSUMPTIO2] = StatusConst.OPT3.ASSUMPTIO;
+	_stateToVirtue[StatusConst.Status.SG_WARM] = StatusConst.OPT3.WARM;
+	_stateToVirtue[StatusConst.Status.SG_SUN_WARM] = StatusConst.OPT3.WARM;
+	_stateToVirtue[StatusConst.Status.SG_MOON_WARM] = StatusConst.OPT3.WARM;
+	_stateToVirtue[StatusConst.Status.SG_STAR_WARM] = StatusConst.OPT3.WARM;
+	_stateToVirtue[StatusConst.Status.KAITE] = StatusConst.OPT3.KAITE;
 	_stateToVirtue[StatusConst.Status.NJ_BUNSINJYUTSU] = StatusConst.OPT3.BUNSIN;
+	_stateToVirtue[StatusConst.Status.SOULLINK] = StatusConst.OPT3.SOULLINK;
+	_stateToVirtue[StatusConst.Status.PROPERTYUNDEAD] = StatusConst.OPT3.UNDEAD;
+	_stateToVirtue[StatusConst.Status.DA_CONTRACT] = StatusConst.OPT3.CONTRACT;
 
 	function toggleOpt3(state, enabled){
 		if (state === 0){
@@ -94,6 +110,23 @@ define(function( require )
 		if (value & StatusConst.OPT3.OVERTHRUST){
 			this._virtueColor[1] = 0.75;
 			this._virtueColor[2] = 0.75;
+		}
+
+        if (value & StatusConst.OPT3.WARM){
+			this._virtueColor[1] = 0.40;
+			this._virtueColor[2] = 0.40;
+		}
+
+        if (value & StatusConst.OPT3.SOULLINK){
+			this._virtueColor[0] = 0.35;
+			this._virtueColor[1] = 0.35;
+			this._virtueColor[2] = 0.90;
+			this._virtueColor[3] = 0.90;
+		}
+
+        if (value & StatusConst.OPT3.UNDEAD){
+			this._virtueColor[0] = 0.70;
+			this._virtueColor[2] = 0.65;
 		}
 
 		if ((value & StatusConst.OPT3.MARIONETTE) ||

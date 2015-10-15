@@ -959,12 +959,32 @@ define(function( require )
             case StatusConst.MARIONETTE_MASTER:
             case StatusConst.MARIONETTE:
             case StatusConst.TWOHANDQUICKEN:
+            case StatusConst.ONEHANDQUICKEN:
             case StatusConst.SPEARQUICKEN:
             case StatusConst.LKCONCENTRATION:
             case StatusConst.BERSERK:
             case StatusConst.ENERGYCOAT:
             case StatusConst.OVERTHRUST:
+            case StatusConst.OVERTHRUSTMAX:
+            case StatusConst.SWOO:
+            case StatusConst.SKE:
             case StatusConst.NJ_BUNSINJYUTSU:
+            case StatusConst.STEELBODY:
+            case StatusConst.AURABLADE:
+            case StatusConst.ASSUMPTIO:
+            case StatusConst.ASSUMPTIO2:
+            case StatusConst.SG_WARM:
+            case StatusConst.SG_SUN_WARM:
+            case StatusConst.SG_MOON_WARM:
+            case StatusConst.SG_STAR_WARM:
+            case StatusConst.KAITE:
+            case StatusConst.SOULLINK:
+            case StatusConst.PROPERTYUNDEAD:
+            case StatusConst.DA_CONTRACT:
+            //CG_MOONLIT Moonlit Water Mill
+            //SC_MERC_QUICKEN
+            //SC_SKA
+            //SC_INCATKRATE
                 entity.toggleOpt3(pkt.index, pkt.state)
                 break;
 
