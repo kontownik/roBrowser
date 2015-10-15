@@ -735,7 +735,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.ADRENALINE2] = {
-		icon: "i_\xef\x82\xbf\xef\x83\x80\xef\x82\xb9\xef\x83\xb6\xef\x82\xb8\xc6\xbd\xef\x82\xba.tga",
+		icon: "\xbe\xc6\xb5\xe5\xb7\xb9\xb3\xaf\xb8\xb0\xb7\xaf\xbd\xac.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -1047,7 +1047,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.PRESERVE] = {
-		icon: "i_\xef\x83\x87\xef\x83\x81\xef\x82\xb8\xef\x82\xae\xef\x83\x80\xef\x83\xba\xef\x82\xba\xef\x83\xaa.tga",
+		icon: "i_\xc7\xc1\xb8\xae\xc0\xfa\xba\xea.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -1091,7 +1091,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.EDP] = {
-		icon: "i_\xc4\xa1\xef\x82\xb5\xef\x82\xb6.tga",
+		icon: "i_\xc4\xa1\xb5\xb6.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -1103,7 +1103,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.JOINTBEAT] = {
-		icon: "\xef\x82\xb0\xef\x83\xbc\xef\x83\x80\xef\x83\xbd\xef\x82\xb0\xef\x83\xb8\xef\x82\xb0\xef\x83\x9d.tga",
+		icon: "\xb0\xfc\xc0\xfd\xb0\xf8\xb0\xdd.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -1182,7 +1182,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.ARMOR_PROPERTY] = {
-		icon: "\xc4\xb3\xef\x82\xbd\xc3\xb0\xef\x82\xa9\xef\x82\xbf\xca\xbc\xd3\xbc\xef\x82\xba\xef\x82\xba\xce\xbf\xef\x82\xa9.tga",
+		icon: "\xc4\xb3\xbd\xc3\xb0\xa9\xbf\xca\xbc\xd3\xbc\xba\xba\xce\xbf\xa9.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -1461,7 +1461,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.DOUBLECASTING] = {
-		icon: "i_\xef\x82\xb4\xef\x83\xb5\xef\x82\xba\xef\x83\xad\xc4\xb3\xef\x82\xbd\xef\x82\xba\xef\x83\x86\xef\x83\x83.tga",
+		icon: "i_\xb4\xf5\xba\xed\xc4\xb3\xbd\xba\xc6\xc3.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -1589,7 +1589,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.BLOODING] = {
-		icon: "\xef\x83\x83\xef\x83\xa2\xef\x83\x87\xef\x83\xb7\xef\x82\xbb\xef\x83\xb3\xef\x83\x85\xef\x83\x82.tga",
+		icon: "\xc3\xe2\xc7\xf7\xbb\xf3\xc5\xc2.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 2,
 		descript: [
@@ -1786,7 +1786,7 @@ define(['./StatusConst'], function( SC )
 	};
 
 	StatusInfo[SC.CHASEWALK2] = {
-		icon: "i_\xc3\xbc\xef\x83\x80\xcc\xbd\xef\x82\xba\xef\x83\x88\xef\x83\xbb.tga",
+		icon: "i_\xc3\xbc\xc0\xcc\xbd\xba\xc8\xfb.tga",
 		haveTimeLimit: 1,
 		posTimeLimitStr: 1,
 		descript: [
