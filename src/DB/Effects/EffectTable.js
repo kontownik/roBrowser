@@ -1873,6 +1873,15 @@ define(function( require )
             attachedEntity: true
         }],
 
+        '496_beforecast': [{
+            type: 'FUNC',
+            attachedEntity: true,
+            func: function(entity, tick) {
+                var MagicRing = require('Renderer/Effects/MagicRing');
+                this.add(new MagicRing(entity, 2.45, 0.8, 2.80, 'ring_jadu', tick+10000), entity.GID);
+            }
+        }],
+
         507: [{ //Authoritative Badge
             type: 'STR',
             file: 'mapae',

@@ -841,6 +841,7 @@ define(function( require )
                 srcEntity.objecttype === Entity.TYPE_MERC || srcEntity.objecttype === Entity.TYPE_ELEM
         )
         {
+        if(pkt.SKID != 389) //when Skill name above head is hidden (chase walk)
             srcEntity.dialog.set(
                 ( ( SkillInfo[pkt.SKID] && SkillInfo[pkt.SKID].SkillName ) || 'Unknown Skill' ) + ' !!',
                 'white'

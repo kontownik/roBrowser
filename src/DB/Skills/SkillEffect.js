@@ -434,5 +434,9 @@ define(['./SkillConst'], function( SK )
         hitEffectId: 677
     };
 
+    SkillEffect[SK.ST_PRESERVE] =  {
+        beforeCastEffectId: '496_beforecast'
+    };
+
     return SkillEffect;
 });
