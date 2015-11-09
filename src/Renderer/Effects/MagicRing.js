@@ -230,6 +230,9 @@ function(      WebGL,         Texture,          glMatrix,        Client) {
 
 		gl.drawArrays( gl.TRIANGLES, 0, _verticeCount );
         this.needCleanUp = this.endLifeTime < tick;
+        if(!this.target.cast.display){
+            this.needCleanUp = true;
+        }
 	};
 
 
